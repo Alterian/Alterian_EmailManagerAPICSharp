@@ -24,7 +24,7 @@ These Email Manager API Code Samples will show steps and basic code to achieve m
 ```csharp
 em.Authenticator.Authenticate(id, pass, newPassword, true, DateTime.Now, out _token);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Create a list
 ```csharp
@@ -41,7 +41,7 @@ em.ListManager.CreateRecipientList(
                     false
                 );
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Upload a list
 
@@ -53,21 +53,21 @@ em.ListManager.UploadDataCSV(em.Token, ",", null, data);
 em.ListManager.InsertListData(em.Token);
 em.ListManager.FinalizeListImport(em.Token);
 ``` 
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Download a list
 ```csharp
 em.ListManager.GetListFields(token, listID, out fieldPrimaryKey);
 em.ListManager.GetListRecords(token, listID, 999999, ref dmCursor, DMPreviewDirection.DMPD_FIRST);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Query on the list (e.g. filtering a target)
 ```csharp
 em.ListManager.ExecuteListQuery(em.Token, criteria);
 em.ListManager.GetQueryResultsCSV(em.Token, fields, startIndex, endIndex, false, out count);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Create a creative
 ```csharp
@@ -76,7 +76,7 @@ em.EmService.BeginCampaignSave(em.Token, campaignID);
 em.EmService.QueueCampaignCreativeCreation(em.Token, campaignSaveID, creativeName, description, type, false, false, htmlContent, textContent, true);
 em.EmService.CommitCampaignSave(em.Token, campaignSaveID);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Send an email (e.g. Welcome email)
 
@@ -105,7 +105,7 @@ em.ListManager.AddRecipientRecord(
     listID
     );                    
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Send multiple emails using predefined email variable mappiings (e.g Transactional Emails)
 
@@ -123,7 +123,7 @@ em.ListImport.CreateImport(
 em.ListImport.ImportDataS(Token, importID, chunknumber, dataToImport);
 em.ListImport.FinishImport(Token, importID);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Send multiple emails dynamically setting up an email varialbes (e.g Transactional Emails)
 
@@ -135,19 +135,19 @@ em.SendMessage.CreateDeployment(em.Token, creativeId, deployName);
 em.SendMessage.SetDeploymentVariables(em.Token, deploymentId, templateValue, recipientLists, null, variableMaps.ToArray(), false);
 em.SendMessage.FinalizeDeployment(em.Token, deploymentId, sendNow);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Export response data such as open and click
 ```csharp
 em.DmPlus.ExportEventlogData(em.Token, 0, startDate, endDate, filters.ToArray(), eventColumns.ToArray(), DMExportDataFormat.DMDF_CSV, CompressionMethod.CM_GZIP);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 ## Unsubscribe a recipient
 ```csharp
 em.ListManager.UpdateRecipient(em.Token, 0, recipient.RecipientID, recipient.PrefersText, recipient.RSSOnly, Unsubscribed: true, FieldValues: null);
 ```
-You can download full example code from [here](https://github.com/AlterianTechnology/EmailManagerAPICSharp)
+You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
 # Note
 
