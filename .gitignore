@@ -4,3 +4,4 @@ AlterianEMAPIClient/bin/
 AlterianEMAPIClient/obj/
 AlterianEMAPISample/bin/
 AlterianEMAPISample/obj/
+*.nupkg
