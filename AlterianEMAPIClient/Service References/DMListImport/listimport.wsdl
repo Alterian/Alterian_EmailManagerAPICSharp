@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="CreateImport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DataSize" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="AddToLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="AddToDeployments" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateImportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateImportResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportDataS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImportID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChunkNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportDataSResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportDataB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImportID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChunkNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportDataBResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportDataC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImportID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChunkNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="CompressionFormat" type="tns:DMSourceCompressionFormat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMSourceCompressionFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMSCF_NA" />
+          <s:enumeration value="DMSCF_GZIP" />
+          <s:enumeration value="DMSCF_ZIP" />
+          <s:enumeration value="DMSCF_BZIP2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ImportDataCResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinishImport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImportID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinishImportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetImportStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ImportId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImportStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImportStatusResult" type="tns:DMListImportStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMListImportStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessedBytes" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsCreated" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsUpdated" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsTotal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsAddedToLists" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsAddedToDeployments" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThreadTimeTakenInSeconds" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualTimeTakenInSeconds" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMsg" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalFileSizeInBytes" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateImportSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceFormat" type="tns:DMSourceFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="Delimiter" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextQualifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ColumnHeaders" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyHeaders" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodePage" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMListImportSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceCompressionFormat" type="tns:DMSourceCompressionFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaddingChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileExt" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Encryption" nillable="true" type="tns:DMEncryptionType" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPublicKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPrivateKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPassPhrase" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EncryptionSetup" nillable="true" type="tns:DMEncryptionSetup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMSourceFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMSF_NA" />
+          <s:enumeration value="DMSF_CSV" />
+          <s:enumeration value="DMSF_LEGACY" />
+          <s:enumeration value="DMSF_EXCEL" />
+          <s:enumeration value="DMSF_FIXEDWIDTH" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMListImportSourceColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListImportSourceColumn" nillable="true" type="tns:DMListImportSourceColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListImportSourceColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Header" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMEncryptionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMET_NA" />
+          <s:enumeration value="DMET_IDEA" />
+          <s:enumeration value="DMET_TRIPLEDES" />
+          <s:enumeration value="DMET_CAST5" />
+          <s:enumeration value="DMET_BLOWFISH" />
+          <s:enumeration value="DMET_SAFER" />
+          <s:enumeration value="DMET_DES" />
+          <s:enumeration value="DMET_AES128" />
+          <s:enumeration value="DMET_AES192" />
+          <s:enumeration value="DMET_AES256" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMEncryptionSetup">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMES_NA" />
+          <s:enumeration value="DMES_AutoGenerated" />
+          <s:enumeration value="DMES_ManuallyEntered" />
+          <s:enumeration value="DMES_AutoGenerateNewKeys" />
+          <s:enumeration value="DMES_SaveEdittedKeys" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateImportSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateImportSourceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateImportSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceFormat" type="tns:DMSourceFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="Delimiter" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TextQualifier" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ColumnHeaders" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyHeaders" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CodePage" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMListImportSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceCompressionFormat" type="tns:DMSourceCompressionFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaddingChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileExt" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Encryption" nillable="true" type="tns:DMEncryptionType" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPublicKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPrivateKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptionPassPhrase" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EncryptionSetup" nillable="true" type="tns:DMEncryptionSetup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateImportSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateImportSourceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveImportSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveImportSourceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetImportSources">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImportSourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImportSourcesResult" type="tns:ArrayOfDMListImportSource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListImportSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListImportSource" nillable="true" type="tns:DMListImportSource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListImportSource">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DMSourceFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="Delimiter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TextQualifier" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnHeaders" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VerifyHeaders" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMListImportSourceColumn" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipPassword" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SourceCompressionFormat" type="tns:DMSourceCompressionFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaddingChar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileExt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Encryption" nillable="true" type="tns:DMEncryptionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="EncryptionPublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EncryptionPrivateKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EncryptionPassPhrase" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EncryptionSetup" type="tns:DMEncryptionSetup" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodePage" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetImportSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SourceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImportSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImportSourceResult" type="tns:DMListImportSource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateImportSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateImport" />
+  </wsdl:message>
+  <wsdl:message name="CreateImportSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataSSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportDataS" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataSSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportDataSResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataBSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportDataB" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataBSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportDataBResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataCSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportDataC" />
+  </wsdl:message>
+  <wsdl:message name="ImportDataCSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportDataCResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinishImportSoapIn">
+    <wsdl:part name="parameters" element="tns:FinishImport" />
+  </wsdl:message>
+  <wsdl:message name="FinishImportSoapOut">
+    <wsdl:part name="parameters" element="tns:FinishImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImportStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImportStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetImportStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImportStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateImportSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateImportSource" />
+  </wsdl:message>
+  <wsdl:message name="CreateImportSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateImportSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateImportSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateImportSource" />
+  </wsdl:message>
+  <wsdl:message name="UpdateImportSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateImportSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveImportSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveImportSource" />
+  </wsdl:message>
+  <wsdl:message name="RemoveImportSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveImportSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImportSourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImportSources" />
+  </wsdl:message>
+  <wsdl:message name="GetImportSourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImportSourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImportSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImportSource" />
+  </wsdl:message>
+  <wsdl:message name="GetImportSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImportSourceResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMListImportSoap">
+    <wsdl:operation name="CreateImport">
+      <wsdl:input message="tns:CreateImportSoapIn" />
+      <wsdl:output message="tns:CreateImportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataS">
+      <wsdl:input message="tns:ImportDataSSoapIn" />
+      <wsdl:output message="tns:ImportDataSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataB">
+      <wsdl:input message="tns:ImportDataBSoapIn" />
+      <wsdl:output message="tns:ImportDataBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataC">
+      <wsdl:input message="tns:ImportDataCSoapIn" />
+      <wsdl:output message="tns:ImportDataCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishImport">
+      <wsdl:input message="tns:FinishImportSoapIn" />
+      <wsdl:output message="tns:FinishImportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportStatus">
+      <wsdl:input message="tns:GetImportStatusSoapIn" />
+      <wsdl:output message="tns:GetImportStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateImportSource">
+      <wsdl:input message="tns:CreateImportSourceSoapIn" />
+      <wsdl:output message="tns:CreateImportSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImportSource">
+      <wsdl:input message="tns:UpdateImportSourceSoapIn" />
+      <wsdl:output message="tns:UpdateImportSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveImportSource">
+      <wsdl:input message="tns:RemoveImportSourceSoapIn" />
+      <wsdl:output message="tns:RemoveImportSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSources">
+      <wsdl:input message="tns:GetImportSourcesSoapIn" />
+      <wsdl:output message="tns:GetImportSourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSource">
+      <wsdl:input message="tns:GetImportSourceSoapIn" />
+      <wsdl:output message="tns:GetImportSourceSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMListImportSoap" type="tns:DMListImportSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateImport">
+      <soap:operation soapAction="DMWebServices/CreateImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataS">
+      <soap:operation soapAction="DMWebServices/ImportDataS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataB">
+      <soap:operation soapAction="DMWebServices/ImportDataB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataC">
+      <soap:operation soapAction="DMWebServices/ImportDataC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishImport">
+      <soap:operation soapAction="DMWebServices/FinishImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportStatus">
+      <soap:operation soapAction="DMWebServices/GetImportStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateImportSource">
+      <soap:operation soapAction="DMWebServices/CreateImportSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImportSource">
+      <soap:operation soapAction="DMWebServices/UpdateImportSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveImportSource">
+      <soap:operation soapAction="DMWebServices/RemoveImportSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSources">
+      <soap:operation soapAction="DMWebServices/GetImportSources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSource">
+      <soap:operation soapAction="DMWebServices/GetImportSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMListImportSoap12" type="tns:DMListImportSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateImport">
+      <soap12:operation soapAction="DMWebServices/CreateImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataS">
+      <soap12:operation soapAction="DMWebServices/ImportDataS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataB">
+      <soap12:operation soapAction="DMWebServices/ImportDataB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportDataC">
+      <soap12:operation soapAction="DMWebServices/ImportDataC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinishImport">
+      <soap12:operation soapAction="DMWebServices/FinishImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportStatus">
+      <soap12:operation soapAction="DMWebServices/GetImportStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateImportSource">
+      <soap12:operation soapAction="DMWebServices/CreateImportSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImportSource">
+      <soap12:operation soapAction="DMWebServices/UpdateImportSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveImportSource">
+      <soap12:operation soapAction="DMWebServices/RemoveImportSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSources">
+      <soap12:operation soapAction="DMWebServices/GetImportSources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportSource">
+      <soap12:operation soapAction="DMWebServices/GetImportSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMListImport">
+    <wsdl:port name="DMListImportSoap" binding="tns:DMListImportSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/listimport.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMListImportSoap12" binding="tns:DMListImportSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/listimport.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

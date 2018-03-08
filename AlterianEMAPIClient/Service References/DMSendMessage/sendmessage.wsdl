@@ -1,0 +1,3287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="VolumeWarning">
+        <s:complexType />
+      </s:element>
+      <s:element name="VolumeWarningResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VolumeWarningResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDeploymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateDeploymentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateValue" type="tns:DMTemplateValue" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="Attachments" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="VariableMapping" type="tns:ArrayOfDMVariableMap" />
+            <s:element minOccurs="1" maxOccurs="1" name="ProofDeployment" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMTemplateValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlTemplate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextTemplate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConditionalValues" type="tns:ArrayOfDMConditionalTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMConditionalTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMConditionalTemplate" nillable="true" type="tns:DMConditionalTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMConditionalTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlTemplate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextTemplate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conditions" type="tns:ArrayOfDMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCondition" nillable="true" type="tns:DMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Operand1" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMOP_EQUAL" />
+          <s:enumeration value="DMOP_NOTEQUAL" />
+          <s:enumeration value="DMOP_LESSTHAN" />
+          <s:enumeration value="DMOP_GREATERTHAN" />
+          <s:enumeration value="DMOP_BEGINSWITH" />
+          <s:enumeration value="DMOP_NOTBEGINSWITH" />
+          <s:enumeration value="DMOP_ENDSWITH" />
+          <s:enumeration value="DMOP_NOTENDSWITH" />
+          <s:enumeration value="DMOP_CONTAINS" />
+          <s:enumeration value="DMOP_NOTCONTAINS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMCombine">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCM_NONE" />
+          <s:enumeration value="DMCM_AND" />
+          <s:enumeration value="DMCM_OR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMVariableMap">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMVariableMap" nillable="true" type="tns:DMVariableMap" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMVariableMap">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="VariableID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="tns:DMVariableValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMVariableValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConditionalValues" type="tns:ArrayOfDMConditionalValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMConditionalValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMConditionalValue" nillable="true" type="tns:DMConditionalValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMConditionalValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conditions" type="tns:ArrayOfDMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetDeploymentVariablesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentDeliveryContext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeliveryContextID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentDeliveryContextResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentSmartlistRefresh">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RefreshSmartlists" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentSmartlistRefreshResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentSuppression">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="HealthThreshold" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentSuppressionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDeploymentNotify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeploymentNotifyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentNotifyResult" type="tns:ArrayOfDMEventNotify" />
+            <s:element minOccurs="1" maxOccurs="1" name="NotifyComplete" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMEventNotify">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEventNotify" nillable="true" type="tns:DMEventNotify" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEventNotify">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetDeploymentNotify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="NotifyComplete" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyEvents" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="NotifyEmail" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentNotifyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentThrottle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Choke" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChokeInterval" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentThrottleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetDeploymentSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Schedule" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDeploymentScheduleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinalizeDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendNow" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizeDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FinalizeRecurringDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Enddate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Frequency" type="tns:DMRecurringScheduleType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMRecurringScheduleType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMRST_DAILY" />
+          <s:enumeration value="DMRST_WEEKLY" />
+          <s:enumeration value="DMRST_MONTHLY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="FinalizeRecurringDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateRecurringDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Deployment" type="tns:DMDeployment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMDeployment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:DMClient" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreativeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SenderID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DMDeploymentStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Choke" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChokeInterval" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OneOff" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProofMode" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeliveryContextID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryContextVirtualMTA" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Started" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PagesServed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SMSShortCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SMSUsername" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SMSPassword" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SMSTariffClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreativeCategoryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListNames" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromAlias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToAlias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Finished" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Schedule" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Queued" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentDone" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HealthThreshold" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Throttle" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldStatus" type="tns:DMDeploymentStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListTotal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HealthSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MailerSubmissionError" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DCInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyEvents" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="RefreshSmartLists" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrenceSchedule" type="tns:DMDeploymentSchedule" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyEmail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DuplicatesSuppressed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastChecked" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalMessagesLeft" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMClient">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VirtualMTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConnectionString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HashTable" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentPath" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Seats" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SetID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Icon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentServerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Directory" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DBServerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DBName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MTAServerID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultDC" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryContexts" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Settings" type="tns:DMClientSettings" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageBasePath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PasswordPolicy" type="tns:DMPasswordPolicy" />
+          <s:element minOccurs="1" maxOccurs="1" name="StaticTokenEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShareLookUpOnSaveAs" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SEVExportEnabled" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMClientSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InboundDomain" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentDomain" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UploadImageDefault" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DMWCMList" type="tns:ArrayOfDMWCMEntry" />
+          <s:element minOccurs="1" maxOccurs="1" name="PVID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserCulture" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OmnitureSettings" type="tns:DMOmnitureSettings" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultTemplateCodePage" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PVUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SM2Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MMUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MMCertThumbprint" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GalleryPreviewEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="StaticTokenEnabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyEmail" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShareLookUpOnSaveAs" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientsSubscribeCommandTimout" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SEVExportEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxUpdatedDeploymentsToProcessByPrefetch" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DomainFilteringEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessSuppressionChunksMaxDegreeOfParallelism" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeListUnsubscribeInHeader" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMWCMEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMWCMEntry" nillable="true" type="tns:DMWCMEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMWCMEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMOmnitureSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntegrationNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportSuite" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemarketingSegPath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RemarketingSeg" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMPasswordPolicy">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsUpperCaseRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLowerCaseRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDigitRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSpecialCharRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordAge" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordHistoryMax" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPreviousPasswordsAllowed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMDeploymentStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDS_SETUP" />
+          <s:enumeration value="DMDS_QUEUED" />
+          <s:enumeration value="DMDS_SCHEDULED" />
+          <s:enumeration value="DMDS_PREFETCHING" />
+          <s:enumeration value="DMDS_PREFETCHED" />
+          <s:enumeration value="DMDS_SENDING" />
+          <s:enumeration value="DMDS_PAUSED" />
+          <s:enumeration value="DMDS_ABORTED" />
+          <s:enumeration value="DMDS_COMPLETED" />
+          <s:enumeration value="DMDS_PREFECTHING_IN_PROGRESS" />
+          <s:enumeration value="DMDS_FAILED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DMDeploymentSchedule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Frequency" type="tns:DMRecurringScheduleType" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateRecurringDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDeploymentLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeploymentListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentListsResult" type="tns:ArrayOfDMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMList" nillable="true" type="tns:DMList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptinEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptoutEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListType" type="tns:DMListType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowOptin" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowOptout" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditPropertiesAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditRecordsAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeployAccess" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListCriteria" type="tns:DMListCriteria" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMListType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMLT_RECIPIENT" />
+          <s:enumeration value="DMLT_SUPPRESS" />
+          <s:enumeration value="DMLT_DOMAINSUPPRESSION" />
+          <s:enumeration value="DMLT_MD5SUPPRESSION" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DMListCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IncludeLists" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExcludeLists" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventCriteria" type="tns:DMListEventCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldCriteria" type="tns:ArrayOfDMFieldCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreferenceCriteria" type="tns:ArrayOfDMPreferenceCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Users" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateRanges" type="tns:ArrayOfDMRDateRange" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfDMEventCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRDateRange" nillable="true" type="tns:DMRDateRange" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RangeType" type="tns:DMRDateRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRDateRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDT_BEFORE" />
+          <s:enumeration value="DMDT_AFTER" />
+          <s:enumeration value="DMDT_BETWEEN" />
+          <s:enumeration value="DMDT_YEARTODATE" />
+          <s:enumeration value="DMDT_MONTHTODATE" />
+          <s:enumeration value="DMDT_WEEKTODATE" />
+          <s:enumeration value="DMDT_TODAY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEventCriteria" nillable="true" type="tns:DMEventCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMOperator" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operand" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMFieldCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMFieldCriteria" nillable="true" type="tns:DMFieldCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMFieldCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryType" type="tns:DMFieldQueryType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parameter" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMSQLOperator" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="0" maxOccurs="1" name="SValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="IValue" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="DValue" type="tns:ArrayOfDouble" />
+          <s:element minOccurs="0" maxOccurs="1" name="BValue" type="tns:ArrayOfBoolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldSubType" type="tns:DMFieldSubType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldQueryType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMQT_PREFERTEXT" />
+          <s:enumeration value="DMQT_VERIFIEDFLASH" />
+          <s:enumeration value="DMQT_VERIFIEDHTML" />
+          <s:enumeration value="DMQT_ENABLED" />
+          <s:enumeration value="DMQT_LASTEVENT" />
+          <s:enumeration value="DMQT_CREATED" />
+          <s:enumeration value="DMQT_MODIFIED" />
+          <s:enumeration value="DMQT_DATEFIELD" />
+          <s:enumeration value="DMQT_NUMERICFIELD" />
+          <s:enumeration value="DMQT_DECIMALFIELD" />
+          <s:enumeration value="DMQT_BOOLEANFIELD" />
+          <s:enumeration value="DMQT_STRINGFIELD" />
+          <s:enumeration value="DMQT_RSSONLY" />
+          <s:enumeration value="DMQT_LASTENGAGED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMSQLOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMSQ_EQUAL" />
+          <s:enumeration value="DMSQ_NOTEQUAL" />
+          <s:enumeration value="DMSQ_LESSTHAN" />
+          <s:enumeration value="DMSQ_GREATERTHAN" />
+          <s:enumeration value="DMSQ_BEGINSWITH" />
+          <s:enumeration value="DMSQ_NOTBEGINSWITH" />
+          <s:enumeration value="DMSQ_ENDSWITH" />
+          <s:enumeration value="DMSQ_NOTENDSWITH" />
+          <s:enumeration value="DMSQ_CONTAINS" />
+          <s:enumeration value="DMSQ_NOTCONTAINS" />
+          <s:enumeration value="DMSQ_IN" />
+          <s:enumeration value="DMSQ_NOTIN" />
+          <s:enumeration value="DMSQ_BETWEEN" />
+          <s:enumeration value="DMSQ_NOTBETWEEN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDouble">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="double" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldSubType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFST_NA" />
+          <s:enumeration value="DMFST_EMAIL_USER" />
+          <s:enumeration value="DMFST_EMAIL_DOMAIN" />
+          <s:enumeration value="DMFST_EMAIL_HEALTH" />
+          <s:enumeration value="DMFST_DATE_YEAR" />
+          <s:enumeration value="DMFST_DATE_MONTH" />
+          <s:enumeration value="DMFST_DATE_DAY" />
+          <s:enumeration value="DMFST_DATE_TIME" />
+          <s:enumeration value="DMFST_DATE_DAYSFROMNOW" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMPreferenceCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMPreferenceCriteria" nillable="true" type="tns:DMPreferenceCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMPreferenceCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parameter" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDeploymentsLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeploymentIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeploymentsListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentsListsResult" type="tns:ArrayOfDMDeploymentLists" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMDeploymentLists">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDeploymentLists" nillable="true" type="tns:DMDeploymentLists" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMDeploymentLists">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Include" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exclude" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suppress" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDeploymentsEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeploymentIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeploymentsEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentsEventsResult" type="tns:ArrayOfDMEventInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="DeploymentEvents" type="tns:ArrayOfDMDeploymentEvents" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMEventInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEventInfo" nillable="true" type="tns:DMEventInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEventInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Health" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="System" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserDefined" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoNamed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasValue" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Disable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMDeploymentEvents">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDeploymentEvents" nillable="true" type="tns:DMDeploymentEvents" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMDeploymentEvents">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeploymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentResult" type="tns:DMDeployment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientToDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientToDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDeployments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DateRange" type="tns:DMRDateRange" />
+            <s:element minOccurs="1" maxOccurs="1" name="Scheduled" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Completed" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExcludeOneOffs" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfDMDeploymentField" />
+            <s:element minOccurs="1" maxOccurs="1" name="SearchByScheduledDate" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMDeploymentField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDeploymentField" type="tns:DMDeploymentField" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMDeploymentField">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDF_CREATIVECATEGORYNAME" />
+          <s:enumeration value="DMDF_CREATIVENAME" />
+          <s:enumeration value="DMDF_NAME" />
+          <s:enumeration value="DMDF_LISTNAMES" />
+          <s:enumeration value="DMDF_USERNAME" />
+          <s:enumeration value="DMDF_FROMEMAIL" />
+          <s:enumeration value="DMDF_FROMALIAS" />
+          <s:enumeration value="DMDF_TOEMAIL" />
+          <s:enumeration value="DMDF_TOALIAS" />
+          <s:enumeration value="DMDF_REPLYTO" />
+          <s:enumeration value="DMDF_SUBJECT" />
+          <s:enumeration value="DMDF_CREATED" />
+          <s:enumeration value="DMDF_MODIFIED" />
+          <s:enumeration value="DMDF_STARTED" />
+          <s:enumeration value="DMDF_FINISHED" />
+          <s:enumeration value="DMDF_SCHEDULE" />
+          <s:enumeration value="DMDF_TOTAL" />
+          <s:enumeration value="DMDF_SENT" />
+          <s:enumeration value="DMDF_QUEUED" />
+          <s:enumeration value="DMDF_PERCENTDONE" />
+          <s:enumeration value="DMDF_THROTTLE" />
+          <s:enumeration value="DMDF_STATUS" />
+          <s:enumeration value="DMDF_ID" />
+          <s:enumeration value="DMDF_LISTTOTAL" />
+          <s:enumeration value="DMDF_RECIPIENTSUPPRESSED" />
+          <s:enumeration value="DMDF_LISTSUPPRESSED" />
+          <s:enumeration value="DMDF_HEALTHSUPPRESSED" />
+          <s:enumeration value="DMDF_EVENTSUPPRESSED" />
+          <s:enumeration value="DMDF_FIELDSUPPRESSED" />
+          <s:enumeration value="DMDF_MAILERSUBMISSIONERROR" />
+          <s:enumeration value="DMDF_DCINFO" />
+          <s:enumeration value="DMDF_RECURRENCESCHEDULE" />
+          <s:enumeration value="DMDF_DUPESUPPRESSED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDeploymentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeploymentsResult" type="tns:ArrayOfDMDeployment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMDeployment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDeployment" nillable="true" type="tns:DMDeployment" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PauseDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PauseDeploymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PauseDeploymentResult" type="tns:DMDeploymentStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PauseRecurringDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PauseRecurringDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ResumeDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumeDeploymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResumeDeploymentResult" type="tns:DMDeploymentStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumeRecurringDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResumeRecurringDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AbortDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbortDeploymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AbortDeploymentResult" type="tns:DMDeploymentStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbortRecurringDeployment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AbortRecurringDeploymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SAMGetTotalRecipients">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetTotalRecipientsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAMGetTotalRecipientsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreviewDeploymentTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreviewDeploymentTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PreviewDeploymentTotalResult" type="tns:ArrayOfHealthCount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfHealthCount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HealthCount" nillable="true" type="tns:HealthCount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HealthCount">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Health" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SAMPreviewFirst">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewFirstResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMPreviewFirstResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewLast">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewLastResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMPreviewLastResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewNext">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewNextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMPreviewNextResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewPrevious">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecipientLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressionLists" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="SuppressEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewPreviousResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMPreviewPreviousResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecordNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMPreviewExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMPreviewExResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSAReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSAReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSAReportResult" type="tns:SAReport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SAReport">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="score" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rows" type="tns:ArrayOfSAReportRow" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSAReportRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SAReportRow" nillable="true" type="tns:SAReportRow" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SAReportRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="points" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rule" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeCategoriesResult" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCategory" nillable="true" type="tns:DMCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreatives">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreativeIDList" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativesResult" type="tns:ArrayOfDMCreative" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCreative">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCreative" nillable="true" type="tns:DMCreative" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCreative">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thumbnail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateDefaults" type="tns:DMTemplateValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditDefaults" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifyAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeployAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReportAccess" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeCategoriesEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionIDs" type="tns:ArrayOfDMCreativePermission" />
+            <s:element minOccurs="1" maxOccurs="1" name="GetCreatives" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCreativePermission">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCreativePermission" type="tns:DMCreativePermission" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMCreativePermission">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCP_MODIFY" />
+          <s:enumeration value="DMCP_DEPLOY" />
+          <s:enumeration value="DMCP_REPORT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCreativeCategoriesExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeCategoriesExResult" type="tns:ArrayOfDMCreativeCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCreativeCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCreativeCategory" nillable="true" type="tns:DMCreativeCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCreativeCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfDMCreative" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllCreatives">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCreativesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCreativesResult" type="tns:ArrayOfDMCreative" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeVariablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeVariablesResult" type="tns:ArrayOfDMSAMVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSAMVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSAMVariable" nillable="true" type="tns:DMSAMVariable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSAMVariable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditorType" type="tns:DMEditorType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParseName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="tns:DMVariableValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForceMap" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Readonly" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMVariableType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMVT_FROMEMAIL" />
+          <s:enumeration value="DMVT_FROMALIAS" />
+          <s:enumeration value="DMVT_TOEMAIL" />
+          <s:enumeration value="DMVT_TOALIAS" />
+          <s:enumeration value="DMVT_REPLYTO" />
+          <s:enumeration value="DMVT_SUBJECT" />
+          <s:enumeration value="DMVT_STRING" />
+          <s:enumeration value="DMVT_EMAIL" />
+          <s:enumeration value="DMVT_TEXT" />
+          <s:enumeration value="DMVT_HTML" />
+          <s:enumeration value="DMVT_DATE" />
+          <s:enumeration value="DMVT_NUMERIC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMEditorType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMET_STRING" />
+          <s:enumeration value="DMET_TEXT" />
+          <s:enumeration value="DMET_HTML" />
+          <s:enumeration value="DMET_DATE" />
+          <s:enumeration value="DMET_COMBO" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetVariableComboValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVariableComboValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVariableComboValuesResult" type="tns:ArrayOfDMComboValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMComboValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMComboValue" nillable="true" type="tns:DMComboValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMComboValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Display" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListCategoriesResult" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultListsOnly" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMGetListsResult" type="tns:ArrayOfDMSAMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSAMList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSAMList" nillable="true" type="tns:DMSAMList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSAMList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SAMGetAllLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultListsOnly" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetAllListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMGetAllListsResult" type="tns:ArrayOfDMSAMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSelectedLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDCollection" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSelectedListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSelectedListsResult" type="tns:ArrayOfDMSAMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetSuppressionLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultListsOnly" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAMGetSuppressionListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAMGetSuppressionListsResult" type="tns:ArrayOfDMSAMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompatibleFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lists" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompatibleFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompatibleFieldsResult" type="tns:ArrayOfDMCompatibleField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCompatibleField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCompatibleField" nillable="true" type="tns:DMCompatibleField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCompatibleField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommonLists" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllCompatibleFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCompatibleFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCompatibleFieldsResult" type="tns:ArrayOfDMCompatibleField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttachments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttachmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttachmentsResult" type="tns:ArrayOfDMSAMAttachment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSAMAttachment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSAMAttachment" nillable="true" type="tns:DMSAMAttachment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSAMAttachment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateAttachmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateAttachmentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AttachmentID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAttachmentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AttachmentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAttachmentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplatesResult" type="tns:ArrayOfDMSAMTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSAMTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSAMTemplate" nillable="true" type="tns:DMSAMTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSAMTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetHTMLTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHTMLTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHTMLTemplatesResult" type="tns:ArrayOfDMSAMTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTextTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTextTemplatesResult" type="tns:ArrayOfDMSAMTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboundAddresses">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInboundAddressesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInboundAddressesResult" type="tns:ArrayOfDMInboundAddress" />
+            <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMInboundAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMInboundAddress" nillable="true" type="tns:DMInboundAddress" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMInboundAddress">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifyAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeployAccess" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForwardEvents" type="tns:ArrayOfDMInboundEventForward" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMInboundEventForward">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMInboundEventForward" nillable="true" type="tns:DMInboundEventForward" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMInboundEventForward">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EventId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateInboundAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Forward" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ForwardEvents" type="tns:ArrayOfDMInboundEventForward" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateInboundAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateInboundAddressResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInboundAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Forward" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Default" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ForwardEvents" type="tns:ArrayOfDMInboundEventForward" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInboundAddressResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteInboundAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteInboundAddressResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VolumeWarningSoapIn">
+    <wsdl:part name="parameters" element="tns:VolumeWarning" />
+  </wsdl:message>
+  <wsdl:message name="VolumeWarningSoapOut">
+    <wsdl:part name="parameters" element="tns:VolumeWarningResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDeployment" />
+  </wsdl:message>
+  <wsdl:message name="CreateDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDeployment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentVariables" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentDeliveryContextSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentDeliveryContext" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentDeliveryContextSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentDeliveryContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentSmartlistRefreshSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentSmartlistRefresh" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentSmartlistRefreshSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentSmartlistRefreshResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentSuppressionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentSuppression" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentSuppressionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentSuppressionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentNotifySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeploymentNotify" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentNotifySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentNotifySoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentNotify" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentNotifySoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentThrottleSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentThrottle" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentThrottleSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentThrottleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDeploymentSchedule" />
+  </wsdl:message>
+  <wsdl:message name="SetDeploymentScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDeploymentScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizeDeployment" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizeDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeRecurringDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizeRecurringDeployment" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeRecurringDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizeRecurringDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecurringDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRecurringDeployment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecurringDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRecurringDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeploymentLists" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsLists" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeployment" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientToDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecipientToDeployment" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientToDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecipientToDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeployments" />
+  </wsdl:message>
+  <wsdl:message name="GetDeploymentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PauseDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:PauseDeployment" />
+  </wsdl:message>
+  <wsdl:message name="PauseDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:PauseDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="PauseRecurringDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:PauseRecurringDeployment" />
+  </wsdl:message>
+  <wsdl:message name="PauseRecurringDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:PauseRecurringDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumeDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumeDeployment" />
+  </wsdl:message>
+  <wsdl:message name="ResumeDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumeDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResumeRecurringDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:ResumeRecurringDeployment" />
+  </wsdl:message>
+  <wsdl:message name="ResumeRecurringDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:ResumeRecurringDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AbortDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:AbortDeployment" />
+  </wsdl:message>
+  <wsdl:message name="AbortDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:AbortDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="AbortRecurringDeploymentSoapIn">
+    <wsdl:part name="parameters" element="tns:AbortRecurringDeployment" />
+  </wsdl:message>
+  <wsdl:message name="AbortRecurringDeploymentSoapOut">
+    <wsdl:part name="parameters" element="tns:AbortRecurringDeploymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetTotalRecipientsSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMGetTotalRecipients" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetTotalRecipientsSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMGetTotalRecipientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreviewDeploymentTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:PreviewDeploymentTotal" />
+  </wsdl:message>
+  <wsdl:message name="PreviewDeploymentTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:PreviewDeploymentTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewFirstSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMPreviewFirst" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewFirstSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMPreviewFirstResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewLastSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMPreviewLast" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewLastSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMPreviewLastResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewNextSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMPreviewNext" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewNextSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMPreviewNextResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewPreviousSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMPreviewPrevious" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewPreviousSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMPreviewPreviousResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewExSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMPreviewEx" />
+  </wsdl:message>
+  <wsdl:message name="SAMPreviewExSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMPreviewExResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSAReportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSAReport" />
+  </wsdl:message>
+  <wsdl:message name="GetSAReportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSAReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreatives" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategoriesEx" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategoriesExResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCreativesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCreatives" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCreativesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCreativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariables" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVariableComboValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVariableComboValues" />
+  </wsdl:message>
+  <wsdl:message name="GetVariableComboValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVariableComboValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetListsSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMGetLists" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetListsSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMGetListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetAllListsSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMGetAllLists" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetAllListsSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMGetAllListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSelectedListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSelectedLists" />
+  </wsdl:message>
+  <wsdl:message name="GetSelectedListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSelectedListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetSuppressionListsSoapIn">
+    <wsdl:part name="parameters" element="tns:SAMGetSuppressionLists" />
+  </wsdl:message>
+  <wsdl:message name="SAMGetSuppressionListsSoapOut">
+    <wsdl:part name="parameters" element="tns:SAMGetSuppressionListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompatibleFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompatibleFields" />
+  </wsdl:message>
+  <wsdl:message name="GetCompatibleFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompatibleFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCompatibleFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFields" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCompatibleFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttachments" />
+  </wsdl:message>
+  <wsdl:message name="GetAttachmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttachmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAttachment" />
+  </wsdl:message>
+  <wsdl:message name="CreateAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAttachment" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAttachment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHTMLTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetHTMLTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHTMLTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTextTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTextTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetTextTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTextTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInboundAddressesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInboundAddresses" />
+  </wsdl:message>
+  <wsdl:message name="GetInboundAddressesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInboundAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateInboundAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateInboundAddress" />
+  </wsdl:message>
+  <wsdl:message name="CreateInboundAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateInboundAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInboundAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateInboundAddress" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInboundAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateInboundAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInboundAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteInboundAddress" />
+  </wsdl:message>
+  <wsdl:message name="DeleteInboundAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteInboundAddressResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMSendMessageSoap">
+    <wsdl:operation name="VolumeWarning">
+      <wsdl:input message="tns:VolumeWarningSoapIn" />
+      <wsdl:output message="tns:VolumeWarningSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeployment">
+      <wsdl:input message="tns:CreateDeploymentSoapIn" />
+      <wsdl:output message="tns:CreateDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeployment">
+      <wsdl:input message="tns:UpdateDeploymentSoapIn" />
+      <wsdl:output message="tns:UpdateDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentVariables">
+      <wsdl:input message="tns:SetDeploymentVariablesSoapIn" />
+      <wsdl:output message="tns:SetDeploymentVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentDeliveryContext">
+      <wsdl:input message="tns:SetDeploymentDeliveryContextSoapIn" />
+      <wsdl:output message="tns:SetDeploymentDeliveryContextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSmartlistRefresh">
+      <wsdl:input message="tns:SetDeploymentSmartlistRefreshSoapIn" />
+      <wsdl:output message="tns:SetDeploymentSmartlistRefreshSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSuppression">
+      <wsdl:input message="tns:SetDeploymentSuppressionSoapIn" />
+      <wsdl:output message="tns:SetDeploymentSuppressionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentNotify">
+      <wsdl:input message="tns:GetDeploymentNotifySoapIn" />
+      <wsdl:output message="tns:GetDeploymentNotifySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentNotify">
+      <wsdl:input message="tns:SetDeploymentNotifySoapIn" />
+      <wsdl:output message="tns:SetDeploymentNotifySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentThrottle">
+      <wsdl:input message="tns:SetDeploymentThrottleSoapIn" />
+      <wsdl:output message="tns:SetDeploymentThrottleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSchedule">
+      <wsdl:input message="tns:SetDeploymentScheduleSoapIn" />
+      <wsdl:output message="tns:SetDeploymentScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDeployment">
+      <wsdl:input message="tns:FinalizeDeploymentSoapIn" />
+      <wsdl:output message="tns:FinalizeDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeRecurringDeployment">
+      <wsdl:input message="tns:FinalizeRecurringDeploymentSoapIn" />
+      <wsdl:output message="tns:FinalizeRecurringDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecurringDeployment">
+      <wsdl:input message="tns:UpdateRecurringDeploymentSoapIn" />
+      <wsdl:output message="tns:UpdateRecurringDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentLists">
+      <wsdl:input message="tns:GetDeploymentListsSoapIn" />
+      <wsdl:output message="tns:GetDeploymentListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsLists">
+      <wsdl:input message="tns:GetDeploymentsListsSoapIn" />
+      <wsdl:output message="tns:GetDeploymentsListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsEvents">
+      <wsdl:input message="tns:GetDeploymentsEventsSoapIn" />
+      <wsdl:output message="tns:GetDeploymentsEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployment">
+      <wsdl:input message="tns:GetDeploymentSoapIn" />
+      <wsdl:output message="tns:GetDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToDeployment">
+      <wsdl:input message="tns:AddRecipientToDeploymentSoapIn" />
+      <wsdl:output message="tns:AddRecipientToDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployments">
+      <wsdl:input message="tns:GetDeploymentsSoapIn" />
+      <wsdl:output message="tns:GetDeploymentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PauseDeployment">
+      <wsdl:input message="tns:PauseDeploymentSoapIn" />
+      <wsdl:output message="tns:PauseDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PauseRecurringDeployment">
+      <wsdl:input message="tns:PauseRecurringDeploymentSoapIn" />
+      <wsdl:output message="tns:PauseRecurringDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumeDeployment">
+      <wsdl:input message="tns:ResumeDeploymentSoapIn" />
+      <wsdl:output message="tns:ResumeDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResumeRecurringDeployment">
+      <wsdl:input message="tns:ResumeRecurringDeploymentSoapIn" />
+      <wsdl:output message="tns:ResumeRecurringDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AbortDeployment">
+      <wsdl:input message="tns:AbortDeploymentSoapIn" />
+      <wsdl:output message="tns:AbortDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AbortRecurringDeployment">
+      <wsdl:input message="tns:AbortRecurringDeploymentSoapIn" />
+      <wsdl:output message="tns:AbortRecurringDeploymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetTotalRecipients">
+      <wsdl:input message="tns:SAMGetTotalRecipientsSoapIn" />
+      <wsdl:output message="tns:SAMGetTotalRecipientsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreviewDeploymentTotal">
+      <wsdl:input message="tns:PreviewDeploymentTotalSoapIn" />
+      <wsdl:output message="tns:PreviewDeploymentTotalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewFirst">
+      <wsdl:input message="tns:SAMPreviewFirstSoapIn" />
+      <wsdl:output message="tns:SAMPreviewFirstSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewLast">
+      <wsdl:input message="tns:SAMPreviewLastSoapIn" />
+      <wsdl:output message="tns:SAMPreviewLastSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewNext">
+      <wsdl:input message="tns:SAMPreviewNextSoapIn" />
+      <wsdl:output message="tns:SAMPreviewNextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewPrevious">
+      <wsdl:input message="tns:SAMPreviewPreviousSoapIn" />
+      <wsdl:output message="tns:SAMPreviewPreviousSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewEx">
+      <wsdl:input message="tns:SAMPreviewExSoapIn" />
+      <wsdl:output message="tns:SAMPreviewExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSAReport">
+      <wsdl:input message="tns:GetSAReportSoapIn" />
+      <wsdl:output message="tns:GetSAReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <wsdl:input message="tns:GetCreativeCategoriesSoapIn" />
+      <wsdl:output message="tns:GetCreativeCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <wsdl:input message="tns:GetCreativesSoapIn" />
+      <wsdl:output message="tns:GetCreativesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategoriesEx">
+      <wsdl:input message="tns:GetCreativeCategoriesExSoapIn" />
+      <wsdl:output message="tns:GetCreativeCategoriesExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCreatives">
+      <wsdl:input message="tns:GetAllCreativesSoapIn" />
+      <wsdl:output message="tns:GetAllCreativesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <wsdl:input message="tns:GetCreativeVariablesSoapIn" />
+      <wsdl:output message="tns:GetCreativeVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableComboValues">
+      <wsdl:input message="tns:GetVariableComboValuesSoapIn" />
+      <wsdl:output message="tns:GetVariableComboValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <wsdl:input message="tns:GetListCategoriesSoapIn" />
+      <wsdl:output message="tns:GetListCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetLists">
+      <wsdl:input message="tns:SAMGetListsSoapIn" />
+      <wsdl:output message="tns:SAMGetListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetAllLists">
+      <wsdl:input message="tns:SAMGetAllListsSoapIn" />
+      <wsdl:output message="tns:SAMGetAllListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectedLists">
+      <wsdl:input message="tns:GetSelectedListsSoapIn" />
+      <wsdl:output message="tns:GetSelectedListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetSuppressionLists">
+      <wsdl:input message="tns:SAMGetSuppressionListsSoapIn" />
+      <wsdl:output message="tns:SAMGetSuppressionListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompatibleFields">
+      <wsdl:input message="tns:GetCompatibleFieldsSoapIn" />
+      <wsdl:output message="tns:GetCompatibleFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompatibleFields">
+      <wsdl:input message="tns:GetAllCompatibleFieldsSoapIn" />
+      <wsdl:output message="tns:GetAllCompatibleFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <wsdl:input message="tns:GetAttachmentsSoapIn" />
+      <wsdl:output message="tns:GetAttachmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAttachment">
+      <wsdl:input message="tns:CreateAttachmentSoapIn" />
+      <wsdl:output message="tns:CreateAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAttachment">
+      <wsdl:input message="tns:UpdateAttachmentSoapIn" />
+      <wsdl:output message="tns:UpdateAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAttachment">
+      <wsdl:input message="tns:DeleteAttachmentSoapIn" />
+      <wsdl:output message="tns:DeleteAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <wsdl:input message="tns:GetTemplatesSoapIn" />
+      <wsdl:output message="tns:GetTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHTMLTemplates">
+      <wsdl:input message="tns:GetHTMLTemplatesSoapIn" />
+      <wsdl:output message="tns:GetHTMLTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTextTemplates">
+      <wsdl:input message="tns:GetTextTemplatesSoapIn" />
+      <wsdl:output message="tns:GetTextTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboundAddresses">
+      <wsdl:input message="tns:GetInboundAddressesSoapIn" />
+      <wsdl:output message="tns:GetInboundAddressesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundAddress">
+      <wsdl:input message="tns:CreateInboundAddressSoapIn" />
+      <wsdl:output message="tns:CreateInboundAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInboundAddress">
+      <wsdl:input message="tns:UpdateInboundAddressSoapIn" />
+      <wsdl:output message="tns:UpdateInboundAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInboundAddress">
+      <wsdl:input message="tns:DeleteInboundAddressSoapIn" />
+      <wsdl:output message="tns:DeleteInboundAddressSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMSendMessageSoap" type="tns:DMSendMessageSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VolumeWarning">
+      <soap:operation soapAction="DMWebServices/VolumeWarning" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeployment">
+      <soap:operation soapAction="DMWebServices/CreateDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeployment">
+      <soap:operation soapAction="DMWebServices/UpdateDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentVariables">
+      <soap:operation soapAction="DMWebServices/SetDeploymentVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentDeliveryContext">
+      <soap:operation soapAction="DMWebServices/SetDeploymentDeliveryContext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSmartlistRefresh">
+      <soap:operation soapAction="DMWebServices/SetDeploymentSmartlistRefresh" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSuppression">
+      <soap:operation soapAction="DMWebServices/SetDeploymentSuppression" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentNotify">
+      <soap:operation soapAction="DMWebServices/GetDeploymentNotify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentNotify">
+      <soap:operation soapAction="DMWebServices/SetDeploymentNotify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentThrottle">
+      <soap:operation soapAction="DMWebServices/SetDeploymentThrottle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSchedule">
+      <soap:operation soapAction="DMWebServices/SetDeploymentSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDeployment">
+      <soap:operation soapAction="DMWebServices/FinalizeDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeRecurringDeployment">
+      <soap:operation soapAction="DMWebServices/FinalizeRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecurringDeployment">
+      <soap:operation soapAction="DMWebServices/UpdateRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentLists">
+      <soap:operation soapAction="DMWebServices/GetDeploymentLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsLists">
+      <soap:operation soapAction="DMWebServices/GetDeploymentsLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsEvents">
+      <soap:operation soapAction="DMWebServices/GetDeploymentsEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployment">
+      <soap:operation soapAction="DMWebServices/GetDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToDeployment">
+      <soap:operation soapAction="DMWebServices/AddRecipientToDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployments">
+      <soap:operation soapAction="DMWebServices/GetDeployments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseDeployment">
+      <soap:operation soapAction="DMWebServices/PauseDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseRecurringDeployment">
+      <soap:operation soapAction="DMWebServices/PauseRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeDeployment">
+      <soap:operation soapAction="DMWebServices/ResumeDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeRecurringDeployment">
+      <soap:operation soapAction="DMWebServices/ResumeRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortDeployment">
+      <soap:operation soapAction="DMWebServices/AbortDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortRecurringDeployment">
+      <soap:operation soapAction="DMWebServices/AbortRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetTotalRecipients">
+      <soap:operation soapAction="DMWebServices/SAMGetTotalRecipients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreviewDeploymentTotal">
+      <soap:operation soapAction="DMWebServices/PreviewDeploymentTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewFirst">
+      <soap:operation soapAction="DMWebServices/SAMPreviewFirst" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewLast">
+      <soap:operation soapAction="DMWebServices/SAMPreviewLast" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewNext">
+      <soap:operation soapAction="DMWebServices/SAMPreviewNext" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewPrevious">
+      <soap:operation soapAction="DMWebServices/SAMPreviewPrevious" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewEx">
+      <soap:operation soapAction="DMWebServices/SAMPreviewEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSAReport">
+      <soap:operation soapAction="DMWebServices/GetSAReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <soap:operation soapAction="DMWebServices/GetCreativeCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <soap:operation soapAction="DMWebServices/GetCreatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategoriesEx">
+      <soap:operation soapAction="DMWebServices/GetCreativeCategoriesEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCreatives">
+      <soap:operation soapAction="DMWebServices/GetAllCreatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableComboValues">
+      <soap:operation soapAction="DMWebServices/GetVariableComboValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <soap:operation soapAction="DMWebServices/GetListCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetLists">
+      <soap:operation soapAction="DMWebServices/SAMGetLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetAllLists">
+      <soap:operation soapAction="DMWebServices/SAMGetAllLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectedLists">
+      <soap:operation soapAction="DMWebServices/GetSelectedLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetSuppressionLists">
+      <soap:operation soapAction="DMWebServices/SAMGetSuppressionLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompatibleFields">
+      <soap:operation soapAction="DMWebServices/GetCompatibleFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompatibleFields">
+      <soap:operation soapAction="DMWebServices/GetAllCompatibleFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <soap:operation soapAction="DMWebServices/GetAttachments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAttachment">
+      <soap:operation soapAction="DMWebServices/CreateAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAttachment">
+      <soap:operation soapAction="DMWebServices/UpdateAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAttachment">
+      <soap:operation soapAction="DMWebServices/DeleteAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <soap:operation soapAction="DMWebServices/GetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTMLTemplates">
+      <soap:operation soapAction="DMWebServices/GetHTMLTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextTemplates">
+      <soap:operation soapAction="DMWebServices/GetTextTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboundAddresses">
+      <soap:operation soapAction="DMWebServices/GetInboundAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundAddress">
+      <soap:operation soapAction="DMWebServices/CreateInboundAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInboundAddress">
+      <soap:operation soapAction="DMWebServices/UpdateInboundAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInboundAddress">
+      <soap:operation soapAction="DMWebServices/DeleteInboundAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMSendMessageSoap12" type="tns:DMSendMessageSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VolumeWarning">
+      <soap12:operation soapAction="DMWebServices/VolumeWarning" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeployment">
+      <soap12:operation soapAction="DMWebServices/CreateDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeployment">
+      <soap12:operation soapAction="DMWebServices/UpdateDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentVariables">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentDeliveryContext">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentDeliveryContext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSmartlistRefresh">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentSmartlistRefresh" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSuppression">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentSuppression" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentNotify">
+      <soap12:operation soapAction="DMWebServices/GetDeploymentNotify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentNotify">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentNotify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentThrottle">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentThrottle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDeploymentSchedule">
+      <soap12:operation soapAction="DMWebServices/SetDeploymentSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeDeployment">
+      <soap12:operation soapAction="DMWebServices/FinalizeDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeRecurringDeployment">
+      <soap12:operation soapAction="DMWebServices/FinalizeRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecurringDeployment">
+      <soap12:operation soapAction="DMWebServices/UpdateRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentLists">
+      <soap12:operation soapAction="DMWebServices/GetDeploymentLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsLists">
+      <soap12:operation soapAction="DMWebServices/GetDeploymentsLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeploymentsEvents">
+      <soap12:operation soapAction="DMWebServices/GetDeploymentsEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployment">
+      <soap12:operation soapAction="DMWebServices/GetDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToDeployment">
+      <soap12:operation soapAction="DMWebServices/AddRecipientToDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployments">
+      <soap12:operation soapAction="DMWebServices/GetDeployments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseDeployment">
+      <soap12:operation soapAction="DMWebServices/PauseDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PauseRecurringDeployment">
+      <soap12:operation soapAction="DMWebServices/PauseRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeDeployment">
+      <soap12:operation soapAction="DMWebServices/ResumeDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResumeRecurringDeployment">
+      <soap12:operation soapAction="DMWebServices/ResumeRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortDeployment">
+      <soap12:operation soapAction="DMWebServices/AbortDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AbortRecurringDeployment">
+      <soap12:operation soapAction="DMWebServices/AbortRecurringDeployment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetTotalRecipients">
+      <soap12:operation soapAction="DMWebServices/SAMGetTotalRecipients" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreviewDeploymentTotal">
+      <soap12:operation soapAction="DMWebServices/PreviewDeploymentTotal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewFirst">
+      <soap12:operation soapAction="DMWebServices/SAMPreviewFirst" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewLast">
+      <soap12:operation soapAction="DMWebServices/SAMPreviewLast" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewNext">
+      <soap12:operation soapAction="DMWebServices/SAMPreviewNext" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewPrevious">
+      <soap12:operation soapAction="DMWebServices/SAMPreviewPrevious" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMPreviewEx">
+      <soap12:operation soapAction="DMWebServices/SAMPreviewEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSAReport">
+      <soap12:operation soapAction="DMWebServices/GetSAReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <soap12:operation soapAction="DMWebServices/GetCreativeCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <soap12:operation soapAction="DMWebServices/GetCreatives" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategoriesEx">
+      <soap12:operation soapAction="DMWebServices/GetCreativeCategoriesEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCreatives">
+      <soap12:operation soapAction="DMWebServices/GetAllCreatives" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap12:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableComboValues">
+      <soap12:operation soapAction="DMWebServices/GetVariableComboValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <soap12:operation soapAction="DMWebServices/GetListCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetLists">
+      <soap12:operation soapAction="DMWebServices/SAMGetLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetAllLists">
+      <soap12:operation soapAction="DMWebServices/SAMGetAllLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSelectedLists">
+      <soap12:operation soapAction="DMWebServices/GetSelectedLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAMGetSuppressionLists">
+      <soap12:operation soapAction="DMWebServices/SAMGetSuppressionLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompatibleFields">
+      <soap12:operation soapAction="DMWebServices/GetCompatibleFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompatibleFields">
+      <soap12:operation soapAction="DMWebServices/GetAllCompatibleFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttachments">
+      <soap12:operation soapAction="DMWebServices/GetAttachments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAttachment">
+      <soap12:operation soapAction="DMWebServices/CreateAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAttachment">
+      <soap12:operation soapAction="DMWebServices/UpdateAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAttachment">
+      <soap12:operation soapAction="DMWebServices/DeleteAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <soap12:operation soapAction="DMWebServices/GetTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHTMLTemplates">
+      <soap12:operation soapAction="DMWebServices/GetHTMLTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTextTemplates">
+      <soap12:operation soapAction="DMWebServices/GetTextTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboundAddresses">
+      <soap12:operation soapAction="DMWebServices/GetInboundAddresses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundAddress">
+      <soap12:operation soapAction="DMWebServices/CreateInboundAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInboundAddress">
+      <soap12:operation soapAction="DMWebServices/UpdateInboundAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInboundAddress">
+      <soap12:operation soapAction="DMWebServices/DeleteInboundAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMSendMessage">
+    <wsdl:port name="DMSendMessageSoap" binding="tns:DMSendMessageSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/sendmessage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMSendMessageSoap12" binding="tns:DMSendMessageSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/sendmessage.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,2680 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="CreateCreativeCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCreativeCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateCreativeCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameCreativeCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameCreativeCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteCreativeCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCreativeCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreativeLookupTables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeLookupTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeLookupTablesResult" type="tns:ArrayOfDMLookupTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMLookupTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupTable" nillable="true" type="tns:DMLookupTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMLookupColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMLookupColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupColumn" nillable="true" type="tns:DMLookupColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSharedLookupTables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSharedLookupTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSharedLookupTablesResult" type="tns:ArrayOfDMLookupTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSharedLookups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SharedLookups" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportSharedLookupsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLookupTableRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ColumnIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLookupTableRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLookupTableRecordsResult" type="tns:ArrayOfDMLookupRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMLookupRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupRecord" nillable="true" type="tns:DMLookupRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="KeyValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfDMLookupValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMLookupValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupValue" nillable="true" type="tns:DMLookupValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLookupTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ColumnNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLookupTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateLookupTableResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddLookupTableRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="LookupRecords" type="tns:ArrayOfDMLookupRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddLookupTableRecordsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteLookupTableRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Keys" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLookupTableRecordsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateLookupTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLookupTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearLookupTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearLookupTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteLookupTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLookupTableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddLookupTableColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ColumnNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddLookupTableColumnsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddLookupTableColumnsResult" type="tns:ArrayOfDMLookupColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLookupTableColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMLookupColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateLookupTableColumnsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteLookupTableColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ColumnIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLookupTableColumnsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CheckTemplateSyntax">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTemplateSyntaxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckTemplateSyntaxResult" type="tns:SyntaxError" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SyntaxError">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Offset" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LineNumber" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckTemplateSyntaxB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTemplateSyntaxBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckTemplateSyntaxBResult" type="tns:SyntaxError" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Encoding" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUnsubText" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="CleanHTML" nillable="true" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTemplateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemplateB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Encoding" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="InsertUnsubText" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="CleanHTML" nillable="true" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemplateBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTemplateBResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableEncodings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableEncodingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableEncodingsResult" type="tns:ArrayOfDMEncodingInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMEncodingInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEncodingInfo" nillable="true" type="tns:DMEncodingInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEncodingInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodePage" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSharedTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSharedTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSharedTemplatesResult" type="tns:ArrayOfDMTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMTemplate" nillable="true" type="tns:DMTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ViewEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForwardEventID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Encoding" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportSharedTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SharedTemplates" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSharedTemplatesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Encoding" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CleanHTML" nillable="true" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTemplateResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateTemplateB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="TemplateName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Encoding" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Text" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarOpen" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VarClose" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="CleanHTML" nillable="true" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTemplateBResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTemplateResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTemplateContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="TemplateID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTemplateContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplateContentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeTemplates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeTemplatesResult" type="tns:ArrayOfDMTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateEventResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEventResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteEventResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreativeEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeEventsResult" type="tns:ArrayOfDMEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEvent" nillable="true" type="tns:DMEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEvent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="System" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserDefined" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoNamed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="URLS" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSharedEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSharedEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSharedEventsResult" type="tns:ArrayOfDMEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventURLs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventURLsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventURLsResult" type="tns:ArrayOfDMURL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMURL" nillable="true" type="tns:DMURL" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoMap" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetEventAutoMap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AutoMap" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventAutoMapResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ImportSharedEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SharedEvents" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSharedEventsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CopyCreative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreativeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyCreativeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CopyCreativeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCreative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreativeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsSMS" nillable="true" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCreativeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateCreativeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCreative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreativeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Thumbnail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DefaultTemplate" type="tns:DMTemplateValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMTemplateValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlTemplate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextTemplate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConditionalValues" type="tns:ArrayOfDMConditionalTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMConditionalTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMConditionalTemplate" nillable="true" type="tns:DMConditionalTemplate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMConditionalTemplate">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HtmlTemplate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TextTemplate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conditions" type="tns:ArrayOfDMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCondition" nillable="true" type="tns:DMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCondition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Operand1" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMOP_EQUAL" />
+          <s:enumeration value="DMOP_NOTEQUAL" />
+          <s:enumeration value="DMOP_LESSTHAN" />
+          <s:enumeration value="DMOP_GREATERTHAN" />
+          <s:enumeration value="DMOP_BEGINSWITH" />
+          <s:enumeration value="DMOP_NOTBEGINSWITH" />
+          <s:enumeration value="DMOP_ENDSWITH" />
+          <s:enumeration value="DMOP_NOTENDSWITH" />
+          <s:enumeration value="DMOP_CONTAINS" />
+          <s:enumeration value="DMOP_NOTCONTAINS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMCombine">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCM_NONE" />
+          <s:enumeration value="DMCM_AND" />
+          <s:enumeration value="DMCM_OR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpdateCreativeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteCreative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCreativeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddCreativeFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddCreativeFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreativeFiles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeFilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeFilesResult" type="tns:ArrayOfDMFileInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMFileInfo" nillable="true" type="tns:DMFileInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMFileInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Size" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteCreateiveFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteCreateiveFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateVariable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RowOrder" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="VariableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParseName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+            <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="tns:DMVariableValue" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupCombo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ForceMap" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultField" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Readonly" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMVariableType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMVT_FROMEMAIL" />
+          <s:enumeration value="DMVT_FROMALIAS" />
+          <s:enumeration value="DMVT_TOEMAIL" />
+          <s:enumeration value="DMVT_TOALIAS" />
+          <s:enumeration value="DMVT_REPLYTO" />
+          <s:enumeration value="DMVT_SUBJECT" />
+          <s:enumeration value="DMVT_STRING" />
+          <s:enumeration value="DMVT_EMAIL" />
+          <s:enumeration value="DMVT_TEXT" />
+          <s:enumeration value="DMVT_HTML" />
+          <s:enumeration value="DMVT_DATE" />
+          <s:enumeration value="DMVT_NUMERIC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DMVariableValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConditionalValues" type="tns:ArrayOfDMConditionalValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMConditionalValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMConditionalValue" nillable="true" type="tns:DMConditionalValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMConditionalValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conditions" type="tns:ArrayOfDMCondition" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateVariableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateVariableResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVariable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RowOrder" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="VariableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParseName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+            <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="tns:DMVariableValue" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupCombo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ForceMap" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultField" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Readonly" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateVariableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteVariable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteVariableResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreativeVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeVariablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeVariablesResult" type="tns:ArrayOfDMVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMVariable" nillable="true" type="tns:DMVariable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMVariable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditorType" type="tns:DMEditorType" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="System" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParseName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="tns:DMVariableValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LookupResult" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LookupCombo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ForceMap" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultField" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Required" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Hidden" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Readonly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMEditorType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMET_STRING" />
+          <s:enumeration value="DMET_TEXT" />
+          <s:enumeration value="DMET_HTML" />
+          <s:enumeration value="DMET_DATE" />
+          <s:enumeration value="DMET_COMBO" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSharedVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSharedVariablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSharedVariablesResult" type="tns:ArrayOfDMVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSharedVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SharedVariables" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportSharedVariablesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Stuff" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDataCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDataCategoryResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="HtmlToText">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="source" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HtmlToTextResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HtmlToTextResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLookupTableRecordsCSV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Rows" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lastkey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLookupTableRecordsCSVResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLookupTableRecordsCSVResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lastkey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateCreativeCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCreativeCategory" />
+  </wsdl:message>
+  <wsdl:message name="CreateCreativeCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCreativeCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenameCreativeCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:RenameCreativeCategory" />
+  </wsdl:message>
+  <wsdl:message name="RenameCreativeCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:RenameCreativeCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreativeCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCreativeCategory" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreativeCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCreativeCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeLookupTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeLookupTables" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeLookupTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeLookupTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedLookupTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSharedLookupTables" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedLookupTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSharedLookupTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedLookupsSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSharedLookups" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedLookupsSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSharedLookupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTableRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTableRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateLookupTableSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="CreateLookupTableSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddLookupTableRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddLookupTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="AddLookupTableRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddLookupTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLookupTableSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLookupTableSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearLookupTableSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="ClearLookupTableSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddLookupTableColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddLookupTableColumns" />
+  </wsdl:message>
+  <wsdl:message name="AddLookupTableColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddLookupTableColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLookupTableColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateLookupTableColumns" />
+  </wsdl:message>
+  <wsdl:message name="UpdateLookupTableColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateLookupTableColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTableColumns" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLookupTableColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLookupTableColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTemplateSyntaxSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTemplateSyntax" />
+  </wsdl:message>
+  <wsdl:message name="CheckTemplateSyntaxSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTemplateSyntaxResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTemplateSyntaxBSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTemplateSyntaxB" />
+  </wsdl:message>
+  <wsdl:message name="CheckTemplateSyntaxBSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTemplateSyntaxBResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTemplate" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemplateBSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTemplateB" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemplateBSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTemplateBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableEncodingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableEncodings" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableEncodingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableEncodingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSharedTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSharedTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSharedTemplates" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSharedTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTemplate" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemplateBSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTemplateB" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemplateBSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTemplateBResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTemplate" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateContentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplateContent" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplateContentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateEventSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateEvent" />
+  </wsdl:message>
+  <wsdl:message name="CreateEventSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEventSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateEvent" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEventSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEventSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteEvent" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEventSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSharedEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSharedEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventURLsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventURLs" />
+  </wsdl:message>
+  <wsdl:message name="GetEventURLsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventURLsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetEventAutoMapSoapIn">
+    <wsdl:part name="parameters" element="tns:SetEventAutoMap" />
+  </wsdl:message>
+  <wsdl:message name="SetEventAutoMapSoapOut">
+    <wsdl:part name="parameters" element="tns:SetEventAutoMapResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSharedEvents" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSharedEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CopyCreativeSoapIn">
+    <wsdl:part name="parameters" element="tns:CopyCreative" />
+  </wsdl:message>
+  <wsdl:message name="CopyCreativeSoapOut">
+    <wsdl:part name="parameters" element="tns:CopyCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCreativeSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCreative" />
+  </wsdl:message>
+  <wsdl:message name="CreateCreativeSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreativeSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCreative" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreativeSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreativeSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCreative" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreativeSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddCreativeFileSoapIn">
+    <wsdl:part name="parameters" element="tns:AddCreativeFile" />
+  </wsdl:message>
+  <wsdl:message name="AddCreativeFileSoapOut">
+    <wsdl:part name="parameters" element="tns:AddCreativeFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeFilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeFiles" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeFilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreateiveFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteCreateiveFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteCreateiveFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteCreateiveFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateVariableSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateVariable" />
+  </wsdl:message>
+  <wsdl:message name="CreateVariableSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVariableSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateVariable" />
+  </wsdl:message>
+  <wsdl:message name="UpdateVariableSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVariableSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteVariable" />
+  </wsdl:message>
+  <wsdl:message name="DeleteVariableSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariables" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSharedVariables" />
+  </wsdl:message>
+  <wsdl:message name="GetSharedVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSharedVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportSharedVariables" />
+  </wsdl:message>
+  <wsdl:message name="ImportSharedVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportSharedVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserData" />
+  </wsdl:message>
+  <wsdl:message name="SetUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserData" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDataCategory" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDataCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDataCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUserData" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="HtmlToTextSoapIn">
+    <wsdl:part name="parameters" element="tns:HtmlToText" />
+  </wsdl:message>
+  <wsdl:message name="HtmlToTextSoapOut">
+    <wsdl:part name="parameters" element="tns:HtmlToTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTableRecordsCSVSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecordsCSV" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTableRecordsCSVSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecordsCSVResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMCreativeBuilderSoap">
+    <wsdl:operation name="CreateCreativeCategory">
+      <wsdl:input message="tns:CreateCreativeCategorySoapIn" />
+      <wsdl:output message="tns:CreateCreativeCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameCreativeCategory">
+      <wsdl:input message="tns:RenameCreativeCategorySoapIn" />
+      <wsdl:output message="tns:RenameCreativeCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreativeCategory">
+      <wsdl:input message="tns:DeleteCreativeCategorySoapIn" />
+      <wsdl:output message="tns:DeleteCreativeCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeLookupTables">
+      <wsdl:input message="tns:GetCreativeLookupTablesSoapIn" />
+      <wsdl:output message="tns:GetCreativeLookupTablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedLookupTables">
+      <wsdl:input message="tns:GetSharedLookupTablesSoapIn" />
+      <wsdl:output message="tns:GetSharedLookupTablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedLookups">
+      <wsdl:input message="tns:ImportSharedLookupsSoapIn" />
+      <wsdl:output message="tns:ImportSharedLookupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecords">
+      <wsdl:input message="tns:GetLookupTableRecordsSoapIn" />
+      <wsdl:output message="tns:GetLookupTableRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <wsdl:input message="tns:CreateLookupTableSoapIn" />
+      <wsdl:output message="tns:CreateLookupTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableRecords">
+      <wsdl:input message="tns:AddLookupTableRecordsSoapIn" />
+      <wsdl:output message="tns:AddLookupTableRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableRecords">
+      <wsdl:input message="tns:DeleteLookupTableRecordsSoapIn" />
+      <wsdl:output message="tns:DeleteLookupTableRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTable">
+      <wsdl:input message="tns:UpdateLookupTableSoapIn" />
+      <wsdl:output message="tns:UpdateLookupTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearLookupTable">
+      <wsdl:input message="tns:ClearLookupTableSoapIn" />
+      <wsdl:output message="tns:ClearLookupTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTable">
+      <wsdl:input message="tns:DeleteLookupTableSoapIn" />
+      <wsdl:output message="tns:DeleteLookupTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableColumns">
+      <wsdl:input message="tns:AddLookupTableColumnsSoapIn" />
+      <wsdl:output message="tns:AddLookupTableColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTableColumns">
+      <wsdl:input message="tns:UpdateLookupTableColumnsSoapIn" />
+      <wsdl:output message="tns:UpdateLookupTableColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableColumns">
+      <wsdl:input message="tns:DeleteLookupTableColumnsSoapIn" />
+      <wsdl:output message="tns:DeleteLookupTableColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntax">
+      <wsdl:input message="tns:CheckTemplateSyntaxSoapIn" />
+      <wsdl:output message="tns:CheckTemplateSyntaxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntaxB">
+      <wsdl:input message="tns:CheckTemplateSyntaxBSoapIn" />
+      <wsdl:output message="tns:CheckTemplateSyntaxBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplate">
+      <wsdl:input message="tns:CreateTemplateSoapIn" />
+      <wsdl:output message="tns:CreateTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplateB">
+      <wsdl:input message="tns:CreateTemplateBSoapIn" />
+      <wsdl:output message="tns:CreateTemplateBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableEncodings">
+      <wsdl:input message="tns:GetAvailableEncodingsSoapIn" />
+      <wsdl:output message="tns:GetAvailableEncodingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedTemplates">
+      <wsdl:input message="tns:GetSharedTemplatesSoapIn" />
+      <wsdl:output message="tns:GetSharedTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedTemplates">
+      <wsdl:input message="tns:ImportSharedTemplatesSoapIn" />
+      <wsdl:output message="tns:ImportSharedTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplate">
+      <wsdl:input message="tns:UpdateTemplateSoapIn" />
+      <wsdl:output message="tns:UpdateTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateB">
+      <wsdl:input message="tns:UpdateTemplateBSoapIn" />
+      <wsdl:output message="tns:UpdateTemplateBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemplate">
+      <wsdl:input message="tns:DeleteTemplateSoapIn" />
+      <wsdl:output message="tns:DeleteTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContent">
+      <wsdl:input message="tns:GetTemplateContentSoapIn" />
+      <wsdl:output message="tns:GetTemplateContentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeTemplates">
+      <wsdl:input message="tns:GetCreativeTemplatesSoapIn" />
+      <wsdl:output message="tns:GetCreativeTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateEvent">
+      <wsdl:input message="tns:CreateEventSoapIn" />
+      <wsdl:output message="tns:CreateEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <wsdl:input message="tns:UpdateEventSoapIn" />
+      <wsdl:output message="tns:UpdateEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <wsdl:input message="tns:DeleteEventSoapIn" />
+      <wsdl:output message="tns:DeleteEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <wsdl:input message="tns:GetCreativeEventsSoapIn" />
+      <wsdl:output message="tns:GetCreativeEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedEvents">
+      <wsdl:input message="tns:GetSharedEventsSoapIn" />
+      <wsdl:output message="tns:GetSharedEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <wsdl:input message="tns:GetEventURLsSoapIn" />
+      <wsdl:output message="tns:GetEventURLsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAutoMap">
+      <wsdl:input message="tns:SetEventAutoMapSoapIn" />
+      <wsdl:output message="tns:SetEventAutoMapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedEvents">
+      <wsdl:input message="tns:ImportSharedEventsSoapIn" />
+      <wsdl:output message="tns:ImportSharedEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyCreative">
+      <wsdl:input message="tns:CopyCreativeSoapIn" />
+      <wsdl:output message="tns:CopyCreativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCreative">
+      <wsdl:input message="tns:CreateCreativeSoapIn" />
+      <wsdl:output message="tns:CreateCreativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreative">
+      <wsdl:input message="tns:UpdateCreativeSoapIn" />
+      <wsdl:output message="tns:UpdateCreativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreative">
+      <wsdl:input message="tns:DeleteCreativeSoapIn" />
+      <wsdl:output message="tns:DeleteCreativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCreativeFile">
+      <wsdl:input message="tns:AddCreativeFileSoapIn" />
+      <wsdl:output message="tns:AddCreativeFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeFiles">
+      <wsdl:input message="tns:GetCreativeFilesSoapIn" />
+      <wsdl:output message="tns:GetCreativeFilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreateiveFile">
+      <wsdl:input message="tns:DeleteCreateiveFileSoapIn" />
+      <wsdl:output message="tns:DeleteCreateiveFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateVariable">
+      <wsdl:input message="tns:CreateVariableSoapIn" />
+      <wsdl:output message="tns:CreateVariableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVariable">
+      <wsdl:input message="tns:UpdateVariableSoapIn" />
+      <wsdl:output message="tns:UpdateVariableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVariable">
+      <wsdl:input message="tns:DeleteVariableSoapIn" />
+      <wsdl:output message="tns:DeleteVariableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <wsdl:input message="tns:GetCreativeVariablesSoapIn" />
+      <wsdl:output message="tns:GetCreativeVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedVariables">
+      <wsdl:input message="tns:GetSharedVariablesSoapIn" />
+      <wsdl:output message="tns:GetSharedVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedVariables">
+      <wsdl:input message="tns:ImportSharedVariablesSoapIn" />
+      <wsdl:output message="tns:ImportSharedVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserData">
+      <wsdl:input message="tns:SetUserDataSoapIn" />
+      <wsdl:output message="tns:SetUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <wsdl:input message="tns:GetUserDataSoapIn" />
+      <wsdl:output message="tns:GetUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataCategory">
+      <wsdl:input message="tns:GetUserDataCategorySoapIn" />
+      <wsdl:output message="tns:GetUserDataCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserData">
+      <wsdl:input message="tns:DeleteUserDataSoapIn" />
+      <wsdl:output message="tns:DeleteUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HtmlToText">
+      <wsdl:input message="tns:HtmlToTextSoapIn" />
+      <wsdl:output message="tns:HtmlToTextSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecordsCSV">
+      <wsdl:input message="tns:GetLookupTableRecordsCSVSoapIn" />
+      <wsdl:output message="tns:GetLookupTableRecordsCSVSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMCreativeBuilderSoap" type="tns:DMCreativeBuilderSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCreativeCategory">
+      <soap:operation soapAction="DMWebServices/CreateCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameCreativeCategory">
+      <soap:operation soapAction="DMWebServices/RenameCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreativeCategory">
+      <soap:operation soapAction="DMWebServices/DeleteCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeLookupTables">
+      <soap:operation soapAction="DMWebServices/GetCreativeLookupTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedLookupTables">
+      <soap:operation soapAction="DMWebServices/GetSharedLookupTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedLookups">
+      <soap:operation soapAction="DMWebServices/ImportSharedLookups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecords">
+      <soap:operation soapAction="DMWebServices/GetLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <soap:operation soapAction="DMWebServices/CreateLookupTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableRecords">
+      <soap:operation soapAction="DMWebServices/AddLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableRecords">
+      <soap:operation soapAction="DMWebServices/DeleteLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTable">
+      <soap:operation soapAction="DMWebServices/UpdateLookupTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearLookupTable">
+      <soap:operation soapAction="DMWebServices/ClearLookupTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTable">
+      <soap:operation soapAction="DMWebServices/DeleteLookupTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableColumns">
+      <soap:operation soapAction="DMWebServices/AddLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTableColumns">
+      <soap:operation soapAction="DMWebServices/UpdateLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableColumns">
+      <soap:operation soapAction="DMWebServices/DeleteLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntax">
+      <soap:operation soapAction="DMWebServices/CheckTemplateSyntax" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntaxB">
+      <soap:operation soapAction="DMWebServices/CheckTemplateSyntaxB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplate">
+      <soap:operation soapAction="DMWebServices/CreateTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplateB">
+      <soap:operation soapAction="DMWebServices/CreateTemplateB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableEncodings">
+      <soap:operation soapAction="DMWebServices/GetAvailableEncodings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedTemplates">
+      <soap:operation soapAction="DMWebServices/GetSharedTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedTemplates">
+      <soap:operation soapAction="DMWebServices/ImportSharedTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplate">
+      <soap:operation soapAction="DMWebServices/UpdateTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateB">
+      <soap:operation soapAction="DMWebServices/UpdateTemplateB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemplate">
+      <soap:operation soapAction="DMWebServices/DeleteTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContent">
+      <soap:operation soapAction="DMWebServices/GetTemplateContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeTemplates">
+      <soap:operation soapAction="DMWebServices/GetCreativeTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEvent">
+      <soap:operation soapAction="DMWebServices/CreateEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <soap:operation soapAction="DMWebServices/UpdateEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap:operation soapAction="DMWebServices/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <soap:operation soapAction="DMWebServices/GetCreativeEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedEvents">
+      <soap:operation soapAction="DMWebServices/GetSharedEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <soap:operation soapAction="DMWebServices/GetEventURLs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAutoMap">
+      <soap:operation soapAction="DMWebServices/SetEventAutoMap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedEvents">
+      <soap:operation soapAction="DMWebServices/ImportSharedEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCreative">
+      <soap:operation soapAction="DMWebServices/CopyCreative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCreative">
+      <soap:operation soapAction="DMWebServices/CreateCreative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreative">
+      <soap:operation soapAction="DMWebServices/UpdateCreative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreative">
+      <soap:operation soapAction="DMWebServices/DeleteCreative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCreativeFile">
+      <soap:operation soapAction="DMWebServices/AddCreativeFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeFiles">
+      <soap:operation soapAction="DMWebServices/GetCreativeFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreateiveFile">
+      <soap:operation soapAction="DMWebServices/DeleteCreateiveFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVariable">
+      <soap:operation soapAction="DMWebServices/CreateVariable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVariable">
+      <soap:operation soapAction="DMWebServices/UpdateVariable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVariable">
+      <soap:operation soapAction="DMWebServices/DeleteVariable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedVariables">
+      <soap:operation soapAction="DMWebServices/GetSharedVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedVariables">
+      <soap:operation soapAction="DMWebServices/ImportSharedVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserData">
+      <soap:operation soapAction="DMWebServices/SetUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap:operation soapAction="DMWebServices/GetUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataCategory">
+      <soap:operation soapAction="DMWebServices/GetUserDataCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserData">
+      <soap:operation soapAction="DMWebServices/DeleteUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HtmlToText">
+      <soap:operation soapAction="DMWebServices/HtmlToText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecordsCSV">
+      <soap:operation soapAction="DMWebServices/GetLookupTableRecordsCSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMCreativeBuilderSoap12" type="tns:DMCreativeBuilderSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateCreativeCategory">
+      <soap12:operation soapAction="DMWebServices/CreateCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameCreativeCategory">
+      <soap12:operation soapAction="DMWebServices/RenameCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreativeCategory">
+      <soap12:operation soapAction="DMWebServices/DeleteCreativeCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeLookupTables">
+      <soap12:operation soapAction="DMWebServices/GetCreativeLookupTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedLookupTables">
+      <soap12:operation soapAction="DMWebServices/GetSharedLookupTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedLookups">
+      <soap12:operation soapAction="DMWebServices/ImportSharedLookups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecords">
+      <soap12:operation soapAction="DMWebServices/GetLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <soap12:operation soapAction="DMWebServices/CreateLookupTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableRecords">
+      <soap12:operation soapAction="DMWebServices/AddLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableRecords">
+      <soap12:operation soapAction="DMWebServices/DeleteLookupTableRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTable">
+      <soap12:operation soapAction="DMWebServices/UpdateLookupTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearLookupTable">
+      <soap12:operation soapAction="DMWebServices/ClearLookupTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTable">
+      <soap12:operation soapAction="DMWebServices/DeleteLookupTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddLookupTableColumns">
+      <soap12:operation soapAction="DMWebServices/AddLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLookupTableColumns">
+      <soap12:operation soapAction="DMWebServices/UpdateLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLookupTableColumns">
+      <soap12:operation soapAction="DMWebServices/DeleteLookupTableColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntax">
+      <soap12:operation soapAction="DMWebServices/CheckTemplateSyntax" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTemplateSyntaxB">
+      <soap12:operation soapAction="DMWebServices/CheckTemplateSyntaxB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplate">
+      <soap12:operation soapAction="DMWebServices/CreateTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemplateB">
+      <soap12:operation soapAction="DMWebServices/CreateTemplateB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableEncodings">
+      <soap12:operation soapAction="DMWebServices/GetAvailableEncodings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedTemplates">
+      <soap12:operation soapAction="DMWebServices/GetSharedTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedTemplates">
+      <soap12:operation soapAction="DMWebServices/ImportSharedTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplate">
+      <soap12:operation soapAction="DMWebServices/UpdateTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemplateB">
+      <soap12:operation soapAction="DMWebServices/UpdateTemplateB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemplate">
+      <soap12:operation soapAction="DMWebServices/DeleteTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContent">
+      <soap12:operation soapAction="DMWebServices/GetTemplateContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeTemplates">
+      <soap12:operation soapAction="DMWebServices/GetCreativeTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEvent">
+      <soap12:operation soapAction="DMWebServices/CreateEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvent">
+      <soap12:operation soapAction="DMWebServices/UpdateEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvent">
+      <soap12:operation soapAction="DMWebServices/DeleteEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <soap12:operation soapAction="DMWebServices/GetCreativeEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedEvents">
+      <soap12:operation soapAction="DMWebServices/GetSharedEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <soap12:operation soapAction="DMWebServices/GetEventURLs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventAutoMap">
+      <soap12:operation soapAction="DMWebServices/SetEventAutoMap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedEvents">
+      <soap12:operation soapAction="DMWebServices/ImportSharedEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyCreative">
+      <soap12:operation soapAction="DMWebServices/CopyCreative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCreative">
+      <soap12:operation soapAction="DMWebServices/CreateCreative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreative">
+      <soap12:operation soapAction="DMWebServices/UpdateCreative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreative">
+      <soap12:operation soapAction="DMWebServices/DeleteCreative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCreativeFile">
+      <soap12:operation soapAction="DMWebServices/AddCreativeFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeFiles">
+      <soap12:operation soapAction="DMWebServices/GetCreativeFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCreateiveFile">
+      <soap12:operation soapAction="DMWebServices/DeleteCreateiveFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVariable">
+      <soap12:operation soapAction="DMWebServices/CreateVariable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVariable">
+      <soap12:operation soapAction="DMWebServices/UpdateVariable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteVariable">
+      <soap12:operation soapAction="DMWebServices/DeleteVariable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap12:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedVariables">
+      <soap12:operation soapAction="DMWebServices/GetSharedVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportSharedVariables">
+      <soap12:operation soapAction="DMWebServices/ImportSharedVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserData">
+      <soap12:operation soapAction="DMWebServices/SetUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <soap12:operation soapAction="DMWebServices/GetUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDataCategory">
+      <soap12:operation soapAction="DMWebServices/GetUserDataCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserData">
+      <soap12:operation soapAction="DMWebServices/DeleteUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HtmlToText">
+      <soap12:operation soapAction="DMWebServices/HtmlToText" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecordsCSV">
+      <soap12:operation soapAction="DMWebServices/GetLookupTableRecordsCSV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMCreativeBuilder">
+    <wsdl:port name="DMCreativeBuilderSoap" binding="tns:DMCreativeBuilderSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/creativebuilder.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMCreativeBuilderSoap12" binding="tns:DMCreativeBuilderSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/creativebuilder.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

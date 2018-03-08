@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1999213c-97e9-4062-9b67-4dd48e1b525c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://apac-uat.e.alterian.net/dmplus.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DMPlus.disco" MetadataType="Disco" ID="54c162ad-3da5-4b81-8a13-ddaa0fd99b15" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?disco" />
+    <MetadataFile FileName="DMPlus.xsd" MetadataType="Schema" ID="bc1428fb-3ef1-40d3-8dfd-1b32e478adbb" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd4" />
+    <MetadataFile FileName="DMPlus1.xsd" MetadataType="Schema" ID="d72f9c36-03fb-4271-a9d1-ed5f88168209" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd5" />
+    <MetadataFile FileName="DMPlus2.xsd" MetadataType="Schema" ID="3a0f179b-22ac-431e-82fc-07f9ea070510" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd2" />
+    <MetadataFile FileName="DMPlus3.xsd" MetadataType="Schema" ID="0a8a4a22-c374-45cd-be21-48dfa924c6fb" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd3" />
+    <MetadataFile FileName="DMPlus4.xsd" MetadataType="Schema" ID="9b2171be-3c2b-4f23-aa4f-3f20872acff3" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd0" />
+    <MetadataFile FileName="DMPlus5.xsd" MetadataType="Schema" ID="09efcdb6-7db7-40fa-b11c-d329a5853dc6" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd1" />
+    <MetadataFile FileName="DMPlus.wsdl" MetadataType="Wsdl" ID="3291402f-13ac-4c62-8fa7-378c04be9a95" SourceId="1" SourceUrl="http://apac-uat.e.alterian.net/DMPlus.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

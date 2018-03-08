@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMLibrary.MediaManager" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMLibrary.MediaManager" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Sdl.MediaManager.DataTransferObjects" />
+  <xs:complexType name="ArrayOfMediaManagerItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MediaManagerItem" nillable="true" type="tns:MediaManagerItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMediaManagerItem" nillable="true" type="tns:ArrayOfMediaManagerItem" />
+  <xs:complexType name="MediaManagerItem">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sdl.MediaManager.DataTransferObjects" minOccurs="0" name="DistributionData" nillable="true" type="q1:DistributionData" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Sdl.MediaManager.DataTransferObjects" minOccurs="0" name="ItemType" type="q2:ItemTypes" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MediaManagerItem" nillable="true" type="tns:MediaManagerItem" />
+</xs:schema>

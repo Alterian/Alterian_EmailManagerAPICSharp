@@ -1,0 +1,6 @@
+*.suo
+*.user
+AlterianEMAPIClient/bin/
+AlterianEMAPIClient/obj/
+AlterianEMAPISample/bin/
+AlterianEMAPISample/obj/

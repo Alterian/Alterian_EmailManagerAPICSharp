@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMWebServices.Dtos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMWebServices.Dtos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DMLibrary" />
+  <xs:complexType name="EMEventDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Shared" type="xs:boolean" />
+      <xs:element minOccurs="0" name="System" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="URLS" nillable="true" type="q1:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="UsedBy" nillable="true" type="tns:ArrayOfEMDocumentDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMEventDTO" nillable="true" type="tns:EMEventDTO" />
+  <xs:complexType name="ArrayOfEMDocumentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMDocumentDTO" nillable="true" type="tns:EMDocumentDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMDocumentDTO" nillable="true" type="tns:ArrayOfEMDocumentDTO" />
+  <xs:complexType name="EMDocumentDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Type" type="q2:EMDocumentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMDocumentDTO" nillable="true" type="tns:EMDocumentDTO" />
+</xs:schema>

@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="DMWebServices" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="DMWebServices/Imports">
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd0" namespace="DMWebServices" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DMLibrary" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Sdl.MediaManager.DataTransferObjects" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/DMLibrary.MediaManager" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/DMLibrary.EMPreferences" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/DMWebServices.Repository.DefaultFaults" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/DMLibrary.Parser" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/DMWebServices.Dtos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EM_GetListFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFolders" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListCategoriesEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesEx" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListCategoriesEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesExResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLists" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListsByName" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListsByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDefaultLists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultLists" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDefaultLists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFields" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetListFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_RefreshSmartListsInParallel_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshSmartListsInParallel" />
+  </wsdl:message>
+  <wsdl:message name="EM_RefreshSmartListsInParallel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshSmartListsInParallelResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFolder" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateFolderName_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFolderName" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateFolderName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateFolderNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFolder" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeliveryContexts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryContexts" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeliveryContexts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryContextsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeliveryContextAssociation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryContextAssociation" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeliveryContextAssociation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeliveryContextAssociationResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_SetDeliveryContextAssociation_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeliveryContextAssociation" />
+  </wsdl:message>
+  <wsdl:message name="EM_SetDeliveryContextAssociation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDeliveryContextAssociationResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateEmailTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateEmailTest" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateEmailTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateEmailTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLatestEmailTestResultsForCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestEmailTestResultsForCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLatestEmailTestResultsForCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLatestEmailTestResultsForCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEmailTestResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmailTestResults" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEmailTestResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmailTestResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetHeatMapData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeatMapData" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetHeatMapData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeatMapDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignEventsLegacy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignEventsLegacy" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignEventsLegacy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignEventsLegacyResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeployments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeployments" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDeployments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeploymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateID" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetMediaManagerItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaManagerItems" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetMediaManagerItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaManagerItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetMediaManagerDistributionDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaManagerDistributionDetails" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetMediaManagerDistributionDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMediaManagerDistributionDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignFileWithStream_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignFileWithStream" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignFileWithStream_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignFileWithStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_LookupTableExcelUploadEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:LookupTableExcelUploadEx" />
+  </wsdl:message>
+  <wsdl:message name="EM_LookupTableExcelUploadEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LookupTableExcelUploadExResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_LookupTableUploadEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:LookupTableUploadEx" />
+  </wsdl:message>
+  <wsdl:message name="EM_LookupTableUploadEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LookupTableUploadExResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTranslationResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationResources" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTranslationResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTranslationResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAvailableTranslations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTranslations" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAvailableTranslations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableTranslationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GeneratePdf_InputMessage">
+    <wsdl:part name="parameters" element="tns:GeneratePdf" />
+  </wsdl:message>
+  <wsdl:message name="EM_GeneratePdf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GeneratePdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFileRequestStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileRequestStatus" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFileRequestStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileRequestStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_SaveHtmlForProcessing_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveHtmlForProcessing" />
+  </wsdl:message>
+  <wsdl:message name="EM_SaveHtmlForProcessing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveHtmlForProcessingResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContent" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_MediaManagerVideo_InputMessage">
+    <wsdl:part name="parameters" element="tns:MediaManagerVideo" />
+  </wsdl:message>
+  <wsdl:message name="EM_MediaManagerVideo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MediaManagerVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_RenderPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenderPage" />
+  </wsdl:message>
+  <wsdl:message name="EM_RenderPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenderPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetGeneratedPdf_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedPdf" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetGeneratedPdf_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGeneratedPdfResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ExportToCSV_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportToCSV" />
+  </wsdl:message>
+  <wsdl:message name="EM_ExportToCSV_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportToCSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFile" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadAttachmentFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadAttachmentFile" />
+  </wsdl:message>
+  <wsdl:message name="EM_DownloadAttachmentFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadAttachmentFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_FilterDMCreatives_InputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDMCreatives" />
+  </wsdl:message>
+  <wsdl:message name="EM_FilterDMCreatives_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FilterDMCreativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_EnableDomainFiltering_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDomainFiltering" />
+  </wsdl:message>
+  <wsdl:message name="EM_EnableDomainFiltering_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDomainFilteringResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DisableDomainFiltering_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableDomainFiltering" />
+  </wsdl:message>
+  <wsdl:message name="EM_DisableDomainFiltering_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableDomainFilteringResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDomainFilteringStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainFilteringStatus" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDomainFilteringStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainFilteringStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_AddDomainsToRedirectWhitelist_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDomainsToRedirectWhitelist" />
+  </wsdl:message>
+  <wsdl:message name="EM_AddDomainsToRedirectWhitelist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDomainsToRedirectWhitelistResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteDomainsFromRedirectWhitelist_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDomainsFromRedirectWhitelist" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteDomainsFromRedirectWhitelist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDomainsFromRedirectWhitelistResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDomainsOnRedirectWhitelist_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainsOnRedirectWhitelist" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDomainsOnRedirectWhitelist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDomainsOnRedirectWhitelistResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllPreferences_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPreferences" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllPreferences_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPreferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCreativePreferences_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreativePreferences" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCreativePreferences_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreativePreferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreatePreference_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePreference" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreatePreference_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePreferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_EditPreference_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditPreference" />
+  </wsdl:message>
+  <wsdl:message name="EM_EditPreference_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditPreferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAssignablePreferencesForCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignablePreferencesForCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAssignablePreferencesForCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignablePreferencesForCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_AssignPreferencesToCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPreferencesToCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_AssignPreferencesToCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AssignPreferencesToCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_RemovePreferencesFromCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePreferencesFromCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_RemovePreferencesFromCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePreferencesFromCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GenerateMessagePreview_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateMessagePreview" />
+  </wsdl:message>
+  <wsdl:message name="EM_GenerateMessagePreview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateMessagePreviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteList_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteList" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteListResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetClientInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientInfo" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetClientInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCurrentUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCurrentUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetModules_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModules" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetModules_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetModuleCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleCategories" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetModuleCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDocumentTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypes" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDocumentTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetRecentDocuments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecentDocuments" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetRecentDocuments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecentDocumentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFolderContents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderContents" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFolderContents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolderContentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDocumentsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentsByName" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetDocumentsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentsByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetUniqueNameForNewDocument_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUniqueNameForNewDocument" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetUniqueNameForNewDocument_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUniqueNameForNewDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAvailableEncodings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableEncodings" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAvailableEncodings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableEncodingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetHTMLTemplateID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHTMLTemplateID" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetHTMLTemplateID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHTMLTemplateIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFolders" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFoldersLazy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFoldersLazy" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFoldersLazy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFoldersLazyResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFoldersLazy_ArgumentOutOfRangeFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/DMWebServices.Repository.DefaultFaults" name="detail" element="q1:ArgumentOutOfRangeFault" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetFoldersLazy_InstanceNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/DMWebServices.Repository.DefaultFaults" name="detail" element="q2:InstanceNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="EM_LogDocumentViewActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogDocumentViewActivity" />
+  </wsdl:message>
+  <wsdl:message name="EM_LogDocumentViewActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogDocumentViewActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContent" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContentWithAlternateEncoding_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentWithAlternateEncoding" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContentWithAlternateEncoding_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentWithAlternateEncodingResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContentForUseInDifferentCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentForUseInDifferentCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetTemplateContentForUseInDifferentCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTemplateContentForUseInDifferentCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateDocumentFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDocumentFolder" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateDocumentFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDocumentFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignEvent" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateCampaignEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCampaignEvent" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateCampaignEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCampaignEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_RemoveEventUrls_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEventUrls" />
+  </wsdl:message>
+  <wsdl:message name="EM_RemoveEventUrls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEventUrlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CanDeleteCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanDeleteCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_CanDeleteCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanDeleteCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignLookupTables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignLookupTables" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignLookupTables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignLookupTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllSharedLookupTables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSharedLookupTables" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllSharedLookupTables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSharedLookupTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecords" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableByID" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableColumns_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableColumns" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableColumns_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginNewLookupTableSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:BeginNewLookupTableSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginNewLookupTableSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BeginNewLookupTableSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginEditLookupTableSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:BeginEditLookupTableSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginEditLookupTableSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BeginEditLookupTableSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnAddition_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnAddition" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnAddition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnAdditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableRecordAddition_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableRecordAddition" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableRecordAddition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableRecordAdditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableClearance_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableClearance" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableClearance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableClearanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnDeletion_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnDeletion" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnDeletion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnDeletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableRecordDeletion_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableRecordDeletion" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableRecordDeletion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableRecordDeletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableMetadataUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableMetadataUpdate" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableMetadataUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableMetadataUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnUpdate" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueLookupTableColumnUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueLookupTableColumnUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CancelLookupTableSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelLookupTableSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_CancelLookupTableSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelLookupTableSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableExcelSample_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableExcelSample" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetLookupTableExcelSample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLookupTableExcelSampleResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableExcelUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableExcelUpload" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableExcelUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableExcelUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableExcelUploadEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableExcelUploadEx" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitLookupTableExcelUploadEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitLookupTableExcelUploadExResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportLookupTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportLookupTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignLookupTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignLookupTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CanSaveCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:CanSaveCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_CanSaveCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CanSaveCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginCampaignSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:BeginCampaignSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_BeginCampaignSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BeginCampaignSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitCampaignSave_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitCampaignSave" />
+  </wsdl:message>
+  <wsdl:message name="EM_CommitCampaignSave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitCampaignSaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignMetatadataUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignMetatadataUpdate" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignMetatadataUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignMetatadataUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeCreation_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeCreation" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeCreation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeCreationResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeMetadataUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeMetadataUpdate" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeMetadataUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeMetadataUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeContentUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeContentUpdate" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeContentUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeContentUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeDeletion_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeDeletion" />
+  </wsdl:message>
+  <wsdl:message name="EM_QueueCampaignCreativeDeletion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueueCampaignCreativeDeletionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CopyCampaign_InputMessage">
+    <wsdl:part name="parameters" element="tns:CopyCampaign" />
+  </wsdl:message>
+  <wsdl:message name="EM_CopyCampaign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CopyCampaignResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_SetUserData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserData" />
+  </wsdl:message>
+  <wsdl:message name="EM_SetUserData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetUserData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserData" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetUserData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSharedVariables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedVariables" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSharedVariables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignsForSharedVariable_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignsForSharedVariable" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignsForSharedVariable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignsForSharedVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignVariable_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignVariable" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignVariable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateCampaignVariable_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCampaignVariable" />
+  </wsdl:message>
+  <wsdl:message name="EM_UpdateCampaignVariable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCampaignVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignVariable_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignVariable" />
+  </wsdl:message>
+  <wsdl:message name="EM_CreateCampaignVariable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCampaignVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignVariables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignVariables" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignVariables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportVariable_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportVariable" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportVariable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportVariableResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetParsedVariablesAndEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParsedVariablesAndEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetParsedVariablesAndEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParsedVariablesAndEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ReplaceContentWithVariablesAndEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReplaceContentWithVariablesAndEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_ReplaceContentWithVariablesAndEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReplaceContentWithVariablesAndEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_AutoCreateCampaignVariables_InputMessage">
+    <wsdl:part name="parameters" element="tns:AutoCreateCampaignVariables" />
+  </wsdl:message>
+  <wsdl:message name="EM_AutoCreateCampaignVariables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutoCreateCampaignVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignUserDefinedEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignUserDefinedEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignUserDefinedEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignUserDefinedEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignEvent" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSharedEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSharedEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSharedEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEventDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetails" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEventDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportEvent" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_AutoCreateCampaignEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:AutoCreateCampaignEvents" />
+  </wsdl:message>
+  <wsdl:message name="EM_AutoCreateCampaignEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutoCreateCampaignEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEventDetailsTruncated_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetailsTruncated" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEventDetailsTruncated_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEventDetailsTruncatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignFiles" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetCampaignFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCampaignFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignFile" />
+  </wsdl:message>
+  <wsdl:message name="EM_DeleteCampaignFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCampaignFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportFilesFromCreative_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFilesFromCreative" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportFilesFromCreative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportFilesFromCreativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportContentFromUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportContentFromUrl" />
+  </wsdl:message>
+  <wsdl:message name="EM_ImportContentFromUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportContentFromUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetClientSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientSettings" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetClientSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSupportInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSupportInfo" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetSupportInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSupportInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEMWebAppSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEMWebAppSettings" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetEMWebAppSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEMWebAppSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllCompatibleFields_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFields" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllCompatibleFields_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllCompatibleFieldsForVariables_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFieldsForVariables" />
+  </wsdl:message>
+  <wsdl:message name="EM_GetAllCompatibleFieldsForVariables_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCompatibleFieldsForVariablesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EM">
+    <wsdl:operation name="GetListFolders">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetListFolders" message="tns:EM_GetListFolders_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetListFoldersResponse" message="tns:EM_GetListFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesEx">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetListCategoriesEx" message="tns:EM_GetListCategoriesEx_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetListCategoriesExResponse" message="tns:EM_GetListCategoriesEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLists" message="tns:EM_GetLists_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetListsResponse" message="tns:EM_GetLists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListsByName">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetListsByName" message="tns:EM_GetListsByName_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetListsByNameResponse" message="tns:EM_GetListsByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLists">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDefaultLists" message="tns:EM_GetDefaultLists_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDefaultListsResponse" message="tns:EM_GetDefaultLists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListFields">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetListFields" message="tns:EM_GetListFields_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetListFieldsResponse" message="tns:EM_GetListFields_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSmartListsInParallel">
+      <wsdl:input wsaw:Action="DMWebServices/EM/RefreshSmartListsInParallel" message="tns:EM_RefreshSmartListsInParallel_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/RefreshSmartListsInParallelResponse" message="tns:EM_RefreshSmartListsInParallel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateFolder">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateFolder" message="tns:EM_CreateFolder_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateFolderResponse" message="tns:EM_CreateFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFolderName">
+      <wsdl:input wsaw:Action="DMWebServices/EM/UpdateFolderName" message="tns:EM_UpdateFolderName_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/UpdateFolderNameResponse" message="tns:EM_UpdateFolderName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFolder">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteFolder" message="tns:EM_DeleteFolder_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteFolderResponse" message="tns:EM_DeleteFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryContexts">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDeliveryContexts" message="tns:EM_GetDeliveryContexts_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDeliveryContextsResponse" message="tns:EM_GetDeliveryContexts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliveryContextAssociation">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDeliveryContextAssociation" message="tns:EM_GetDeliveryContextAssociation_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDeliveryContextAssociationResponse" message="tns:EM_GetDeliveryContextAssociation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDeliveryContextAssociation">
+      <wsdl:input wsaw:Action="DMWebServices/EM/SetDeliveryContextAssociation" message="tns:EM_SetDeliveryContextAssociation_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/SetDeliveryContextAssociationResponse" message="tns:EM_SetDeliveryContextAssociation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateEmailTest">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateEmailTest" message="tns:EM_CreateEmailTest_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateEmailTestResponse" message="tns:EM_CreateEmailTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLatestEmailTestResultsForCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLatestEmailTestResultsForCreative" message="tns:EM_GetLatestEmailTestResultsForCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetLatestEmailTestResultsForCreativeResponse" message="tns:EM_GetLatestEmailTestResultsForCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailTestResults">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetEmailTestResults" message="tns:EM_GetEmailTestResults_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetEmailTestResultsResponse" message="tns:EM_GetEmailTestResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHeatMapData">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetHeatMapData" message="tns:EM_GetHeatMapData_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetHeatMapDataResponse" message="tns:EM_GetHeatMapData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignEventsLegacy">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignEventsLegacy" message="tns:EM_GetCampaignEventsLegacy_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignEventsLegacyResponse" message="tns:EM_GetCampaignEventsLegacy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeployments">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDeployments" message="tns:EM_GetDeployments_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDeploymentsResponse" message="tns:EM_GetDeployments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateID">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetTemplateID" message="tns:EM_GetTemplateID_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetTemplateIDResponse" message="tns:EM_GetTemplateID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaManagerItems">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetMediaManagerItems" message="tns:EM_GetMediaManagerItems_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetMediaManagerItemsResponse" message="tns:EM_GetMediaManagerItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMediaManagerDistributionDetails">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetMediaManagerDistributionDetails" message="tns:EM_GetMediaManagerDistributionDetails_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetMediaManagerDistributionDetailsResponse" message="tns:EM_GetMediaManagerDistributionDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCampaignFileWithStream">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateCampaignFileWithStream" message="tns:EM_CreateCampaignFileWithStream_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateCampaignFileWithStreamResponse" message="tns:EM_CreateCampaignFileWithStream_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupTableExcelUploadEx">
+      <wsdl:input wsaw:Action="DMWebServices/EM/LookupTableExcelUploadEx" message="tns:EM_LookupTableExcelUploadEx_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/LookupTableExcelUploadExResponse" message="tns:EM_LookupTableExcelUploadEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupTableUploadEx">
+      <wsdl:input wsaw:Action="DMWebServices/EM/LookupTableUploadEx" message="tns:EM_LookupTableUploadEx_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/LookupTableUploadExResponse" message="tns:EM_LookupTableUploadEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTranslationResources">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetTranslationResources" message="tns:EM_GetTranslationResources_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetTranslationResourcesResponse" message="tns:EM_GetTranslationResources_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableTranslations">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAvailableTranslations" message="tns:EM_GetAvailableTranslations_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAvailableTranslationsResponse" message="tns:EM_GetAvailableTranslations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GeneratePdf">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GeneratePdf" message="tns:EM_GeneratePdf_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GeneratePdfResponse" message="tns:EM_GeneratePdf_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileRequestStatus">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetFileRequestStatus" message="tns:EM_GetFileRequestStatus_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetFileRequestStatusResponse" message="tns:EM_GetFileRequestStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveHtmlForProcessing">
+      <wsdl:input wsaw:Action="DMWebServices/EM/SaveHtmlForProcessing" message="tns:EM_SaveHtmlForProcessing_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/SaveHtmlForProcessingResponse" message="tns:EM_SaveHtmlForProcessing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadContent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DownloadContent" message="tns:EM_DownloadContent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DownloadContentResponse" message="tns:EM_DownloadContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MediaManagerVideo">
+      <wsdl:input wsaw:Action="DMWebServices/EM/MediaManagerVideo" message="tns:EM_MediaManagerVideo_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/MediaManagerVideoResponse" message="tns:EM_MediaManagerVideo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RenderPage">
+      <wsdl:input wsaw:Action="DMWebServices/EM/RenderPage" message="tns:EM_RenderPage_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/RenderPageResponse" message="tns:EM_RenderPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneratedPdf">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetGeneratedPdf" message="tns:EM_GetGeneratedPdf_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetGeneratedPdfResponse" message="tns:EM_GetGeneratedPdf_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportToCSV">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ExportToCSV" message="tns:EM_ExportToCSV_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ExportToCSVResponse" message="tns:EM_ExportToCSV_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadFile">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DownloadFile" message="tns:EM_DownloadFile_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DownloadFileResponse" message="tns:EM_DownloadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadAttachmentFile">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DownloadAttachmentFile" message="tns:EM_DownloadAttachmentFile_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DownloadAttachmentFileResponse" message="tns:EM_DownloadAttachmentFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FilterDMCreatives">
+      <wsdl:input wsaw:Action="DMWebServices/EM/FilterDMCreatives" message="tns:EM_FilterDMCreatives_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/FilterDMCreativesResponse" message="tns:EM_FilterDMCreatives_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableDomainFiltering">
+      <wsdl:input wsaw:Action="DMWebServices/EM/EnableDomainFiltering" message="tns:EM_EnableDomainFiltering_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/EnableDomainFilteringResponse" message="tns:EM_EnableDomainFiltering_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableDomainFiltering">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DisableDomainFiltering" message="tns:EM_DisableDomainFiltering_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DisableDomainFilteringResponse" message="tns:EM_DisableDomainFiltering_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainFilteringStatus">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDomainFilteringStatus" message="tns:EM_GetDomainFilteringStatus_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDomainFilteringStatusResponse" message="tns:EM_GetDomainFilteringStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDomainsToRedirectWhitelist">
+      <wsdl:input wsaw:Action="DMWebServices/EM/AddDomainsToRedirectWhitelist" message="tns:EM_AddDomainsToRedirectWhitelist_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/AddDomainsToRedirectWhitelistResponse" message="tns:EM_AddDomainsToRedirectWhitelist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDomainsFromRedirectWhitelist">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteDomainsFromRedirectWhitelist" message="tns:EM_DeleteDomainsFromRedirectWhitelist_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteDomainsFromRedirectWhitelistResponse" message="tns:EM_DeleteDomainsFromRedirectWhitelist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainsOnRedirectWhitelist">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDomainsOnRedirectWhitelist" message="tns:EM_GetDomainsOnRedirectWhitelist_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDomainsOnRedirectWhitelistResponse" message="tns:EM_GetDomainsOnRedirectWhitelist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPreferences">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAllPreferences" message="tns:EM_GetAllPreferences_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAllPreferencesResponse" message="tns:EM_GetAllPreferences_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativePreferences">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCreativePreferences" message="tns:EM_GetCreativePreferences_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCreativePreferencesResponse" message="tns:EM_GetCreativePreferences_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePreference">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreatePreference" message="tns:EM_CreatePreference_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreatePreferenceResponse" message="tns:EM_CreatePreference_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditPreference">
+      <wsdl:input wsaw:Action="DMWebServices/EM/EditPreference" message="tns:EM_EditPreference_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/EditPreferenceResponse" message="tns:EM_EditPreference_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignablePreferencesForCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAssignablePreferencesForCreative" message="tns:EM_GetAssignablePreferencesForCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAssignablePreferencesForCreativeResponse" message="tns:EM_GetAssignablePreferencesForCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignPreferencesToCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/AssignPreferencesToCreative" message="tns:EM_AssignPreferencesToCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/AssignPreferencesToCreativeResponse" message="tns:EM_AssignPreferencesToCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePreferencesFromCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/RemovePreferencesFromCreative" message="tns:EM_RemovePreferencesFromCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/RemovePreferencesFromCreativeResponse" message="tns:EM_RemovePreferencesFromCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateMessagePreview">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GenerateMessagePreview" message="tns:EM_GenerateMessagePreview_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GenerateMessagePreviewResponse" message="tns:EM_GenerateMessagePreview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteList">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteList" message="tns:EM_DeleteList_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteListResponse" message="tns:EM_DeleteList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientInfo">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetClientInfo" message="tns:EM_GetClientInfo_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetClientInfoResponse" message="tns:EM_GetClientInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUserInfo">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCurrentUserInfo" message="tns:EM_GetCurrentUserInfo_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCurrentUserInfoResponse" message="tns:EM_GetCurrentUserInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModules">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetModules" message="tns:EM_GetModules_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetModulesResponse" message="tns:EM_GetModules_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleCategories">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetModuleCategories" message="tns:EM_GetModuleCategories_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetModuleCategoriesResponse" message="tns:EM_GetModuleCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentTypes">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDocumentTypes" message="tns:EM_GetDocumentTypes_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDocumentTypesResponse" message="tns:EM_GetDocumentTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecentDocuments">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetRecentDocuments" message="tns:EM_GetRecentDocuments_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetRecentDocumentsResponse" message="tns:EM_GetRecentDocuments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderContents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetFolderContents" message="tns:EM_GetFolderContents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetFolderContentsResponse" message="tns:EM_GetFolderContents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsByName">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetDocumentsByName" message="tns:EM_GetDocumentsByName_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetDocumentsByNameResponse" message="tns:EM_GetDocumentsByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaign" message="tns:EM_GetCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignResponse" message="tns:EM_GetCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUniqueNameForNewDocument">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetUniqueNameForNewDocument" message="tns:EM_GetUniqueNameForNewDocument_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetUniqueNameForNewDocumentResponse" message="tns:EM_GetUniqueNameForNewDocument_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableEncodings">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAvailableEncodings" message="tns:EM_GetAvailableEncodings_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAvailableEncodingsResponse" message="tns:EM_GetAvailableEncodings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHTMLTemplateID">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetHTMLTemplateID" message="tns:EM_GetHTMLTemplateID_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetHTMLTemplateIDResponse" message="tns:EM_GetHTMLTemplateID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolders">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetFolders" message="tns:EM_GetFolders_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetFoldersResponse" message="tns:EM_GetFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFoldersLazy">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetFoldersLazy" message="tns:EM_GetFoldersLazy_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetFoldersLazyResponse" message="tns:EM_GetFoldersLazy_OutputMessage" />
+      <wsdl:fault wsaw:Action="DMWebServices/EM/GetFoldersLazyArgumentOutOfRangeFaultFault" name="ArgumentOutOfRangeFaultFault" message="tns:EM_GetFoldersLazy_ArgumentOutOfRangeFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="DMWebServices/EM/GetFoldersLazyInstanceNotFoundFaultFault" name="InstanceNotFoundFaultFault" message="tns:EM_GetFoldersLazy_InstanceNotFoundFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogDocumentViewActivity">
+      <wsdl:input wsaw:Action="DMWebServices/EM/LogDocumentViewActivity" message="tns:EM_LogDocumentViewActivity_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/LogDocumentViewActivityResponse" message="tns:EM_LogDocumentViewActivity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetTemplateContent" message="tns:EM_GetTemplateContent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetTemplateContentResponse" message="tns:EM_GetTemplateContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContentWithAlternateEncoding">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetTemplateContentWithAlternateEncoding" message="tns:EM_GetTemplateContentWithAlternateEncoding_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetTemplateContentWithAlternateEncodingResponse" message="tns:EM_GetTemplateContentWithAlternateEncoding_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplateContentForUseInDifferentCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetTemplateContentForUseInDifferentCampaign" message="tns:EM_GetTemplateContentForUseInDifferentCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetTemplateContentForUseInDifferentCampaignResponse" message="tns:EM_GetTemplateContentForUseInDifferentCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCampaignCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateCampaignCreative" message="tns:EM_CreateCampaignCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateCampaignCreativeResponse" message="tns:EM_CreateCampaignCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocumentFolder">
+      <wsdl:input wsaw:Action="DMWebServices/EM/UpdateDocumentFolder" message="tns:EM_UpdateDocumentFolder_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/UpdateDocumentFolderResponse" message="tns:EM_UpdateDocumentFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateCampaign" message="tns:EM_CreateCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateCampaignResponse" message="tns:EM_CreateCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteCampaign" message="tns:EM_DeleteCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteCampaignResponse" message="tns:EM_DeleteCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCampaignEvent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateCampaignEvent" message="tns:EM_CreateCampaignEvent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateCampaignEventResponse" message="tns:EM_CreateCampaignEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCampaignEvent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/UpdateCampaignEvent" message="tns:EM_UpdateCampaignEvent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/UpdateCampaignEventResponse" message="tns:EM_UpdateCampaignEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEventUrls">
+      <wsdl:input wsaw:Action="DMWebServices/EM/RemoveEventUrls" message="tns:EM_RemoveEventUrls_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/RemoveEventUrlsResponse" message="tns:EM_RemoveEventUrls_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanDeleteCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CanDeleteCreative" message="tns:EM_CanDeleteCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CanDeleteCreativeResponse" message="tns:EM_CanDeleteCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignLookupTables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignLookupTables" message="tns:EM_GetCampaignLookupTables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignLookupTablesResponse" message="tns:EM_GetCampaignLookupTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSharedLookupTables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAllSharedLookupTables" message="tns:EM_GetAllSharedLookupTables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAllSharedLookupTablesResponse" message="tns:EM_GetAllSharedLookupTables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableRecords">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLookupTableRecords" message="tns:EM_GetLookupTableRecords_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetLookupTableRecordsResponse" message="tns:EM_GetLookupTableRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableByID">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLookupTableByID" message="tns:EM_GetLookupTableByID_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetLookupTableByIDResponse" message="tns:EM_GetLookupTableByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableColumns">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLookupTableColumns" message="tns:EM_GetLookupTableColumns_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetLookupTableColumnsResponse" message="tns:EM_GetLookupTableColumns_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginNewLookupTableSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/BeginNewLookupTableSave" message="tns:EM_BeginNewLookupTableSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/BeginNewLookupTableSaveResponse" message="tns:EM_BeginNewLookupTableSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginEditLookupTableSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/BeginEditLookupTableSave" message="tns:EM_BeginEditLookupTableSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/BeginEditLookupTableSaveResponse" message="tns:EM_BeginEditLookupTableSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableColumnAddition">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableColumnAddition" message="tns:EM_QueueLookupTableColumnAddition_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableColumnAdditionResponse" message="tns:EM_QueueLookupTableColumnAddition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableRecordAddition">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableRecordAddition" message="tns:EM_QueueLookupTableRecordAddition_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableRecordAdditionResponse" message="tns:EM_QueueLookupTableRecordAddition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableClearance">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableClearance" message="tns:EM_QueueLookupTableClearance_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableClearanceResponse" message="tns:EM_QueueLookupTableClearance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableColumnDeletion">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableColumnDeletion" message="tns:EM_QueueLookupTableColumnDeletion_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableColumnDeletionResponse" message="tns:EM_QueueLookupTableColumnDeletion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableRecordDeletion">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableRecordDeletion" message="tns:EM_QueueLookupTableRecordDeletion_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableRecordDeletionResponse" message="tns:EM_QueueLookupTableRecordDeletion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableMetadataUpdate">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableMetadataUpdate" message="tns:EM_QueueLookupTableMetadataUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableMetadataUpdateResponse" message="tns:EM_QueueLookupTableMetadataUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueLookupTableColumnUpdate">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueLookupTableColumnUpdate" message="tns:EM_QueueLookupTableColumnUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueLookupTableColumnUpdateResponse" message="tns:EM_QueueLookupTableColumnUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitLookupTableSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CommitLookupTableSave" message="tns:EM_CommitLookupTableSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CommitLookupTableSaveResponse" message="tns:EM_CommitLookupTableSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelLookupTableSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CancelLookupTableSave" message="tns:EM_CancelLookupTableSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CancelLookupTableSaveResponse" message="tns:EM_CancelLookupTableSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTableExcelSample">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetLookupTableExcelSample" message="tns:EM_GetLookupTableExcelSample_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetLookupTableExcelSampleResponse" message="tns:EM_GetLookupTableExcelSample_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitLookupTableExcelUpload">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CommitLookupTableExcelUpload" message="tns:EM_CommitLookupTableExcelUpload_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CommitLookupTableExcelUploadResponse" message="tns:EM_CommitLookupTableExcelUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitLookupTableExcelUploadEx">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CommitLookupTableExcelUploadEx" message="tns:EM_CommitLookupTableExcelUploadEx_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CommitLookupTableExcelUploadExResponse" message="tns:EM_CommitLookupTableExcelUploadEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportLookupTable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ImportLookupTable" message="tns:EM_ImportLookupTable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ImportLookupTableResponse" message="tns:EM_ImportLookupTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampaignLookupTable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteCampaignLookupTable" message="tns:EM_DeleteCampaignLookupTable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteCampaignLookupTableResponse" message="tns:EM_DeleteCampaignLookupTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CanSaveCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CanSaveCampaign" message="tns:EM_CanSaveCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CanSaveCampaignResponse" message="tns:EM_CanSaveCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BeginCampaignSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/BeginCampaignSave" message="tns:EM_BeginCampaignSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/BeginCampaignSaveResponse" message="tns:EM_BeginCampaignSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitCampaignSave">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CommitCampaignSave" message="tns:EM_CommitCampaignSave_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CommitCampaignSaveResponse" message="tns:EM_CommitCampaignSave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueCampaignMetatadataUpdate">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueCampaignMetatadataUpdate" message="tns:EM_QueueCampaignMetatadataUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueCampaignMetatadataUpdateResponse" message="tns:EM_QueueCampaignMetatadataUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueCampaignCreativeCreation">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueCampaignCreativeCreation" message="tns:EM_QueueCampaignCreativeCreation_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueCampaignCreativeCreationResponse" message="tns:EM_QueueCampaignCreativeCreation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueCampaignCreativeMetadataUpdate">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueCampaignCreativeMetadataUpdate" message="tns:EM_QueueCampaignCreativeMetadataUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueCampaignCreativeMetadataUpdateResponse" message="tns:EM_QueueCampaignCreativeMetadataUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueCampaignCreativeContentUpdate">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueCampaignCreativeContentUpdate" message="tns:EM_QueueCampaignCreativeContentUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueCampaignCreativeContentUpdateResponse" message="tns:EM_QueueCampaignCreativeContentUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueCampaignCreativeDeletion">
+      <wsdl:input wsaw:Action="DMWebServices/EM/QueueCampaignCreativeDeletion" message="tns:EM_QueueCampaignCreativeDeletion_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/QueueCampaignCreativeDeletionResponse" message="tns:EM_QueueCampaignCreativeDeletion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyCampaign">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CopyCampaign" message="tns:EM_CopyCampaign_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CopyCampaignResponse" message="tns:EM_CopyCampaign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserData">
+      <wsdl:input wsaw:Action="DMWebServices/EM/SetUserData" message="tns:EM_SetUserData_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/SetUserDataResponse" message="tns:EM_SetUserData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserData">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetUserData" message="tns:EM_GetUserData_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetUserDataResponse" message="tns:EM_GetUserData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedVariables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetSharedVariables" message="tns:EM_GetSharedVariables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetSharedVariablesResponse" message="tns:EM_GetSharedVariables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignsForSharedVariable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignsForSharedVariable" message="tns:EM_GetCampaignsForSharedVariable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignsForSharedVariableResponse" message="tns:EM_GetCampaignsForSharedVariable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampaignVariable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteCampaignVariable" message="tns:EM_DeleteCampaignVariable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteCampaignVariableResponse" message="tns:EM_DeleteCampaignVariable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCampaignVariable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/UpdateCampaignVariable" message="tns:EM_UpdateCampaignVariable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/UpdateCampaignVariableResponse" message="tns:EM_UpdateCampaignVariable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCampaignVariable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/CreateCampaignVariable" message="tns:EM_CreateCampaignVariable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/CreateCampaignVariableResponse" message="tns:EM_CreateCampaignVariable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignVariables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignVariables" message="tns:EM_GetCampaignVariables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignVariablesResponse" message="tns:EM_GetCampaignVariables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportVariable">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ImportVariable" message="tns:EM_ImportVariable_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ImportVariableResponse" message="tns:EM_ImportVariable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParsedVariablesAndEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetParsedVariablesAndEvents" message="tns:EM_GetParsedVariablesAndEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetParsedVariablesAndEventsResponse" message="tns:EM_GetParsedVariablesAndEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReplaceContentWithVariablesAndEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ReplaceContentWithVariablesAndEvents" message="tns:EM_ReplaceContentWithVariablesAndEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ReplaceContentWithVariablesAndEventsResponse" message="tns:EM_ReplaceContentWithVariablesAndEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AutoCreateCampaignVariables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/AutoCreateCampaignVariables" message="tns:EM_AutoCreateCampaignVariables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/AutoCreateCampaignVariablesResponse" message="tns:EM_AutoCreateCampaignVariables_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignEvents" message="tns:EM_GetCampaignEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignEventsResponse" message="tns:EM_GetCampaignEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignUserDefinedEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignUserDefinedEvents" message="tns:EM_GetCampaignUserDefinedEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignUserDefinedEventsResponse" message="tns:EM_GetCampaignUserDefinedEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampaignEvent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteCampaignEvent" message="tns:EM_DeleteCampaignEvent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteCampaignEventResponse" message="tns:EM_DeleteCampaignEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSharedEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetSharedEvents" message="tns:EM_GetSharedEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetSharedEventsResponse" message="tns:EM_GetSharedEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDetails">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetEventDetails" message="tns:EM_GetEventDetails_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetEventDetailsResponse" message="tns:EM_GetEventDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportEvent">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ImportEvent" message="tns:EM_ImportEvent_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ImportEventResponse" message="tns:EM_ImportEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AutoCreateCampaignEvents">
+      <wsdl:input wsaw:Action="DMWebServices/EM/AutoCreateCampaignEvents" message="tns:EM_AutoCreateCampaignEvents_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/AutoCreateCampaignEventsResponse" message="tns:EM_AutoCreateCampaignEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventDetailsTruncated">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetEventDetailsTruncated" message="tns:EM_GetEventDetailsTruncated_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetEventDetailsTruncatedResponse" message="tns:EM_GetEventDetailsTruncated_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCampaignFiles">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetCampaignFiles" message="tns:EM_GetCampaignFiles_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetCampaignFilesResponse" message="tns:EM_GetCampaignFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCampaignFile">
+      <wsdl:input wsaw:Action="DMWebServices/EM/DeleteCampaignFile" message="tns:EM_DeleteCampaignFile_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/DeleteCampaignFileResponse" message="tns:EM_DeleteCampaignFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportFilesFromCreative">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ImportFilesFromCreative" message="tns:EM_ImportFilesFromCreative_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ImportFilesFromCreativeResponse" message="tns:EM_ImportFilesFromCreative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportContentFromUrl">
+      <wsdl:input wsaw:Action="DMWebServices/EM/ImportContentFromUrl" message="tns:EM_ImportContentFromUrl_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/ImportContentFromUrlResponse" message="tns:EM_ImportContentFromUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientSettings">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetClientSettings" message="tns:EM_GetClientSettings_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetClientSettingsResponse" message="tns:EM_GetClientSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSupportInfo">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetSupportInfo" message="tns:EM_GetSupportInfo_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetSupportInfoResponse" message="tns:EM_GetSupportInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEMWebAppSettings">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetEMWebAppSettings" message="tns:EM_GetEMWebAppSettings_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetEMWebAppSettingsResponse" message="tns:EM_GetEMWebAppSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompatibleFields">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAllCompatibleFields" message="tns:EM_GetAllCompatibleFields_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAllCompatibleFieldsResponse" message="tns:EM_GetAllCompatibleFields_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCompatibleFieldsForVariables">
+      <wsdl:input wsaw:Action="DMWebServices/EM/GetAllCompatibleFieldsForVariables" message="tns:EM_GetAllCompatibleFieldsForVariables_InputMessage" />
+      <wsdl:output wsaw:Action="DMWebServices/EM/GetAllCompatibleFieldsForVariablesResponse" message="tns:EM_GetAllCompatibleFieldsForVariables_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

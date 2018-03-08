@@ -1,0 +1,4008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="ExecuteListQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMListCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMListCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IncludeLists" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExcludeLists" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventCriteria" type="tns:DMListEventCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldCriteria" type="tns:ArrayOfDMFieldCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreferenceCriteria" type="tns:ArrayOfDMPreferenceCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Users" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateRanges" type="tns:ArrayOfDMRDateRange" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfDMEventCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRDateRange" nillable="true" type="tns:DMRDateRange" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RangeType" type="tns:DMRDateRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRDateRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDT_BEFORE" />
+          <s:enumeration value="DMDT_AFTER" />
+          <s:enumeration value="DMDT_BETWEEN" />
+          <s:enumeration value="DMDT_YEARTODATE" />
+          <s:enumeration value="DMDT_MONTHTODATE" />
+          <s:enumeration value="DMDT_WEEKTODATE" />
+          <s:enumeration value="DMDT_TODAY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEventCriteria" nillable="true" type="tns:DMEventCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEventCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMOperator" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operand" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMOP_EQUAL" />
+          <s:enumeration value="DMOP_NOTEQUAL" />
+          <s:enumeration value="DMOP_LESSTHAN" />
+          <s:enumeration value="DMOP_GREATERTHAN" />
+          <s:enumeration value="DMOP_BEGINSWITH" />
+          <s:enumeration value="DMOP_NOTBEGINSWITH" />
+          <s:enumeration value="DMOP_ENDSWITH" />
+          <s:enumeration value="DMOP_NOTENDSWITH" />
+          <s:enumeration value="DMOP_CONTAINS" />
+          <s:enumeration value="DMOP_NOTCONTAINS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMCombine">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCM_NONE" />
+          <s:enumeration value="DMCM_AND" />
+          <s:enumeration value="DMCM_OR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMFieldCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMFieldCriteria" nillable="true" type="tns:DMFieldCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMFieldCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryType" type="tns:DMFieldQueryType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parameter" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMSQLOperator" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="0" maxOccurs="1" name="SValue" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="IValue" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="DValue" type="tns:ArrayOfDouble" />
+          <s:element minOccurs="0" maxOccurs="1" name="BValue" type="tns:ArrayOfBoolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldSubType" type="tns:DMFieldSubType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldQueryType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMQT_PREFERTEXT" />
+          <s:enumeration value="DMQT_VERIFIEDFLASH" />
+          <s:enumeration value="DMQT_VERIFIEDHTML" />
+          <s:enumeration value="DMQT_ENABLED" />
+          <s:enumeration value="DMQT_LASTEVENT" />
+          <s:enumeration value="DMQT_CREATED" />
+          <s:enumeration value="DMQT_MODIFIED" />
+          <s:enumeration value="DMQT_DATEFIELD" />
+          <s:enumeration value="DMQT_NUMERICFIELD" />
+          <s:enumeration value="DMQT_DECIMALFIELD" />
+          <s:enumeration value="DMQT_BOOLEANFIELD" />
+          <s:enumeration value="DMQT_STRINGFIELD" />
+          <s:enumeration value="DMQT_RSSONLY" />
+          <s:enumeration value="DMQT_LASTENGAGED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMSQLOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMSQ_EQUAL" />
+          <s:enumeration value="DMSQ_NOTEQUAL" />
+          <s:enumeration value="DMSQ_LESSTHAN" />
+          <s:enumeration value="DMSQ_GREATERTHAN" />
+          <s:enumeration value="DMSQ_BEGINSWITH" />
+          <s:enumeration value="DMSQ_NOTBEGINSWITH" />
+          <s:enumeration value="DMSQ_ENDSWITH" />
+          <s:enumeration value="DMSQ_NOTENDSWITH" />
+          <s:enumeration value="DMSQ_CONTAINS" />
+          <s:enumeration value="DMSQ_NOTCONTAINS" />
+          <s:enumeration value="DMSQ_IN" />
+          <s:enumeration value="DMSQ_NOTIN" />
+          <s:enumeration value="DMSQ_BETWEEN" />
+          <s:enumeration value="DMSQ_NOTBETWEEN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDouble">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="double" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldSubType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFST_NA" />
+          <s:enumeration value="DMFST_EMAIL_USER" />
+          <s:enumeration value="DMFST_EMAIL_DOMAIN" />
+          <s:enumeration value="DMFST_EMAIL_HEALTH" />
+          <s:enumeration value="DMFST_DATE_YEAR" />
+          <s:enumeration value="DMFST_DATE_MONTH" />
+          <s:enumeration value="DMFST_DATE_DAY" />
+          <s:enumeration value="DMFST_DATE_TIME" />
+          <s:enumeration value="DMFST_DATE_DAYSFROMNOW" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMPreferenceCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMPreferenceCriteria" nillable="true" type="tns:DMPreferenceCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMPreferenceCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseParenthesis" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parameter" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExecuteListQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteListQueryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSuppressionListQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMListCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSuppressionListQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteSuppressionListQueryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveQueryResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Dividend" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Divisor" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Top" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bottom" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveQueryResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SaveQueryResultsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SplitQueryResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Segments" type="tns:ArrayOfDMListSegment" />
+            <s:element minOccurs="1" maxOccurs="1" name="Randomize" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListSegment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListSegment" nillable="true" type="tns:DMListSegment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListSegment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Offset" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SplitQueryResultsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClearList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnsubscribeList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnsubscribeListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUnsubscribes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnsubscribesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnsubscribesResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetHealth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Domains" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetHealthResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEmailAddressesByHealth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="HealthLow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="HealthHigh" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SuppressUnsubscribed" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailAddressesByHealthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailAddressesByHealthResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQueryResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQueryResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQueryResultsResult" type="tns:ArrayOfDMRecipientRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMRecipientRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRecipientRecord" nillable="true" type="tns:DMRecipientRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRecipientRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrefersText" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unsubscribed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="RSSOnly" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VerifiedFlash" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VerifiedHTML" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IP" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WB" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Health" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSuppressionQueryResults">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuppressionQueryResultsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSuppressionQueryResultsResult" type="tns:ArrayOfDMRecipientRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQueryResultsCSV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludeRecipientID" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQueryResultsCSVResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQueryResultsCSVResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuppressionQueryResultsCSV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartIndex" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuppressionQueryResultsCSVResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSuppressionQueryResultsCSVResult" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsAndFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListCategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListTypes" type="tns:ArrayOfDMListType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListType" type="tns:DMListType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMListType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMLT_RECIPIENT" />
+          <s:enumeration value="DMLT_SUPPRESS" />
+          <s:enumeration value="DMLT_DOMAINSUPPRESSION" />
+          <s:enumeration value="DMLT_MD5SUPPRESSION" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetListsAndFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Lists" type="tns:ArrayOfDMQList" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfDMQField" />
+            <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfDMQListCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMQList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQList" nillable="true" type="tns:DMQList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListType" type="tns:DMListType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMQField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQField" nillable="true" type="tns:DMQField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:DMFieldType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFT_EMAIL" />
+          <s:enumeration value="DMFT_STRING" />
+          <s:enumeration value="DMFT_TEXT" />
+          <s:enumeration value="DMFT_NUMERIC" />
+          <s:enumeration value="DMFT_DATE" />
+          <s:enumeration value="DMFT_BOOLEAN" />
+          <s:enumeration value="DMFT_DECIMAL" />
+          <s:enumeration value="DMFT_UNICODE" />
+          <s:enumeration value="DMFT_PREFERENCE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMQListCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQListCategory" nillable="true" type="tns:DMQListCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQListCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lists" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativesAndEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativesAndEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfDMQCreative" />
+            <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfDMQEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMQCreative">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQCreative" nillable="true" type="tns:DMQCreative" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQCreative">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMQEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQEvent" nillable="true" type="tns:DMQEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQEvent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRecipientByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipientByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecipientByIDResult" type="tns:DMRecipientRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipientByPK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreateNew" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipientByPKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecipientByPKResult" type="tns:DMRecipientRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipientIdByPK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="primaryKeyFieldId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="listID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecipientIdByPKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRecipientIdByPKResult" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVisibleUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVisibleUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVisibleUsersResult" type="tns:ArrayOfDMQUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMQUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMQUser" nillable="true" type="tns:DMQUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMQUser">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateListCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="parentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateListCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateListCategoryResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameListCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameListCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteListCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteListCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListCategoriesResult" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCategory" nillable="true" type="tns:DMCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetListCategoriesEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CategoryIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="PermissionIDs" type="tns:ArrayOfDMListPermission" />
+            <s:element minOccurs="1" maxOccurs="1" name="GetLists" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListPermission">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListPermission" type="tns:DMListPermission" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMListPermission">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMLP_EDITPROPERTIES" />
+          <s:enumeration value="DMLP_EDITRECORDS" />
+          <s:enumeration value="DMLP_DEPLOY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetListCategoriesExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListCategoriesExResult" type="tns:ArrayOfDMListCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListCategory" nillable="true" type="tns:DMListCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lists" type="tns:ArrayOfDMList" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentID" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMList" nillable="true" type="tns:DMList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptinEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptoutEventID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListType" type="tns:DMListType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowOptin" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowOptout" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditPropertiesAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EditRecordsAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeployAccess" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListCriteria" type="tns:DMListCriteria" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListTypes" type="tns:ArrayOfDMListType" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultListOnly" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListsResult" type="tns:ArrayOfDMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListFieldsResult" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListField" nillable="true" type="tns:DMListField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:DMFieldType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceColumn" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowDupes" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListField" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageType" type="tns:DMFieldStorageType" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserOptOut" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMFieldStorageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFS_NA" />
+          <s:enumeration value="DMFS_LIST" />
+          <s:enumeration value="DMFS_RECIPIENT" />
+          <s:enumeration value="DMFS_RECIPIENTLIST" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetListRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cursor" type="tns:DMCursor" />
+            <s:element minOccurs="1" maxOccurs="1" name="Direction" type="tns:DMPreviewDirection" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMCursor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="High" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Low" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="High2" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Low2" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMPreviewDirection">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMPD_FIRST" />
+          <s:enumeration value="DMPD_NEXT" />
+          <s:enumeration value="DMPD_PREVIOUS" />
+          <s:enumeration value="DMPD_LAST" />
+          <s:enumeration value="DMPD_REFRESH" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetListRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListRecordsResult" type="tns:ArrayOfDMRecipientRecord" />
+            <s:element minOccurs="0" maxOccurs="1" name="Cursor" type="tns:DMCursor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PrefersText" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Unsubscribed" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfDMFieldValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMFieldValue" nillable="true" type="tns:DMFieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMFieldValue">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BValue" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRecipientRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRecipientRecordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDMAddRecipientRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMAddRecipientRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMAddRecipientRecord" nillable="true" type="tns:DMAddRecipientRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMAddRecipientRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PrefersText" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unsubscribed" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfDMFieldValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRecipientRecordsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddDomainSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDomainSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddMD5SuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MD5Hash" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMD5SuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveRecipient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRecipientResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveQueryResultsFromLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveQueryResultsFromListsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveDomainSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDomainSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveMD5SuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MD5Hash" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveMD5SuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="OldEmailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewEmailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateDomainSuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="OldDomain" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewDomain" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDomainSuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateMD5SuppressionRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="OldMD5Hash" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewMD5Hash" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMD5SuppressionRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateRecipient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PrefersText" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="RSSOnly" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Unsubscribed" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldValues" type="tns:ArrayOfDMFieldValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRecipientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateRecipientResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientToList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRecipientToListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptout" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptin" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListFields" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListCriteria" type="tns:DMListCriteria" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateListResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRecipientList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptout" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptin" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListFields" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListCriteria" type="tns:DMListCriteria" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRecipientListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateRecipientListResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListFields" type="tns:ArrayOfDMListField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSuppressionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSuppressionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSuppressionListResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDomainSuppressionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDomainSuppressionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateDomainSuppressionListResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMD5SuppressionList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMD5SuppressionListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateMD5SuppressionListResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptout" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="AllowOptin" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListCriteria" type="tns:DMListCriteria" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RefreshSmartLists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshSmartListsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UploadData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDataResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UploadDataA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDataAResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UploadDataCSV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Delimiter" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Qualifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDataCSVResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InitializeListImport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldOrder" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="Unicode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitializeListImportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertListData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertListDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertListDataResult" type="tns:DMImportStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMImportStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Inserted" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ignored" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Updated" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldsChanged" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldsAdded" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Added" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TickCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Counters" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="LookupId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FinalizeListImport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FinalizeListImportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertTableData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="LookupID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldOrder" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="Unicode" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertTableDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertTableDataResult" type="tns:DMImportStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLookupTables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLookupTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLookupTablesResult" type="tns:ArrayOfDMLookupTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMLookupTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupTable" nillable="true" type="tns:DMLookupTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMLookupColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMLookupColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMLookupColumn" nillable="true" type="tns:DMLookupColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMLookupColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateLookupTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ColumnNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateLookupTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateLookupTableResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColumnMapping">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSourceColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSourceColumn" nillable="true" type="tns:DMSourceColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSourceColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LooksLike" type="tns:DMFieldType" />
+          <s:element minOccurs="1" maxOccurs="1" name="LooksUnique" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LooksStatic" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="LooksEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldIndex" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewColumn" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetColumnMappingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetColumnMappingResult" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColumnMappingAndPreferences">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColumnMappingAndPreferencesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetColumnMappingAndPreferencesResult" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColumnMappingAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetColumnMappingAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetColumnMappingAllResult" type="tns:ArrayOfDMListField" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumns" type="tns:ArrayOfDMSourceColumn" />
+            <s:element minOccurs="1" maxOccurs="1" name="DefaultKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFieldsToList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFieldsToListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveFieldsFromList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFieldsFromListResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListInfoResult" type="tns:DMList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPrimaryKeyCollection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPrimaryKeyCollectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPrimaryKeyCollectionResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventsListResult" type="tns:ArrayOfDMQEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldSuggestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SampleValues" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldSuggestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldSuggestionsResult" type="tns:ArrayOfDMSuggestedFieldScore" />
+            <s:element minOccurs="1" maxOccurs="1" name="SuggestedFieldType" type="tns:DMFieldType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSuggestedFieldScore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSuggestedFieldScore" nillable="true" type="tns:DMSuggestedFieldScore" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSuggestedFieldScore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Score" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldsResult" type="tns:ArrayOfDMField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMField" nillable="true" type="tns:DMField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:DMFieldType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SourceColumn" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserAccess" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListField" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrimaryKey" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StorageType" type="tns:DMFieldStorageType" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserOptOut" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSeed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:DMFieldType" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListField" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SourceColumn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserAccess" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="StorageType" type="tns:DMFieldStorageType" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserOptOut" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateFieldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateFieldResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveField">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveFieldResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListsWithSamePrimaryKeys">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsWithSamePrimaryKeysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListsWithSamePrimaryKeysResult" type="tns:ArrayOfDMList" />
+            <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListCategoriesWithSamePrimaryKeys">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListCategoriesWithSamePrimaryKeysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListCategoriesWithSamePrimaryKeysResult" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsFromCategoryWithSamePrimaryKeys">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ListIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListsFromCategoryWithSamePrimaryKeysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListsFromCategoryWithSamePrimaryKeysResult" type="tns:ArrayOfDMListDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMListDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMListDTO" nillable="true" type="tns:DMListDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMListDTO">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CancelListQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelListQueryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateFieldSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Field" type="tns:DMListField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFieldSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SubscribeRecipientsByPK">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="primaryKeyFieldId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="primaryKeysValues" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="1" maxOccurs="1" name="resubscribe" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="createNewRecipient" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="listId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="deploymentId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="addExistingSubscribedRecipientsToDeployment" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecipientSubscibingListDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Recipients" type="tns:ArrayOfRecipientSubscibingDTO" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecipientSubscibingDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecipientSubscibingDTO" nillable="true" type="tns:RecipientSubscibingDTO" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecipientSubscibingDTO">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PKValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:RecipientSubscribingStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RecipientSubscribingStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="RecipientSubscribingError" />
+          <s:enumeration value="RecipientCreated" />
+          <s:enumeration value="RecipientSkipCreation" />
+          <s:enumeration value="RecipientResubscribed" />
+          <s:enumeration value="RecipientNotReSubscribed" />
+          <s:enumeration value="RecipientAlreadySubscribed" />
+          <s:enumeration value="RecipientInvalidPrimaryKey" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SubscribeRecipientsByPKResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubscribeRecipientsByPKResult" type="tns:RecipientSubscibingListDTO" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllPreferences">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EMPreference">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TermsAndConditions" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEMPreference">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EMPreference" nillable="true" type="tns:EMPreference" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllPreferencesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllPreferencesResult" type="tns:ArrayOfEMPreference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ExecuteListQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteListQuery" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteListQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteListQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSuppressionListQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteSuppressionListQuery" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSuppressionListQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteSuppressionListQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveQueryResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveQueryResults" />
+  </wsdl:message>
+  <wsdl:message name="SaveQueryResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveQueryResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SplitQueryResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:SplitQueryResults" />
+  </wsdl:message>
+  <wsdl:message name="SplitQueryResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:SplitQueryResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearListSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearList" />
+  </wsdl:message>
+  <wsdl:message name="ClearListSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeListSoapIn">
+    <wsdl:part name="parameters" element="tns:UnsubscribeList" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeListSoapOut">
+    <wsdl:part name="parameters" element="tns:UnsubscribeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnsubscribesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnsubscribes" />
+  </wsdl:message>
+  <wsdl:message name="GetUnsubscribesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnsubscribesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetHealthSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetHealth" />
+  </wsdl:message>
+  <wsdl:message name="ResetHealthSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetHealthResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressesByHealthSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailAddressesByHealth" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressesByHealthSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailAddressesByHealthResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQueryResults" />
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQueryResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppressionQueryResultsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSuppressionQueryResults" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppressionQueryResultsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSuppressionQueryResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultsCSVSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQueryResultsCSV" />
+  </wsdl:message>
+  <wsdl:message name="GetQueryResultsCSVSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQueryResultsCSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppressionQueryResultsCSVSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSuppressionQueryResultsCSV" />
+  </wsdl:message>
+  <wsdl:message name="GetSuppressionQueryResultsCSVSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSuppressionQueryResultsCSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListsAndFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListsAndFields" />
+  </wsdl:message>
+  <wsdl:message name="GetListsAndFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListsAndFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesAndEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativesAndEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesAndEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativesAndEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecipientByID" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecipientByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientByPKSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecipientByPK" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientByPKSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecipientByPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientIdByPKSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecipientIdByPK" />
+  </wsdl:message>
+  <wsdl:message name="GetRecipientIdByPKSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecipientIdByPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVisibleUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVisibleUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetVisibleUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVisibleUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateListCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateListCategory" />
+  </wsdl:message>
+  <wsdl:message name="CreateListCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateListCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenameListCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:RenameListCategory" />
+  </wsdl:message>
+  <wsdl:message name="RenameListCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:RenameListCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteListCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteListCategory" />
+  </wsdl:message>
+  <wsdl:message name="DeleteListCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteListCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesEx" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesExResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLists" />
+  </wsdl:message>
+  <wsdl:message name="GetListsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListFields" />
+  </wsdl:message>
+  <wsdl:message name="GetListFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetListRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecipientRecord" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecipientRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecipientRecords" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecipientRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="AddSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDomainSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDomainSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="AddDomainSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDomainSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMD5SuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMD5SuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="AddMD5SuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMD5SuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRecipientSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveRecipient" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRecipientSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveRecipientResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQueryResultsFromListsSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveQueryResultsFromLists" />
+  </wsdl:message>
+  <wsdl:message name="RemoveQueryResultsFromListsSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveQueryResultsFromListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDomainSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveDomainSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDomainSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveDomainSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveMD5SuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveMD5SuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="RemoveMD5SuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveMD5SuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDomainSuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDomainSuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDomainSuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDomainSuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMD5SuppressionRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMD5SuppressionRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateMD5SuppressionRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMD5SuppressionRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecipientSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRecipient" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRecipientSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRecipientResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientToListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRecipientToList" />
+  </wsdl:message>
+  <wsdl:message name="AddRecipientToListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRecipientToListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateField" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateList" />
+  </wsdl:message>
+  <wsdl:message name="CreateListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecipientListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRecipientList" />
+  </wsdl:message>
+  <wsdl:message name="CreateRecipientListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRecipientListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSuppressionListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSuppressionList" />
+  </wsdl:message>
+  <wsdl:message name="CreateSuppressionListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSuppressionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDomainSuppressionListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDomainSuppressionList" />
+  </wsdl:message>
+  <wsdl:message name="CreateDomainSuppressionListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDomainSuppressionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMD5SuppressionListSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMD5SuppressionList" />
+  </wsdl:message>
+  <wsdl:message name="CreateMD5SuppressionListSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMD5SuppressionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateListSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateList" />
+  </wsdl:message>
+  <wsdl:message name="UpdateListSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteListSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteList" />
+  </wsdl:message>
+  <wsdl:message name="DeleteListSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteListResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSmartListsSoapIn">
+    <wsdl:part name="parameters" element="tns:RefreshSmartLists" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSmartListsSoapOut">
+    <wsdl:part name="parameters" element="tns:RefreshSmartListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadData" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataASoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDataA" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataASoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDataAResponse" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataCSVSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDataCSV" />
+  </wsdl:message>
+  <wsdl:message name="UploadDataCSVSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDataCSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitializeListImportSoapIn">
+    <wsdl:part name="parameters" element="tns:InitializeListImport" />
+  </wsdl:message>
+  <wsdl:message name="InitializeListImportSoapOut">
+    <wsdl:part name="parameters" element="tns:InitializeListImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertListDataSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertListData" />
+  </wsdl:message>
+  <wsdl:message name="InsertListDataSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertListDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeListImportSoapIn">
+    <wsdl:part name="parameters" element="tns:FinalizeListImport" />
+  </wsdl:message>
+  <wsdl:message name="FinalizeListImportSoapOut">
+    <wsdl:part name="parameters" element="tns:FinalizeListImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertTableDataSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertTableData" />
+  </wsdl:message>
+  <wsdl:message name="InsertTableDataSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertTableDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLookupTables" />
+  </wsdl:message>
+  <wsdl:message name="GetLookupTablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLookupTablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateLookupTableSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateLookupTable" />
+  </wsdl:message>
+  <wsdl:message name="CreateLookupTableSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateLookupTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetColumnMapping" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetColumnMappingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingAndPreferencesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetColumnMappingAndPreferences" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingAndPreferencesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetColumnMappingAndPreferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingAllSoapIn">
+    <wsdl:part name="parameters" element="tns:GetColumnMappingAll" />
+  </wsdl:message>
+  <wsdl:message name="GetColumnMappingAllSoapOut">
+    <wsdl:part name="parameters" element="tns:GetColumnMappingAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFieldsToListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFieldsToList" />
+  </wsdl:message>
+  <wsdl:message name="AddFieldsToListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFieldsToListResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFieldsFromListSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveFieldsFromList" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFieldsFromListSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFieldsFromListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetListInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPrimaryKeyCollectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPrimaryKeyCollection" />
+  </wsdl:message>
+  <wsdl:message name="GetPrimaryKeyCollectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPrimaryKeyCollectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventsList" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldSuggestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldSuggestions" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldSuggestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldSuggestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFields" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateField" />
+  </wsdl:message>
+  <wsdl:message name="CreateFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFieldSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveField" />
+  </wsdl:message>
+  <wsdl:message name="RemoveFieldSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListsWithSamePrimaryKeysSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListsWithSamePrimaryKeys" />
+  </wsdl:message>
+  <wsdl:message name="GetListsWithSamePrimaryKeysSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListsWithSamePrimaryKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesWithSamePrimaryKeysSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesWithSamePrimaryKeys" />
+  </wsdl:message>
+  <wsdl:message name="GetListCategoriesWithSamePrimaryKeysSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListCategoriesWithSamePrimaryKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListsFromCategoryWithSamePrimaryKeysSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListsFromCategoryWithSamePrimaryKeys" />
+  </wsdl:message>
+  <wsdl:message name="GetListsFromCategoryWithSamePrimaryKeysSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListsFromCategoryWithSamePrimaryKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelListQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:CancelListQuery" />
+  </wsdl:message>
+  <wsdl:message name="CancelListQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:CancelListQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFieldSettings" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFieldSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFieldSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeRecipientsByPKSoapIn">
+    <wsdl:part name="parameters" element="tns:SubscribeRecipientsByPK" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeRecipientsByPKSoapOut">
+    <wsdl:part name="parameters" element="tns:SubscribeRecipientsByPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllPreferencesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllPreferences" />
+  </wsdl:message>
+  <wsdl:message name="GetAllPreferencesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllPreferencesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMListManagerSoap">
+    <wsdl:operation name="ExecuteListQuery">
+      <wsdl:input message="tns:ExecuteListQuerySoapIn" />
+      <wsdl:output message="tns:ExecuteListQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSuppressionListQuery">
+      <wsdl:input message="tns:ExecuteSuppressionListQuerySoapIn" />
+      <wsdl:output message="tns:ExecuteSuppressionListQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveQueryResults">
+      <wsdl:input message="tns:SaveQueryResultsSoapIn" />
+      <wsdl:output message="tns:SaveQueryResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SplitQueryResults">
+      <wsdl:input message="tns:SplitQueryResultsSoapIn" />
+      <wsdl:output message="tns:SplitQueryResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearList">
+      <wsdl:input message="tns:ClearListSoapIn" />
+      <wsdl:output message="tns:ClearListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeList">
+      <wsdl:input message="tns:UnsubscribeListSoapIn" />
+      <wsdl:output message="tns:UnsubscribeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnsubscribes">
+      <wsdl:input message="tns:GetUnsubscribesSoapIn" />
+      <wsdl:output message="tns:GetUnsubscribesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetHealth">
+      <wsdl:input message="tns:ResetHealthSoapIn" />
+      <wsdl:output message="tns:ResetHealthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressesByHealth">
+      <wsdl:input message="tns:GetEmailAddressesByHealthSoapIn" />
+      <wsdl:output message="tns:GetEmailAddressesByHealthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResults">
+      <wsdl:input message="tns:GetQueryResultsSoapIn" />
+      <wsdl:output message="tns:GetQueryResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResults">
+      <wsdl:input message="tns:GetSuppressionQueryResultsSoapIn" />
+      <wsdl:output message="tns:GetSuppressionQueryResultsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResultsCSV">
+      <wsdl:input message="tns:GetQueryResultsCSVSoapIn" />
+      <wsdl:output message="tns:GetQueryResultsCSVSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResultsCSV">
+      <wsdl:input message="tns:GetSuppressionQueryResultsCSVSoapIn" />
+      <wsdl:output message="tns:GetSuppressionQueryResultsCSVSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListsAndFields">
+      <wsdl:input message="tns:GetListsAndFieldsSoapIn" />
+      <wsdl:output message="tns:GetListsAndFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativesAndEvents">
+      <wsdl:input message="tns:GetCreativesAndEventsSoapIn" />
+      <wsdl:output message="tns:GetCreativesAndEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByID">
+      <wsdl:input message="tns:GetRecipientByIDSoapIn" />
+      <wsdl:output message="tns:GetRecipientByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByPK">
+      <wsdl:input message="tns:GetRecipientByPKSoapIn" />
+      <wsdl:output message="tns:GetRecipientByPKSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientIdByPK">
+      <wsdl:input message="tns:GetRecipientIdByPKSoapIn" />
+      <wsdl:output message="tns:GetRecipientIdByPKSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <wsdl:input message="tns:GetVisibleUsersSoapIn" />
+      <wsdl:output message="tns:GetVisibleUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateListCategory">
+      <wsdl:input message="tns:CreateListCategorySoapIn" />
+      <wsdl:output message="tns:CreateListCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameListCategory">
+      <wsdl:input message="tns:RenameListCategorySoapIn" />
+      <wsdl:output message="tns:RenameListCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListCategory">
+      <wsdl:input message="tns:DeleteListCategorySoapIn" />
+      <wsdl:output message="tns:DeleteListCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <wsdl:input message="tns:GetListCategoriesSoapIn" />
+      <wsdl:output message="tns:GetListCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesEx">
+      <wsdl:input message="tns:GetListCategoriesExSoapIn" />
+      <wsdl:output message="tns:GetListCategoriesExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <wsdl:input message="tns:GetListsSoapIn" />
+      <wsdl:output message="tns:GetListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListFields">
+      <wsdl:input message="tns:GetListFieldsSoapIn" />
+      <wsdl:output message="tns:GetListFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListRecords">
+      <wsdl:input message="tns:GetListRecordsSoapIn" />
+      <wsdl:output message="tns:GetListRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecord">
+      <wsdl:input message="tns:AddRecipientRecordSoapIn" />
+      <wsdl:output message="tns:AddRecipientRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecords">
+      <wsdl:input message="tns:AddRecipientRecordsSoapIn" />
+      <wsdl:output message="tns:AddRecipientRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSuppressionRecord">
+      <wsdl:input message="tns:AddSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:AddSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDomainSuppressionRecord">
+      <wsdl:input message="tns:AddDomainSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:AddDomainSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMD5SuppressionRecord">
+      <wsdl:input message="tns:AddMD5SuppressionRecordSoapIn" />
+      <wsdl:output message="tns:AddMD5SuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecipient">
+      <wsdl:input message="tns:RemoveRecipientSoapIn" />
+      <wsdl:output message="tns:RemoveRecipientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQueryResultsFromLists">
+      <wsdl:input message="tns:RemoveQueryResultsFromListsSoapIn" />
+      <wsdl:output message="tns:RemoveQueryResultsFromListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSuppressionRecord">
+      <wsdl:input message="tns:RemoveSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:RemoveSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDomainSuppressionRecord">
+      <wsdl:input message="tns:RemoveDomainSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:RemoveDomainSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMD5SuppressionRecord">
+      <wsdl:input message="tns:RemoveMD5SuppressionRecordSoapIn" />
+      <wsdl:output message="tns:RemoveMD5SuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSuppressionRecord">
+      <wsdl:input message="tns:UpdateSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:UpdateSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDomainSuppressionRecord">
+      <wsdl:input message="tns:UpdateDomainSuppressionRecordSoapIn" />
+      <wsdl:output message="tns:UpdateDomainSuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMD5SuppressionRecord">
+      <wsdl:input message="tns:UpdateMD5SuppressionRecordSoapIn" />
+      <wsdl:output message="tns:UpdateMD5SuppressionRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipient">
+      <wsdl:input message="tns:UpdateRecipientSoapIn" />
+      <wsdl:output message="tns:UpdateRecipientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToList">
+      <wsdl:input message="tns:AddRecipientToListSoapIn" />
+      <wsdl:output message="tns:AddRecipientToListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateField">
+      <wsdl:input message="tns:UpdateFieldSoapIn" />
+      <wsdl:output message="tns:UpdateFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateList">
+      <wsdl:input message="tns:CreateListSoapIn" />
+      <wsdl:output message="tns:CreateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecipientList">
+      <wsdl:input message="tns:CreateRecipientListSoapIn" />
+      <wsdl:output message="tns:CreateRecipientListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSuppressionList">
+      <wsdl:input message="tns:CreateSuppressionListSoapIn" />
+      <wsdl:output message="tns:CreateSuppressionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDomainSuppressionList">
+      <wsdl:input message="tns:CreateDomainSuppressionListSoapIn" />
+      <wsdl:output message="tns:CreateDomainSuppressionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMD5SuppressionList">
+      <wsdl:input message="tns:CreateMD5SuppressionListSoapIn" />
+      <wsdl:output message="tns:CreateMD5SuppressionListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateList">
+      <wsdl:input message="tns:UpdateListSoapIn" />
+      <wsdl:output message="tns:UpdateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteList">
+      <wsdl:input message="tns:DeleteListSoapIn" />
+      <wsdl:output message="tns:DeleteListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSmartLists">
+      <wsdl:input message="tns:RefreshSmartListsSoapIn" />
+      <wsdl:output message="tns:RefreshSmartListsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadData">
+      <wsdl:input message="tns:UploadDataSoapIn" />
+      <wsdl:output message="tns:UploadDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataA">
+      <wsdl:input message="tns:UploadDataASoapIn" />
+      <wsdl:output message="tns:UploadDataASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataCSV">
+      <wsdl:input message="tns:UploadDataCSVSoapIn" />
+      <wsdl:output message="tns:UploadDataCSVSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitializeListImport">
+      <wsdl:input message="tns:InitializeListImportSoapIn" />
+      <wsdl:output message="tns:InitializeListImportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertListData">
+      <wsdl:input message="tns:InsertListDataSoapIn" />
+      <wsdl:output message="tns:InsertListDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeListImport">
+      <wsdl:input message="tns:FinalizeListImportSoapIn" />
+      <wsdl:output message="tns:FinalizeListImportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertTableData">
+      <wsdl:input message="tns:InsertTableDataSoapIn" />
+      <wsdl:output message="tns:InsertTableDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTables">
+      <wsdl:input message="tns:GetLookupTablesSoapIn" />
+      <wsdl:output message="tns:GetLookupTablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <wsdl:input message="tns:CreateLookupTableSoapIn" />
+      <wsdl:output message="tns:CreateLookupTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMapping">
+      <wsdl:input message="tns:GetColumnMappingSoapIn" />
+      <wsdl:output message="tns:GetColumnMappingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAndPreferences">
+      <wsdl:input message="tns:GetColumnMappingAndPreferencesSoapIn" />
+      <wsdl:output message="tns:GetColumnMappingAndPreferencesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAll">
+      <wsdl:input message="tns:GetColumnMappingAllSoapIn" />
+      <wsdl:output message="tns:GetColumnMappingAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFieldsToList">
+      <wsdl:input message="tns:AddFieldsToListSoapIn" />
+      <wsdl:output message="tns:AddFieldsToListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFieldsFromList">
+      <wsdl:input message="tns:RemoveFieldsFromListSoapIn" />
+      <wsdl:output message="tns:RemoveFieldsFromListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListInfo">
+      <wsdl:input message="tns:GetListInfoSoapIn" />
+      <wsdl:output message="tns:GetListInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimaryKeyCollection">
+      <wsdl:input message="tns:GetPrimaryKeyCollectionSoapIn" />
+      <wsdl:output message="tns:GetPrimaryKeyCollectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsList">
+      <wsdl:input message="tns:GetEventsListSoapIn" />
+      <wsdl:output message="tns:GetEventsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldSuggestions">
+      <wsdl:input message="tns:GetFieldSuggestionsSoapIn" />
+      <wsdl:output message="tns:GetFieldSuggestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFields">
+      <wsdl:input message="tns:GetFieldsSoapIn" />
+      <wsdl:output message="tns:GetFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateField">
+      <wsdl:input message="tns:CreateFieldSoapIn" />
+      <wsdl:output message="tns:CreateFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveField">
+      <wsdl:input message="tns:RemoveFieldSoapIn" />
+      <wsdl:output message="tns:RemoveFieldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListsWithSamePrimaryKeys">
+      <wsdl:input message="tns:GetListsWithSamePrimaryKeysSoapIn" />
+      <wsdl:output message="tns:GetListsWithSamePrimaryKeysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesWithSamePrimaryKeys">
+      <wsdl:input message="tns:GetListCategoriesWithSamePrimaryKeysSoapIn" />
+      <wsdl:output message="tns:GetListCategoriesWithSamePrimaryKeysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListsFromCategoryWithSamePrimaryKeys">
+      <wsdl:input message="tns:GetListsFromCategoryWithSamePrimaryKeysSoapIn" />
+      <wsdl:output message="tns:GetListsFromCategoryWithSamePrimaryKeysSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelListQuery">
+      <wsdl:input message="tns:CancelListQuerySoapIn" />
+      <wsdl:output message="tns:CancelListQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldSettings">
+      <wsdl:input message="tns:UpdateFieldSettingsSoapIn" />
+      <wsdl:output message="tns:UpdateFieldSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeRecipientsByPK">
+      <wsdl:input message="tns:SubscribeRecipientsByPKSoapIn" />
+      <wsdl:output message="tns:SubscribeRecipientsByPKSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPreferences">
+      <wsdl:input message="tns:GetAllPreferencesSoapIn" />
+      <wsdl:output message="tns:GetAllPreferencesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMListManagerSoap" type="tns:DMListManagerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExecuteListQuery">
+      <soap:operation soapAction="DMWebServices/ExecuteListQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSuppressionListQuery">
+      <soap:operation soapAction="DMWebServices/ExecuteSuppressionListQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQueryResults">
+      <soap:operation soapAction="DMWebServices/SaveQueryResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SplitQueryResults">
+      <soap:operation soapAction="DMWebServices/SplitQueryResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearList">
+      <soap:operation soapAction="DMWebServices/ClearList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeList">
+      <soap:operation soapAction="DMWebServices/UnsubscribeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnsubscribes">
+      <soap:operation soapAction="DMWebServices/GetUnsubscribes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetHealth">
+      <soap:operation soapAction="DMWebServices/ResetHealth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressesByHealth">
+      <soap:operation soapAction="DMWebServices/GetEmailAddressesByHealth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResults">
+      <soap:operation soapAction="DMWebServices/GetQueryResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResults">
+      <soap:operation soapAction="DMWebServices/GetSuppressionQueryResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResultsCSV">
+      <soap:operation soapAction="DMWebServices/GetQueryResultsCSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResultsCSV">
+      <soap:operation soapAction="DMWebServices/GetSuppressionQueryResultsCSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsAndFields">
+      <soap:operation soapAction="DMWebServices/GetListsAndFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativesAndEvents">
+      <soap:operation soapAction="DMWebServices/GetCreativesAndEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByID">
+      <soap:operation soapAction="DMWebServices/GetRecipientByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByPK">
+      <soap:operation soapAction="DMWebServices/GetRecipientByPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientIdByPK">
+      <soap:operation soapAction="DMWebServices/GetRecipientIdByPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <soap:operation soapAction="DMWebServices/GetVisibleUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateListCategory">
+      <soap:operation soapAction="DMWebServices/CreateListCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameListCategory">
+      <soap:operation soapAction="DMWebServices/RenameListCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListCategory">
+      <soap:operation soapAction="DMWebServices/DeleteListCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <soap:operation soapAction="DMWebServices/GetListCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesEx">
+      <soap:operation soapAction="DMWebServices/GetListCategoriesEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <soap:operation soapAction="DMWebServices/GetLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListFields">
+      <soap:operation soapAction="DMWebServices/GetListFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListRecords">
+      <soap:operation soapAction="DMWebServices/GetListRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecord">
+      <soap:operation soapAction="DMWebServices/AddRecipientRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecords">
+      <soap:operation soapAction="DMWebServices/AddRecipientRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/AddSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDomainSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/AddDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMD5SuppressionRecord">
+      <soap:operation soapAction="DMWebServices/AddMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecipient">
+      <soap:operation soapAction="DMWebServices/RemoveRecipient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQueryResultsFromLists">
+      <soap:operation soapAction="DMWebServices/RemoveQueryResultsFromLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/RemoveSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDomainSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/RemoveDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMD5SuppressionRecord">
+      <soap:operation soapAction="DMWebServices/RemoveMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/UpdateSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDomainSuppressionRecord">
+      <soap:operation soapAction="DMWebServices/UpdateDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMD5SuppressionRecord">
+      <soap:operation soapAction="DMWebServices/UpdateMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipient">
+      <soap:operation soapAction="DMWebServices/UpdateRecipient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToList">
+      <soap:operation soapAction="DMWebServices/AddRecipientToList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateField">
+      <soap:operation soapAction="DMWebServices/UpdateField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateList">
+      <soap:operation soapAction="DMWebServices/CreateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecipientList">
+      <soap:operation soapAction="DMWebServices/CreateRecipientList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSuppressionList">
+      <soap:operation soapAction="DMWebServices/CreateSuppressionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDomainSuppressionList">
+      <soap:operation soapAction="DMWebServices/CreateDomainSuppressionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMD5SuppressionList">
+      <soap:operation soapAction="DMWebServices/CreateMD5SuppressionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateList">
+      <soap:operation soapAction="DMWebServices/UpdateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteList">
+      <soap:operation soapAction="DMWebServices/DeleteList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSmartLists">
+      <soap:operation soapAction="DMWebServices/RefreshSmartLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadData">
+      <soap:operation soapAction="DMWebServices/UploadData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataA">
+      <soap:operation soapAction="DMWebServices/UploadDataA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataCSV">
+      <soap:operation soapAction="DMWebServices/UploadDataCSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitializeListImport">
+      <soap:operation soapAction="DMWebServices/InitializeListImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertListData">
+      <soap:operation soapAction="DMWebServices/InsertListData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeListImport">
+      <soap:operation soapAction="DMWebServices/FinalizeListImport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTableData">
+      <soap:operation soapAction="DMWebServices/InsertTableData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTables">
+      <soap:operation soapAction="DMWebServices/GetLookupTables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <soap:operation soapAction="DMWebServices/CreateLookupTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMapping">
+      <soap:operation soapAction="DMWebServices/GetColumnMapping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAndPreferences">
+      <soap:operation soapAction="DMWebServices/GetColumnMappingAndPreferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAll">
+      <soap:operation soapAction="DMWebServices/GetColumnMappingAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFieldsToList">
+      <soap:operation soapAction="DMWebServices/AddFieldsToList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFieldsFromList">
+      <soap:operation soapAction="DMWebServices/RemoveFieldsFromList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListInfo">
+      <soap:operation soapAction="DMWebServices/GetListInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimaryKeyCollection">
+      <soap:operation soapAction="DMWebServices/GetPrimaryKeyCollection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsList">
+      <soap:operation soapAction="DMWebServices/GetEventsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldSuggestions">
+      <soap:operation soapAction="DMWebServices/GetFieldSuggestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFields">
+      <soap:operation soapAction="DMWebServices/GetFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateField">
+      <soap:operation soapAction="DMWebServices/CreateField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveField">
+      <soap:operation soapAction="DMWebServices/RemoveField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsWithSamePrimaryKeys">
+      <soap:operation soapAction="DMWebServices/GetListsWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesWithSamePrimaryKeys">
+      <soap:operation soapAction="DMWebServices/GetListCategoriesWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsFromCategoryWithSamePrimaryKeys">
+      <soap:operation soapAction="DMWebServices/GetListsFromCategoryWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelListQuery">
+      <soap:operation soapAction="DMWebServices/CancelListQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldSettings">
+      <soap:operation soapAction="DMWebServices/UpdateFieldSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeRecipientsByPK">
+      <soap:operation soapAction="DMWebServices/SubscribeRecipientsByPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPreferences">
+      <soap:operation soapAction="DMWebServices/GetAllPreferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMListManagerSoap12" type="tns:DMListManagerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExecuteListQuery">
+      <soap12:operation soapAction="DMWebServices/ExecuteListQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSuppressionListQuery">
+      <soap12:operation soapAction="DMWebServices/ExecuteSuppressionListQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQueryResults">
+      <soap12:operation soapAction="DMWebServices/SaveQueryResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SplitQueryResults">
+      <soap12:operation soapAction="DMWebServices/SplitQueryResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearList">
+      <soap12:operation soapAction="DMWebServices/ClearList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeList">
+      <soap12:operation soapAction="DMWebServices/UnsubscribeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnsubscribes">
+      <soap12:operation soapAction="DMWebServices/GetUnsubscribes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetHealth">
+      <soap12:operation soapAction="DMWebServices/ResetHealth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressesByHealth">
+      <soap12:operation soapAction="DMWebServices/GetEmailAddressesByHealth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResults">
+      <soap12:operation soapAction="DMWebServices/GetQueryResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResults">
+      <soap12:operation soapAction="DMWebServices/GetSuppressionQueryResults" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueryResultsCSV">
+      <soap12:operation soapAction="DMWebServices/GetQueryResultsCSV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppressionQueryResultsCSV">
+      <soap12:operation soapAction="DMWebServices/GetSuppressionQueryResultsCSV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsAndFields">
+      <soap12:operation soapAction="DMWebServices/GetListsAndFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativesAndEvents">
+      <soap12:operation soapAction="DMWebServices/GetCreativesAndEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByID">
+      <soap12:operation soapAction="DMWebServices/GetRecipientByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientByPK">
+      <soap12:operation soapAction="DMWebServices/GetRecipientByPK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecipientIdByPK">
+      <soap12:operation soapAction="DMWebServices/GetRecipientIdByPK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <soap12:operation soapAction="DMWebServices/GetVisibleUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateListCategory">
+      <soap12:operation soapAction="DMWebServices/CreateListCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameListCategory">
+      <soap12:operation soapAction="DMWebServices/RenameListCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteListCategory">
+      <soap12:operation soapAction="DMWebServices/DeleteListCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategories">
+      <soap12:operation soapAction="DMWebServices/GetListCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesEx">
+      <soap12:operation soapAction="DMWebServices/GetListCategoriesEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLists">
+      <soap12:operation soapAction="DMWebServices/GetLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListFields">
+      <soap12:operation soapAction="DMWebServices/GetListFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListRecords">
+      <soap12:operation soapAction="DMWebServices/GetListRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecord">
+      <soap12:operation soapAction="DMWebServices/AddRecipientRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientRecords">
+      <soap12:operation soapAction="DMWebServices/AddRecipientRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/AddSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDomainSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/AddDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMD5SuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/AddMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRecipient">
+      <soap12:operation soapAction="DMWebServices/RemoveRecipient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveQueryResultsFromLists">
+      <soap12:operation soapAction="DMWebServices/RemoveQueryResultsFromLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/RemoveSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDomainSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/RemoveDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMD5SuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/RemoveMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/UpdateSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDomainSuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/UpdateDomainSuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMD5SuppressionRecord">
+      <soap12:operation soapAction="DMWebServices/UpdateMD5SuppressionRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRecipient">
+      <soap12:operation soapAction="DMWebServices/UpdateRecipient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRecipientToList">
+      <soap12:operation soapAction="DMWebServices/AddRecipientToList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateField">
+      <soap12:operation soapAction="DMWebServices/UpdateField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateList">
+      <soap12:operation soapAction="DMWebServices/CreateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRecipientList">
+      <soap12:operation soapAction="DMWebServices/CreateRecipientList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSuppressionList">
+      <soap12:operation soapAction="DMWebServices/CreateSuppressionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDomainSuppressionList">
+      <soap12:operation soapAction="DMWebServices/CreateDomainSuppressionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMD5SuppressionList">
+      <soap12:operation soapAction="DMWebServices/CreateMD5SuppressionList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateList">
+      <soap12:operation soapAction="DMWebServices/UpdateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteList">
+      <soap12:operation soapAction="DMWebServices/DeleteList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSmartLists">
+      <soap12:operation soapAction="DMWebServices/RefreshSmartLists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadData">
+      <soap12:operation soapAction="DMWebServices/UploadData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataA">
+      <soap12:operation soapAction="DMWebServices/UploadDataA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDataCSV">
+      <soap12:operation soapAction="DMWebServices/UploadDataCSV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitializeListImport">
+      <soap12:operation soapAction="DMWebServices/InitializeListImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertListData">
+      <soap12:operation soapAction="DMWebServices/InsertListData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FinalizeListImport">
+      <soap12:operation soapAction="DMWebServices/FinalizeListImport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertTableData">
+      <soap12:operation soapAction="DMWebServices/InsertTableData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLookupTables">
+      <soap12:operation soapAction="DMWebServices/GetLookupTables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLookupTable">
+      <soap12:operation soapAction="DMWebServices/CreateLookupTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMapping">
+      <soap12:operation soapAction="DMWebServices/GetColumnMapping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAndPreferences">
+      <soap12:operation soapAction="DMWebServices/GetColumnMappingAndPreferences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetColumnMappingAll">
+      <soap12:operation soapAction="DMWebServices/GetColumnMappingAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFieldsToList">
+      <soap12:operation soapAction="DMWebServices/AddFieldsToList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveFieldsFromList">
+      <soap12:operation soapAction="DMWebServices/RemoveFieldsFromList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListInfo">
+      <soap12:operation soapAction="DMWebServices/GetListInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimaryKeyCollection">
+      <soap12:operation soapAction="DMWebServices/GetPrimaryKeyCollection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventsList">
+      <soap12:operation soapAction="DMWebServices/GetEventsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldSuggestions">
+      <soap12:operation soapAction="DMWebServices/GetFieldSuggestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFields">
+      <soap12:operation soapAction="DMWebServices/GetFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateField">
+      <soap12:operation soapAction="DMWebServices/CreateField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveField">
+      <soap12:operation soapAction="DMWebServices/RemoveField" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsWithSamePrimaryKeys">
+      <soap12:operation soapAction="DMWebServices/GetListsWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListCategoriesWithSamePrimaryKeys">
+      <soap12:operation soapAction="DMWebServices/GetListCategoriesWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListsFromCategoryWithSamePrimaryKeys">
+      <soap12:operation soapAction="DMWebServices/GetListsFromCategoryWithSamePrimaryKeys" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelListQuery">
+      <soap12:operation soapAction="DMWebServices/CancelListQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFieldSettings">
+      <soap12:operation soapAction="DMWebServices/UpdateFieldSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubscribeRecipientsByPK">
+      <soap12:operation soapAction="DMWebServices/SubscribeRecipientsByPK" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPreferences">
+      <soap12:operation soapAction="DMWebServices/GetAllPreferences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMListManager">
+    <wsdl:port name="DMListManagerSoap" binding="tns:DMListManagerSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/listmanager.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMListManagerSoap12" binding="tns:DMListManagerSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/listmanager.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

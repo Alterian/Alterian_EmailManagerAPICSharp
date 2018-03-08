@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="CompressionMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CM_LZMA" />
+      <xs:enumeration value="CM_BZIP2" />
+      <xs:enumeration value="CM_GZIP" />
+      <xs:enumeration value="CM_ZIP" />
+      <xs:enumeration value="CM_NONE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CompressionMethod" nillable="true" type="tns:CompressionMethod" />
+</xs:schema>

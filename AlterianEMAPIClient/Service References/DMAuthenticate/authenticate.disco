@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://apac-uat.e.alterian.net/authenticate.asmx?wsdl" docRef="http://apac-uat.e.alterian.net/authenticate.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://apac-uat.e.alterian.net/authenticate.asmx" xmlns:q1="DMWebServices" binding="q1:DMAuthenticateSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://apac-uat.e.alterian.net/authenticate.asmx" xmlns:q2="DMWebServices" binding="q2:DMAuthenticateSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

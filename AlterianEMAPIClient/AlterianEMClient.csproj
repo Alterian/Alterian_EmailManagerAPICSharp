@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87D2472F-AA97-4977-806E-1F2669357C40}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlterianEMAPIClient</RootNamespace>
+    <AssemblyName>AlterianEMAPIClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EMWebServicesClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\DMAuthenticate\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMCreativeBuilder\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMListImport\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMListManager\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMPlus\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMReporting\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DMSendMessage\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\EM\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.AuthenticateExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.AuthenticateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.ClientUpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMLoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMModule.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMPasswordPolicy.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMSkinInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.DMTimeZoneInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetAllModulesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetClientIdFromLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetClientInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetClientPasswordPolicyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetDMTimeZoneInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetFileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetModuleCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetModulesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetSkinInfoExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.GetSkinInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.IsSysAdminResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.LogoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\AlterianEMAPIClient.DMAuthenticate.SAClientAuthenticateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMAuthenticate\authenticate.wsdl" />
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.AddCreativeFileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.AddLookupTableColumnsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.AddLookupTableRecordsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CheckTemplateSyntaxBResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CheckTemplateSyntaxResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ClearLookupTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CopyCreativeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateCreativeCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateCreativeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateEventResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateLookupTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateTemplateBResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateTemplateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.CreateVariableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteCreateiveFileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteCreativeCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteCreativeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteEventResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteLookupTableColumnsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteLookupTableRecordsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteLookupTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteTemplateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteUserDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DeleteVariableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMEncodingInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMFileInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMLookupColumn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMLookupRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMLookupTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMTemplate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMURL.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.DMVariable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetAvailableEncodingsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetCreativeEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetCreativeFilesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetCreativeLookupTablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetCreativeTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetCreativeVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetEventURLsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetLookupTableRecordsCSVResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetLookupTableRecordsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetSharedEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetSharedLookupTablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetSharedTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetSharedVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetTemplateContentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetUserDataCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.GetUserDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.HtmlToTextResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ImportSharedEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ImportSharedLookupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ImportSharedTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.ImportSharedVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.RenameCreativeCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.SetEventAutoMapResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.SetUserDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.SyntaxError.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateCreativeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateEventResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateLookupTableColumnsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateLookupTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateTemplateBResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateTemplateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\AlterianEMAPIClient.DMCreativeBuilder.UpdateVariableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMCreativeBuilder\creativebuilder.wsdl" />
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.CreateImportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.CreateImportSourceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.DMListImportSource.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.DMListImportStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.FinishImportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.GetImportSourceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.GetImportSourcesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.GetImportStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.ImportDataBResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.ImportDataCResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.ImportDataSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.RemoveImportSourceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\AlterianEMAPIClient.DMListImport.UpdateImportSourceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListImport\listimport.wsdl" />
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddDomainSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddFieldsToListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddMD5SuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddRecipientRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddRecipientRecordsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddRecipientToListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.AddSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ArrayOfInt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CancelListQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ClearListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateDomainSuppressionListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateFieldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateListCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateLookupTableResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateMD5SuppressionListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateRecipientListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.CreateSuppressionListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DeleteListCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DeleteListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMCursor.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMField.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMFieldType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMImportStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMListCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMListField.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMLookupTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQCreative.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQField.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQListCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMQUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMRecipientRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMSourceColumn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.DMSuggestedFieldScore.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.EMPreference.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ExecuteListQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ExecuteSuppressionListQueryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.FinalizeListImportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetAllPreferencesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetColumnMappingAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetColumnMappingAndPreferencesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetColumnMappingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetCreativesAndEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetEmailAddressesByHealthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetEventsListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetFieldSuggestionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListCategoriesExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListCategoriesWithSamePrimaryKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListRecordsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListsAndFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListsFromCategoryWithSamePrimaryKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetListsWithSamePrimaryKeysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetLookupTablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetPrimaryKeyCollectionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetQueryResultsCSVResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetQueryResultsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetRecipientByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetRecipientByPKResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetRecipientIdByPKResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetSuppressionQueryResultsCSVResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetSuppressionQueryResultsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetUnsubscribesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.GetVisibleUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.InitializeListImportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.InsertListDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.InsertTableDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RecipientSubscibingListDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RefreshSmartListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveDomainSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveFieldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveFieldsFromListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveMD5SuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveQueryResultsFromListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveRecipientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RemoveSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.RenameListCategoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.ResetHealthResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.SaveQueryResultsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.SplitQueryResultsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.SubscribeRecipientsByPKResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UnsubscribeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateDomainSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateFieldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateFieldSettingsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateMD5SuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateRecipientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UpdateSuppressionRecordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UploadDataAResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UploadDataCSVResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\AlterianEMAPIClient.DMListManager.UploadDataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMListManager\listmanager.wsdl" />
+    <None Include="Service References\DMPlus\AlterianEMAPIClient.DMPlus.CreateExportByDateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMPlus\AlterianEMAPIClient.DMPlus.CreateExportByListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMPlus\AlterianEMAPIClient.DMPlus.CreateExportByPKResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus.wsdl" />
+    <None Include="Service References\DMPlus\DMPlus.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMPlus\DMPlus5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.CreateSummaryColumnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.CreateSummaryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DeleteSummaryColumnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DeleteSummaryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMDetailRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMRCreative.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMRCreativeCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMReportGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMReportSchedule.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMRMessageDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMRUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMRVariable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMSummaryColumn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMSummaryReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMSummaryReportCriteria.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.DMURL.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.ExecuteDetailReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetCreativeCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetCreativeEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetCreativesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetCreativeSummaryColumnsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetCreativeVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetEventURLsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetFieldNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetMessageDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetReportCriteriaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetReportScheduleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetReportsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetSummaryColumnsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetSummaryReportsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetVariableNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.GetVisibleUsersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.ReadDetailReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.RemoveReportScheduleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.SaveReportScheduleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.SummaryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.UpdateSummaryColumnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\AlterianEMAPIClient.DMReporting.UpdateSummaryReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMReporting\reporting.wsdl" />
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.AbortDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.AbortRecurringDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.AddRecipientToDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.CreateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.CreateDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.CreateInboundAddressResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DeleteAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DeleteInboundAddressResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMComboValue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMCompatibleField.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMCreative.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMCreativeCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMDeployment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMDeploymentEvents.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMDeploymentLists.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMDeploymentStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMEventInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMEventNotify.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMInboundAddress.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMSAMAttachment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMSAMList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMSAMTemplate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.DMSAMVariable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.FinalizeDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.FinalizeRecurringDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetAllCompatibleFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetAllCreativesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetAttachmentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetCompatibleFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetCreativeCategoriesExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetCreativeCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetCreativesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetCreativeVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentNotifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentsEventsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentsListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetDeploymentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetHTMLTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetInboundAddressesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetListCategoriesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetSAReportResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetSelectedListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetTextTemplatesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.GetVariableComboValuesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.HealthCount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.PauseDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.PauseRecurringDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.PreviewDeploymentTotalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.ResumeDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.ResumeRecurringDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMGetAllListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMGetListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMGetSuppressionListsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMGetTotalRecipientsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMPreviewExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMPreviewFirstResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMPreviewLastResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMPreviewNextResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAMPreviewPreviousResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SAReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentDeliveryContextResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentNotifyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentScheduleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentSmartlistRefreshResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentSuppressionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentThrottleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.SetDeploymentVariablesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.UpdateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.UpdateDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.UpdateInboundAddressResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\AlterianEMAPIClient.DMSendMessage.UpdateRecurringDeploymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DMSendMessage\sendmessage.wsdl" />
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DistributionData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMClientSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMCreativeCollectionByFilterDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMDeliveryContext.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMDeployment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMEncodingInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMImportStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMListCategory.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMListFieldCollection.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMLookupColumn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMLookupRecord.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMModuleCollection.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMReportGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMTranslation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.DMUser.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMCampaign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMCampaignCopyManifest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMCampaignSaveManifest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMClientInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMCompatibleField.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMDocument.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMDocumentTypes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMDownloadedWebsiteContent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMEmailTest.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMEmailTestResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMEventDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMFeederStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMFileInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMFolder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMFoldersDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMLookupTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMModuleCategoryCollection.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMPreference.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMSmartListRefreshResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMSupportInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMTranslationResource.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMVariable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMVariableCompatibleFieldMap.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.EMWebAppSettings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.ExcelSpreadsheet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.GetListFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.GetTemplateContentWithAlternateEncodingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.MappedEMEvent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.MappedParsedItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.MediaManagerItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\AlterianEMAPIClient.EM.ParsableContent.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EM\EM.wsdl" />
+    <None Include="Service References\EM\EM.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM1.wsdl" />
+    <None Include="Service References\EM\EM1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EM\EM9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\DMAuthenticate\" />
+    <WCFMetadataStorage Include="Service References\DMCreativeBuilder\" />
+    <WCFMetadataStorage Include="Service References\DMListImport\" />
+    <WCFMetadataStorage Include="Service References\DMListManager\" />
+    <WCFMetadataStorage Include="Service References\DMPlus\" />
+    <WCFMetadataStorage Include="Service References\DMReporting\" />
+    <WCFMetadataStorage Include="Service References\DMSendMessage\" />
+    <WCFMetadataStorage Include="Service References\EM\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMAuthenticate\authenticate.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMAuthenticate\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMAuthenticate\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMAuthenticate\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListManager\listmanager.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListManager\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListManager\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListManager\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMSendMessage\sendmessage.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMSendMessage\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMSendMessage\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMSendMessage\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMCreativeBuilder\creativebuilder.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMCreativeBuilder\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMCreativeBuilder\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMCreativeBuilder\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMPlus\DMPlus.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMPlus\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMPlus\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMPlus\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EM\EM.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EM\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EM\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EM\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMReporting\reporting.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMReporting\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMReporting\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMReporting\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListImport\listimport.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListImport\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListImport\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\DMListImport\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

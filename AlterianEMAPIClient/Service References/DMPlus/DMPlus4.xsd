@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DMLibrary" />
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" />
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="CreateExportByList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Lists" nillable="true" type="q1:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExportByListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateExportByListResult" type="xs:int" />
+        <xs:element minOccurs="0" name="Count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExportByDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+        <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Filters" nillable="true" type="q2:ArrayOfDMEventExportFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExportByDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateExportByDateResult" type="xs:int" />
+        <xs:element minOccurs="0" name="Count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExportByPK">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+        <xs:element minOccurs="0" name="PrimaryKey" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateExportByPKResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateExportByPKResult" type="xs:int" />
+        <xs:element minOccurs="0" name="Count" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteExport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteExportResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportRecipientData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+        <xs:element minOccurs="0" name="Page" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Columns" nillable="true" type="q3:ArrayOfDMRecipientColumn" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Format" type="q4:DMExportDataFormat" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" minOccurs="0" name="Compression" type="q5:CompressionMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportRecipientDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/Message" name="ExportRecipientDataResult" type="q6:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportRecipientLists">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+        <xs:element minOccurs="0" name="Page" type="xs:int" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Lists" nillable="true" type="q7:ArrayOfint" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Format" type="q8:DMExportDataFormat" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" minOccurs="0" name="Compression" type="q9:CompressionMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportRecipientListsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.microsoft.com/Message" name="ExportRecipientListsResult" type="q10:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportFieldValues">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+        <xs:element minOccurs="0" name="Page" type="xs:int" />
+        <xs:element minOccurs="0" name="FieldID" type="xs:int" />
+        <xs:element minOccurs="0" name="ListID" type="xs:int" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Format" type="q11:DMExportDataFormat" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" minOccurs="0" name="Compression" type="q12:CompressionMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportFieldValuesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.microsoft.com/Message" name="ExportFieldValuesResult" type="q13:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportEventlogDataByPage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+        <xs:element minOccurs="0" name="Page" type="xs:int" />
+        <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Filters" nillable="true" type="q14:ArrayOfDMEventExportFilter" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Columns" nillable="true" type="q15:ArrayOfDMEventColumn" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Format" type="q16:DMExportDataFormat" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" minOccurs="0" name="Compression" type="q17:CompressionMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportEventlogDataByPageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.microsoft.com/Message" name="ExportEventlogDataByPageResult" type="q18:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportEventlogData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ExportID" type="xs:int" />
+        <xs:element minOccurs="0" name="DateFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="DateTo" type="xs:dateTime" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Filters" nillable="true" type="q19:ArrayOfDMEventExportFilter" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Columns" nillable="true" type="q20:ArrayOfDMEventColumn" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="Format" type="q21:DMExportDataFormat" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" minOccurs="0" name="Compression" type="q22:CompressionMethod" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExportEventlogDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/Message" name="ExportEventlogDataResult" type="q23:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

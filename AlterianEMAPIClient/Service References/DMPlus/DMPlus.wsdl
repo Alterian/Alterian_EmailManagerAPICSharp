@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DMPlus" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_DMPlus_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BasicHttpBinding_DMPlus1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DMLibrary" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/DMLibrary.Streams" />
+      <xsd:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="DMPlus_CreateExportByList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByList" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_CreateExportByList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByListResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_CreateExportByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByDate" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_CreateExportByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_CreateExportByPK_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByPK" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_CreateExportByPK_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateExportByPKResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_DeleteExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExport" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_DeleteExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportRecipientData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportRecipientData" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportRecipientData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportRecipientDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportRecipientLists_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportRecipientLists" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportRecipientLists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportRecipientListsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportFieldValues_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportFieldValues" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportFieldValues_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportFieldValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportEventlogDataByPage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportEventlogDataByPage" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportEventlogDataByPage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportEventlogDataByPageResponse" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportEventlogData_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExportEventlogData" />
+  </wsdl:message>
+  <wsdl:message name="DMPlus_ExportEventlogData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExportEventlogDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMPlus">
+    <wsdl:operation name="CreateExportByList">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/CreateExportByList" message="tns:DMPlus_CreateExportByList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/CreateExportByListResponse" message="tns:DMPlus_CreateExportByList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/CreateExportByDate" message="tns:DMPlus_CreateExportByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/CreateExportByDateResponse" message="tns:DMPlus_CreateExportByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByPK">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/CreateExportByPK" message="tns:DMPlus_CreateExportByPK_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/CreateExportByPKResponse" message="tns:DMPlus_CreateExportByPK_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/DeleteExport" message="tns:DMPlus_DeleteExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/DeleteExportResponse" message="tns:DMPlus_DeleteExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientData">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/ExportRecipientData" message="tns:DMPlus_ExportRecipientData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/ExportRecipientDataResponse" message="tns:DMPlus_ExportRecipientData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientLists">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/ExportRecipientLists" message="tns:DMPlus_ExportRecipientLists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/ExportRecipientListsResponse" message="tns:DMPlus_ExportRecipientLists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportFieldValues">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/ExportFieldValues" message="tns:DMPlus_ExportFieldValues_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/ExportFieldValuesResponse" message="tns:DMPlus_ExportFieldValues_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogDataByPage">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/ExportEventlogDataByPage" message="tns:DMPlus_ExportEventlogDataByPage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/ExportEventlogDataByPageResponse" message="tns:DMPlus_ExportEventlogDataByPage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogData">
+      <wsdl:input wsaw:Action="http://tempuri.org/DMPlus/ExportEventlogData" message="tns:DMPlus_ExportEventlogData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/DMPlus/ExportEventlogDataResponse" message="tns:DMPlus_ExportEventlogData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_DMPlus" type="tns:DMPlus">
+    <wsp:PolicyReference URI="#BasicHttpBinding_DMPlus_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateExportByList">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByDate">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByPK">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExport">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/DeleteExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientData">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportRecipientData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientLists">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportRecipientLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportFieldValues">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportFieldValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogDataByPage">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportEventlogDataByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogData">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportEventlogData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_DMPlus1" type="tns:DMPlus">
+    <wsp:PolicyReference URI="#BasicHttpBinding_DMPlus1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateExportByList">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByDate">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateExportByPK">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/CreateExportByPK" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExport">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/DeleteExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientData">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportRecipientData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportRecipientLists">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportRecipientLists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportFieldValues">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportFieldValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogDataByPage">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportEventlogDataByPage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportEventlogData">
+      <soap:operation soapAction="http://tempuri.org/DMPlus/ExportEventlogData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMPlus">
+    <wsdl:port name="BasicHttpBinding_DMPlus" binding="tns:BasicHttpBinding_DMPlus">
+      <soap:address location="http://apac-uat.e.alterian.net/DMPlus.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_DMPlus1" binding="tns:BasicHttpBinding_DMPlus1">
+      <soap:address location="https://apac-uat.e.alterian.net/DMPlus.svc/https" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

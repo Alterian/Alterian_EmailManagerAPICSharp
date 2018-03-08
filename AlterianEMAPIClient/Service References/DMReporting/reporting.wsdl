@@ -1,0 +1,1624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="SummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMSummaryReportCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMSummaryReportCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfDMRColumn" />
+          <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfDMRGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateRanges" type="tns:ArrayOfDMRDateRange" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeploymentDateRanges" type="tns:ArrayOfDMRDateRange" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupCriteria" type="tns:ArrayOfDMRGroupCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="ColumnCriteria" type="tns:ArrayOfDMRColumnCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventCriteria" type="tns:ArrayOfDMREventCriteria" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreativeIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeploymentIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserIDs" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMRColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRColumn" nillable="true" type="tns:DMRColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sort" type="tns:DMRSort" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expression" type="tns:ArrayOfDMRExpressionPart" />
+          <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DMSummaryColumnFormat" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRSort">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMRS_NONE" />
+          <s:enumeration value="DMRS_ASCENDING" />
+          <s:enumeration value="DMRS_DESCENDING" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMRExpressionPart">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRExpressionPart" nillable="true" type="tns:DMRExpressionPart" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRExpressionPart">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenPars" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosePars" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand" type="tns:DMROperand" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMROperator" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMROperand">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CountType" type="tns:DMRCountType" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRCountType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCT_TOTAL" />
+          <s:enumeration value="DMCT_UNIQUEMESSAGES" />
+          <s:enumeration value="DMCT_BOOLEAN" />
+          <s:enumeration value="DMCT_VALUE" />
+          <s:enumeration value="DMCT_AVERAGE" />
+          <s:enumeration value="DMCT_STDEV" />
+          <s:enumeration value="DMCT_MIN" />
+          <s:enumeration value="DMCT_MAX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMROperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMRO_NONE" />
+          <s:enumeration value="DMRO_ADD" />
+          <s:enumeration value="DMRO_SUBTRACT" />
+          <s:enumeration value="DMRO_MULTIPLY" />
+          <s:enumeration value="DMRO_DIVIDE" />
+          <s:enumeration value="DMRO_RATIO" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMSummaryColumnFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCF_NONE" />
+          <s:enumeration value="DMCF_PERCENTAGE" />
+          <s:enumeration value="DMCF_DATE" />
+          <s:enumeration value="DMCF_TIME" />
+          <s:enumeration value="DMCF_NUMBER" />
+          <s:enumeration value="DMCF_CURRENCY" />
+          <s:enumeration value="DMCF_DURATION" />
+          <s:enumeration value="DMCF_DATETIME" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMRGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRGroup" nillable="true" type="tns:DMRGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Sort" type="tns:DMRSort" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupType" type="tns:DMRGroupType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Parameter" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:DMFieldType" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldSubType" type="tns:DMFieldSubType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRGroupType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMGT_VARIABLE" />
+          <s:enumeration value="DMGT_FIELD" />
+          <s:enumeration value="DMGT_PLATFORM" />
+          <s:enumeration value="DMGT_BROWSER" />
+          <s:enumeration value="DMGT_CLIENTTYPE" />
+          <s:enumeration value="DMGT_SENDER" />
+          <s:enumeration value="DMGT_DOMAIN" />
+          <s:enumeration value="DMGT_DEPLOYMENT" />
+          <s:enumeration value="DMGT_CREATIVE" />
+          <s:enumeration value="DMGT_CATEGORY" />
+          <s:enumeration value="DMGT_TEMPLATE" />
+          <s:enumeration value="DMGT_HOUROFDAY" />
+          <s:enumeration value="DMGT_DAYOFWEEK" />
+          <s:enumeration value="DMGT_DAYOFMONTH" />
+          <s:enumeration value="DMGT_DAYOFYEAR" />
+          <s:enumeration value="DMGT_WEEK" />
+          <s:enumeration value="DMGT_MONTH" />
+          <s:enumeration value="DMGT_YEAR" />
+          <s:enumeration value="DMGT_RECIPIENT" />
+          <s:enumeration value="DMGT_LIST" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMFieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFT_EMAIL" />
+          <s:enumeration value="DMFT_STRING" />
+          <s:enumeration value="DMFT_TEXT" />
+          <s:enumeration value="DMFT_NUMERIC" />
+          <s:enumeration value="DMFT_DATE" />
+          <s:enumeration value="DMFT_BOOLEAN" />
+          <s:enumeration value="DMFT_DECIMAL" />
+          <s:enumeration value="DMFT_UNICODE" />
+          <s:enumeration value="DMFT_PREFERENCE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DMFieldSubType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMFST_NA" />
+          <s:enumeration value="DMFST_EMAIL_USER" />
+          <s:enumeration value="DMFST_EMAIL_DOMAIN" />
+          <s:enumeration value="DMFST_EMAIL_HEALTH" />
+          <s:enumeration value="DMFST_DATE_YEAR" />
+          <s:enumeration value="DMFST_DATE_MONTH" />
+          <s:enumeration value="DMFST_DATE_DAY" />
+          <s:enumeration value="DMFST_DATE_TIME" />
+          <s:enumeration value="DMFST_DATE_DAYSFROMNOW" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRDateRange" nillable="true" type="tns:DMRDateRange" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRDateRange">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="RangeType" type="tns:DMRDateRangeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date1" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date2" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRDateRangeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDT_BEFORE" />
+          <s:enumeration value="DMDT_AFTER" />
+          <s:enumeration value="DMDT_BETWEEN" />
+          <s:enumeration value="DMDT_YEARTODATE" />
+          <s:enumeration value="DMDT_MONTHTODATE" />
+          <s:enumeration value="DMDT_WEEKTODATE" />
+          <s:enumeration value="DMDT_TODAY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMRGroupCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRGroupCriteria" nillable="true" type="tns:DMRGroupCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRGroupCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenPars" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosePars" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand1" type="tns:DMRGroup" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMSQLOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand2" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMSQLOperator">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMSQ_EQUAL" />
+          <s:enumeration value="DMSQ_NOTEQUAL" />
+          <s:enumeration value="DMSQ_LESSTHAN" />
+          <s:enumeration value="DMSQ_GREATERTHAN" />
+          <s:enumeration value="DMSQ_BEGINSWITH" />
+          <s:enumeration value="DMSQ_NOTBEGINSWITH" />
+          <s:enumeration value="DMSQ_ENDSWITH" />
+          <s:enumeration value="DMSQ_NOTENDSWITH" />
+          <s:enumeration value="DMSQ_CONTAINS" />
+          <s:enumeration value="DMSQ_NOTCONTAINS" />
+          <s:enumeration value="DMSQ_IN" />
+          <s:enumeration value="DMSQ_NOTIN" />
+          <s:enumeration value="DMSQ_BETWEEN" />
+          <s:enumeration value="DMSQ_NOTBETWEEN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMCombine">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMCM_NONE" />
+          <s:enumeration value="DMCM_AND" />
+          <s:enumeration value="DMCM_OR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMRColumnCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRColumnCriteria" nillable="true" type="tns:DMRColumnCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRColumnCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenPars" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosePars" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand1" type="tns:DMRColumn" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMSQLOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand2" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMREventCriteria">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMREventCriteria" nillable="true" type="tns:DMREventCriteria" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMREventCriteria">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OpenPars" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClosePars" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand1" type="tns:DMROperand" />
+          <s:element minOccurs="1" maxOccurs="1" name="Operator" type="tns:DMSQLOperator" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operand2" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Combine" type="tns:DMCombine" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SummaryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SummaryReportResult" type="tns:DMReportGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMReportGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubGroups" type="tns:ArrayOfDMReportSubGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="Totals" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalsNumeric" type="tns:ArrayOfDouble" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMReportSubGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMReportSubGroup" nillable="true" type="tns:DMReportSubGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMReportSubGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasValues" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubGroup" type="tns:DMReportGroup" />
+          <s:element minOccurs="0" maxOccurs="1" name="ColumnValues" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ColumnValuesNumeric" type="tns:ArrayOfDouble" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDouble">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="double" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeSummaryColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CreativeIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeSummaryColumnsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeSummaryColumnsResult" type="tns:ArrayOfDMSummaryColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSummaryColumn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSummaryColumn" nillable="true" type="tns:DMSummaryColumn" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSummaryColumn">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="System" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Expression" type="tns:ArrayOfDMRExpressionPart" />
+          <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DMSummaryColumnFormat" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSummaryColumns">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSummaryColumnsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSummaryColumnsResult" type="tns:ArrayOfDMSummaryColumn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSummaryColumn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ColumnID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expression" type="tns:ArrayOfDMRExpressionPart" />
+            <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DMSummaryColumnFormat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSummaryColumnResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteSummaryColumn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ColumnID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSummaryColumnResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateSummaryColumn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Expression" type="tns:ArrayOfDMRExpressionPart" />
+            <s:element minOccurs="1" maxOccurs="1" name="Format" type="tns:DMSummaryColumnFormat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSummaryColumnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSummaryColumnResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMSummaryReportCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSummaryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSummaryReportResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMSummaryReportCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSummaryReportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSummaryReportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSummaryReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSummaryReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSummaryReportsResult" type="tns:ArrayOfDMSummaryReport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMSummaryReport">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMSummaryReport" nillable="true" type="tns:DMSummaryReport" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMSummaryReport">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMSummaryReportCriteria" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SendReport" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportsResult" type="tns:ArrayOfDMSummaryReport" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportCriteria">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ReportID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportCriteriaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportCriteriaResult" type="tns:DMSummaryReportCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteDetailReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EventIDs" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="tns:DMSummaryReportCriteria" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteDetailReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteDetailReportResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadDetailReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Offset" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadDetailReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadDetailReportResult" type="tns:ArrayOfDMDetailRecord" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMDetailRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDetailRecord" nillable="true" type="tns:DMDetailRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMDetailRecord">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreativeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SenderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecipientEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Events" type="tns:ArrayOfBoolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latest" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMessageDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DeploymentID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RecipientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ListID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageDetailsResult" type="tns:DMRMessageDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMRMessageDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ToAlias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromAlias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReplyTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HtmlTemplate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TextTemplate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeploymentInfo" type="tns:DMRDeploymentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventHistory" type="tns:ArrayOfDMREventLog" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRDeploymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreativeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:DMDeploymentStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sent" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Started" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Finished" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMDeploymentStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMDS_SETUP" />
+          <s:enumeration value="DMDS_QUEUED" />
+          <s:enumeration value="DMDS_SCHEDULED" />
+          <s:enumeration value="DMDS_PREFETCHING" />
+          <s:enumeration value="DMDS_PREFETCHED" />
+          <s:enumeration value="DMDS_SENDING" />
+          <s:enumeration value="DMDS_PAUSED" />
+          <s:enumeration value="DMDS_ABORTED" />
+          <s:enumeration value="DMDS_COMPLETED" />
+          <s:enumeration value="DMDS_PREFECTHING_IN_PROGRESS" />
+          <s:enumeration value="DMDS_FAILED" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDMREventLog">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMREventLog" nillable="true" type="tns:DMREventLog" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMREventLog">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVisibleUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVisibleUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVisibleUsersResult" type="tns:ArrayOfDMRUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMRUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRUser" nillable="true" type="tns:DMRUser" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRUser">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeEventsResult" type="tns:ArrayOfDMEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMEvent" nillable="true" type="tns:DMEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMEvent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="System" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserDefined" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoNamed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Shared" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Notify" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="URLS" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modified" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeVariables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeVariablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeVariablesResult" type="tns:ArrayOfDMRVariable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMRVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRVariable" nillable="true" type="tns:DMRVariable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRVariable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VariableType" type="tns:DMVariableType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMVariableType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMVT_FROMEMAIL" />
+          <s:enumeration value="DMVT_FROMALIAS" />
+          <s:enumeration value="DMVT_TOEMAIL" />
+          <s:enumeration value="DMVT_TOALIAS" />
+          <s:enumeration value="DMVT_REPLYTO" />
+          <s:enumeration value="DMVT_SUBJECT" />
+          <s:enumeration value="DMVT_STRING" />
+          <s:enumeration value="DMVT_EMAIL" />
+          <s:enumeration value="DMVT_TEXT" />
+          <s:enumeration value="DMVT_HTML" />
+          <s:enumeration value="DMVT_DATE" />
+          <s:enumeration value="DMVT_NUMERIC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCreatives">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativesResult" type="tns:ArrayOfDMRCreative" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMRCreative">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRCreative" nillable="true" type="tns:DMRCreative" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRCreative">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreativeCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreativeCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreativeCategoriesResult" type="tns:ArrayOfDMRCreativeCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMRCreativeCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMRCreativeCategory" nillable="true" type="tns:DMRCreativeCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMRCreativeCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creatives" type="tns:ArrayOfDMRCreative" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEventURLs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="EventID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventURLsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventURLsResult" type="tns:ArrayOfDMURL" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMURL" nillable="true" type="tns:DMURL" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMURL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoMap" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFieldName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FieldID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVariableName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="VariableID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVariableNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVariableNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportScheduleResult" type="tns:DMReportSchedule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMReportSchedule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Schedule" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Frequency" type="tns:DMRecurringScheduleType" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailList" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMRecurringScheduleType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMRST_DAILY" />
+          <s:enumeration value="DMRST_WEEKLY" />
+          <s:enumeration value="DMRST_MONTHLY" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SaveReportSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Schedule" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="Frequency" type="tns:DMRecurringScheduleType" />
+            <s:element minOccurs="0" maxOccurs="1" name="EmailList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveReportScheduleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveReportSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveReportScheduleResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:SummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="SummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:SummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeSummaryColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeSummaryColumns" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeSummaryColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeSummaryColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryColumnsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSummaryColumns" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryColumnsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSummaryColumnsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSummaryColumnSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryColumn" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSummaryColumnSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryColumnResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSummaryColumnSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSummaryColumn" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSummaryColumnSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSummaryColumnResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSummaryColumnSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSummaryColumn" />
+  </wsdl:message>
+  <wsdl:message name="CreateSummaryColumnSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSummaryColumnResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="CreateSummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSummaryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSummaryReport" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSummaryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSummaryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSummaryReports" />
+  </wsdl:message>
+  <wsdl:message name="GetSummaryReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSummaryReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReports" />
+  </wsdl:message>
+  <wsdl:message name="GetReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportCriteriaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportCriteria" />
+  </wsdl:message>
+  <wsdl:message name="GetReportCriteriaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportCriteriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDetailReportSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteDetailReport" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteDetailReportSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteDetailReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReadDetailReportSoapIn">
+    <wsdl:part name="parameters" element="tns:ReadDetailReport" />
+  </wsdl:message>
+  <wsdl:message name="ReadDetailReportSoapOut">
+    <wsdl:part name="parameters" element="tns:ReadDetailReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVisibleUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVisibleUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetVisibleUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVisibleUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariables" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeVariablesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeVariablesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreatives" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCreativeCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreativeCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventURLsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEventURLs" />
+  </wsdl:message>
+  <wsdl:message name="GetEventURLsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventURLsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldName" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVariableNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVariableName" />
+  </wsdl:message>
+  <wsdl:message name="GetVariableNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVariableNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportSchedule" />
+  </wsdl:message>
+  <wsdl:message name="GetReportScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveReportScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveReportSchedule" />
+  </wsdl:message>
+  <wsdl:message name="SaveReportScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveReportScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveReportScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveReportSchedule" />
+  </wsdl:message>
+  <wsdl:message name="RemoveReportScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveReportScheduleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMReportingSoap">
+    <wsdl:operation name="SummaryReport">
+      <wsdl:input message="tns:SummaryReportSoapIn" />
+      <wsdl:output message="tns:SummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeSummaryColumns">
+      <wsdl:input message="tns:GetCreativeSummaryColumnsSoapIn" />
+      <wsdl:output message="tns:GetCreativeSummaryColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryColumns">
+      <wsdl:input message="tns:GetSummaryColumnsSoapIn" />
+      <wsdl:output message="tns:GetSummaryColumnsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryColumn">
+      <wsdl:input message="tns:UpdateSummaryColumnSoapIn" />
+      <wsdl:output message="tns:UpdateSummaryColumnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryColumn">
+      <wsdl:input message="tns:DeleteSummaryColumnSoapIn" />
+      <wsdl:output message="tns:DeleteSummaryColumnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryColumn">
+      <wsdl:input message="tns:CreateSummaryColumnSoapIn" />
+      <wsdl:output message="tns:CreateSummaryColumnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryReport">
+      <wsdl:input message="tns:CreateSummaryReportSoapIn" />
+      <wsdl:output message="tns:CreateSummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryReport">
+      <wsdl:input message="tns:UpdateSummaryReportSoapIn" />
+      <wsdl:output message="tns:UpdateSummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryReport">
+      <wsdl:input message="tns:DeleteSummaryReportSoapIn" />
+      <wsdl:output message="tns:DeleteSummaryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryReports">
+      <wsdl:input message="tns:GetSummaryReportsSoapIn" />
+      <wsdl:output message="tns:GetSummaryReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReports">
+      <wsdl:input message="tns:GetReportsSoapIn" />
+      <wsdl:output message="tns:GetReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportCriteria">
+      <wsdl:input message="tns:GetReportCriteriaSoapIn" />
+      <wsdl:output message="tns:GetReportCriteriaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDetailReport">
+      <wsdl:input message="tns:ExecuteDetailReportSoapIn" />
+      <wsdl:output message="tns:ExecuteDetailReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadDetailReport">
+      <wsdl:input message="tns:ReadDetailReportSoapIn" />
+      <wsdl:output message="tns:ReadDetailReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <wsdl:input message="tns:GetMessageDetailsSoapIn" />
+      <wsdl:output message="tns:GetMessageDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <wsdl:input message="tns:GetVisibleUsersSoapIn" />
+      <wsdl:output message="tns:GetVisibleUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <wsdl:input message="tns:GetCreativeEventsSoapIn" />
+      <wsdl:output message="tns:GetCreativeEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <wsdl:input message="tns:GetCreativeVariablesSoapIn" />
+      <wsdl:output message="tns:GetCreativeVariablesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <wsdl:input message="tns:GetCreativesSoapIn" />
+      <wsdl:output message="tns:GetCreativesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <wsdl:input message="tns:GetCreativeCategoriesSoapIn" />
+      <wsdl:output message="tns:GetCreativeCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <wsdl:input message="tns:GetEventURLsSoapIn" />
+      <wsdl:output message="tns:GetEventURLsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldName">
+      <wsdl:input message="tns:GetFieldNameSoapIn" />
+      <wsdl:output message="tns:GetFieldNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableName">
+      <wsdl:input message="tns:GetVariableNameSoapIn" />
+      <wsdl:output message="tns:GetVariableNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportSchedule">
+      <wsdl:input message="tns:GetReportScheduleSoapIn" />
+      <wsdl:output message="tns:GetReportScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReportSchedule">
+      <wsdl:input message="tns:SaveReportScheduleSoapIn" />
+      <wsdl:output message="tns:SaveReportScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReportSchedule">
+      <wsdl:input message="tns:RemoveReportScheduleSoapIn" />
+      <wsdl:output message="tns:RemoveReportScheduleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMReportingSoap" type="tns:DMReportingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SummaryReport">
+      <soap:operation soapAction="DMWebServices/SummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeSummaryColumns">
+      <soap:operation soapAction="DMWebServices/GetCreativeSummaryColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryColumns">
+      <soap:operation soapAction="DMWebServices/GetSummaryColumns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryColumn">
+      <soap:operation soapAction="DMWebServices/UpdateSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryColumn">
+      <soap:operation soapAction="DMWebServices/DeleteSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryColumn">
+      <soap:operation soapAction="DMWebServices/CreateSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryReport">
+      <soap:operation soapAction="DMWebServices/CreateSummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryReport">
+      <soap:operation soapAction="DMWebServices/UpdateSummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryReport">
+      <soap:operation soapAction="DMWebServices/DeleteSummaryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryReports">
+      <soap:operation soapAction="DMWebServices/GetSummaryReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReports">
+      <soap:operation soapAction="DMWebServices/GetReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportCriteria">
+      <soap:operation soapAction="DMWebServices/GetReportCriteria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDetailReport">
+      <soap:operation soapAction="DMWebServices/ExecuteDetailReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadDetailReport">
+      <soap:operation soapAction="DMWebServices/ReadDetailReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap:operation soapAction="DMWebServices/GetMessageDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <soap:operation soapAction="DMWebServices/GetVisibleUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <soap:operation soapAction="DMWebServices/GetCreativeEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <soap:operation soapAction="DMWebServices/GetCreatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <soap:operation soapAction="DMWebServices/GetCreativeCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <soap:operation soapAction="DMWebServices/GetEventURLs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldName">
+      <soap:operation soapAction="DMWebServices/GetFieldName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableName">
+      <soap:operation soapAction="DMWebServices/GetVariableName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportSchedule">
+      <soap:operation soapAction="DMWebServices/GetReportSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReportSchedule">
+      <soap:operation soapAction="DMWebServices/SaveReportSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReportSchedule">
+      <soap:operation soapAction="DMWebServices/RemoveReportSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMReportingSoap12" type="tns:DMReportingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SummaryReport">
+      <soap12:operation soapAction="DMWebServices/SummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeSummaryColumns">
+      <soap12:operation soapAction="DMWebServices/GetCreativeSummaryColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryColumns">
+      <soap12:operation soapAction="DMWebServices/GetSummaryColumns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryColumn">
+      <soap12:operation soapAction="DMWebServices/UpdateSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryColumn">
+      <soap12:operation soapAction="DMWebServices/DeleteSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryColumn">
+      <soap12:operation soapAction="DMWebServices/CreateSummaryColumn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSummaryReport">
+      <soap12:operation soapAction="DMWebServices/CreateSummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryReport">
+      <soap12:operation soapAction="DMWebServices/UpdateSummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSummaryReport">
+      <soap12:operation soapAction="DMWebServices/DeleteSummaryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryReports">
+      <soap12:operation soapAction="DMWebServices/GetSummaryReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReports">
+      <soap12:operation soapAction="DMWebServices/GetReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportCriteria">
+      <soap12:operation soapAction="DMWebServices/GetReportCriteria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteDetailReport">
+      <soap12:operation soapAction="DMWebServices/ExecuteDetailReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadDetailReport">
+      <soap12:operation soapAction="DMWebServices/ReadDetailReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap12:operation soapAction="DMWebServices/GetMessageDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisibleUsers">
+      <soap12:operation soapAction="DMWebServices/GetVisibleUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeEvents">
+      <soap12:operation soapAction="DMWebServices/GetCreativeEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeVariables">
+      <soap12:operation soapAction="DMWebServices/GetCreativeVariables" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreatives">
+      <soap12:operation soapAction="DMWebServices/GetCreatives" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreativeCategories">
+      <soap12:operation soapAction="DMWebServices/GetCreativeCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEventURLs">
+      <soap12:operation soapAction="DMWebServices/GetEventURLs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldName">
+      <soap12:operation soapAction="DMWebServices/GetFieldName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVariableName">
+      <soap12:operation soapAction="DMWebServices/GetVariableName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportSchedule">
+      <soap12:operation soapAction="DMWebServices/GetReportSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReportSchedule">
+      <soap12:operation soapAction="DMWebServices/SaveReportSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveReportSchedule">
+      <soap12:operation soapAction="DMWebServices/RemoveReportSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMReporting">
+    <wsdl:port name="DMReportingSoap" binding="tns:DMReportingSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/reporting.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMReportingSoap12" binding="tns:DMReportingSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/reporting.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

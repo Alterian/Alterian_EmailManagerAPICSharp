@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMLibrary.Parser" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMLibrary.Parser" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DMLibrary" />
+  <xs:complexType name="ArrayOfParsableContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParsableContent" nillable="true" type="tns:ParsableContent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfParsableContent" nillable="true" type="tns:ArrayOfParsableContent" />
+  <xs:complexType name="ParsableContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreativeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlContent" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncludeFullImagePath" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LeftDelimiter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessorHasRun" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RightDelimiter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TextContent" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParsableContent" nillable="true" type="tns:ParsableContent" />
+  <xs:complexType name="MappedParsedItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasNewEvent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasNewVariable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="InsertImagePathCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MappedEvents" nillable="true" type="tns:ArrayOfMappedEMEvent" />
+      <xs:element minOccurs="0" name="MappedVariables" nillable="true" type="tns:ArrayOfMappedEMVariable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MappedParsedItem" nillable="true" type="tns:MappedParsedItem" />
+  <xs:complexType name="ArrayOfMappedEMEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MappedEMEvent" nillable="true" type="tns:MappedEMEvent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMappedEMEvent" nillable="true" type="tns:ArrayOfMappedEMEvent" />
+  <xs:complexType name="MappedEMEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreativeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="EMContentType" type="q1:EMContentType" />
+      <xs:element minOccurs="0" name="Index" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="MapTo" nillable="true" type="q2:EMEvent" />
+      <xs:element minOccurs="0" name="OriginalSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MappedEMEvent" nillable="true" type="tns:MappedEMEvent" />
+  <xs:complexType name="ArrayOfMappedEMVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MappedEMVariable" nillable="true" type="tns:MappedEMVariable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMappedEMVariable" nillable="true" type="tns:ArrayOfMappedEMVariable" />
+  <xs:complexType name="MappedEMVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Index" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DMLibrary" minOccurs="0" name="MapTo" nillable="true" type="q3:EMVariable" />
+      <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MappedEMVariable" nillable="true" type="tns:MappedEMVariable" />
+</xs:schema>

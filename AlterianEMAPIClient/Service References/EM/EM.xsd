@@ -1,0 +1,1839 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/EM.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfDMListCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMListCategory" nillable="true" type="tns:DMListCategory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMListCategory" nillable="true" type="tns:ArrayOfDMListCategory" />
+  <xs:complexType name="DMListCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Lists" nillable="true" type="tns:ArrayOfDMList" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentID" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMListCategory" nillable="true" type="tns:DMListCategory" />
+  <xs:complexType name="ArrayOfDMList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMList" nillable="true" type="tns:DMList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMList" nillable="true" type="tns:ArrayOfDMList" />
+  <xs:complexType name="DMList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowOptin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AllowOptout" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeployAccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EditPropertiesAccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EditRecordsAccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ListCriteria" nillable="true" type="tns:DMListCriteria" />
+      <xs:element minOccurs="0" name="ListType" type="tns:DMListType" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OptinEventID" type="xs:int" />
+      <xs:element minOccurs="0" name="OptoutEventID" type="xs:int" />
+      <xs:element minOccurs="0" name="PrimaryKey" type="xs:int" />
+      <xs:element minOccurs="0" name="RecordCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMList" nillable="true" type="tns:DMList" />
+  <xs:complexType name="DMListCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventCriteria" nillable="true" type="tns:DMListEventCriteria" />
+      <xs:element minOccurs="0" name="ExcludeLists" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="FieldCriteria" nillable="true" type="tns:DMFieldCriteriaCollection" />
+      <xs:element minOccurs="0" name="IncludeLists" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="PreferenceCriteria" nillable="true" type="tns:DMPreferenceCriteriaCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMListCriteria" nillable="true" type="tns:DMListCriteria" />
+  <xs:complexType name="DMListEventCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Creatives" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="DateRanges" nillable="true" type="tns:DMRDateRangeCollection" />
+      <xs:element minOccurs="0" name="Events" nillable="true" type="tns:DMEventCriteriaCollection" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:IntCollection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMListEventCriteria" nillable="true" type="tns:DMListEventCriteria" />
+  <xs:complexType name="IntCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IntCollection" nillable="true" type="tns:IntCollection" />
+  <xs:complexType name="DMRDateRangeCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMRDateRangeCollection" nillable="true" type="tns:DMRDateRangeCollection" />
+  <xs:complexType name="DMRDateRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date1" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Date2" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RangeType" type="tns:DMRDateRangeType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMRDateRange" nillable="true" type="tns:DMRDateRange" />
+  <xs:simpleType name="DMRDateRangeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMDT_BEFORE" />
+      <xs:enumeration value="DMDT_AFTER" />
+      <xs:enumeration value="DMDT_BETWEEN" />
+      <xs:enumeration value="DMDT_YEARTODATE" />
+      <xs:enumeration value="DMDT_MONTHTODATE" />
+      <xs:enumeration value="DMDT_WEEKTODATE" />
+      <xs:enumeration value="DMDT_TODAY" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMRDateRangeType" nillable="true" type="tns:DMRDateRangeType" />
+  <xs:complexType name="DMEventCriteriaCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEventCriteriaCollection" nillable="true" type="tns:DMEventCriteriaCollection" />
+  <xs:complexType name="DMEventCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CloseParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Combine" type="tns:DMCombine" />
+      <xs:element minOccurs="0" name="EventID" type="xs:int" />
+      <xs:element minOccurs="0" name="OpenParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Operand" type="xs:int" />
+      <xs:element minOccurs="0" name="Operator" type="tns:DMOperator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEventCriteria" nillable="true" type="tns:DMEventCriteria" />
+  <xs:simpleType name="DMCombine">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMCM_NONE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMCM_AND">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMCM_OR">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMCombine" nillable="true" type="tns:DMCombine" />
+  <xs:simpleType name="DMOperator">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMOP_EQUAL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_NOTEQUAL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_LESSTHAN">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_GREATERTHAN">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_BEGINSWITH">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_NOTBEGINSWITH">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_ENDSWITH">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_NOTENDSWITH">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_CONTAINS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMOP_NOTCONTAINS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMOperator" nillable="true" type="tns:DMOperator" />
+  <xs:complexType name="DMFieldCriteriaCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMFieldCriteriaCollection" nillable="true" type="tns:DMFieldCriteriaCollection" />
+  <xs:complexType name="DMFieldCriteria">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BValue" nillable="true" type="q1:ArrayOfboolean" />
+      <xs:element minOccurs="0" name="CloseParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Combine" type="tns:DMCombine" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DValue" nillable="true" type="q2:ArrayOfdouble" />
+      <xs:element minOccurs="0" name="Date1" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Date2" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FieldSubType" type="tns:DMFieldSubType" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="IValue" nillable="true" type="q3:ArrayOfint" />
+      <xs:element minOccurs="0" name="OpenParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Operator" type="tns:DMSQLOperator" />
+      <xs:element minOccurs="0" name="Parameter" type="xs:int" />
+      <xs:element minOccurs="0" name="QueryType" type="tns:DMFieldQueryType" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SValue" nillable="true" type="q4:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMFieldCriteria" nillable="true" type="tns:DMFieldCriteria" />
+  <xs:simpleType name="DMFieldSubType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMFST_NA" />
+      <xs:enumeration value="DMFST_EMAIL_USER" />
+      <xs:enumeration value="DMFST_EMAIL_DOMAIN" />
+      <xs:enumeration value="DMFST_EMAIL_HEALTH" />
+      <xs:enumeration value="DMFST_DATE_YEAR" />
+      <xs:enumeration value="DMFST_DATE_MONTH" />
+      <xs:enumeration value="DMFST_DATE_DAY" />
+      <xs:enumeration value="DMFST_DATE_TIME" />
+      <xs:enumeration value="DMFST_DATE_DAYSFROMNOW" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMFieldSubType" nillable="true" type="tns:DMFieldSubType" />
+  <xs:simpleType name="DMSQLOperator">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMSQ_EQUAL" />
+      <xs:enumeration value="DMSQ_NOTEQUAL" />
+      <xs:enumeration value="DMSQ_LESSTHAN" />
+      <xs:enumeration value="DMSQ_GREATERTHAN" />
+      <xs:enumeration value="DMSQ_BEGINSWITH" />
+      <xs:enumeration value="DMSQ_NOTBEGINSWITH" />
+      <xs:enumeration value="DMSQ_ENDSWITH" />
+      <xs:enumeration value="DMSQ_NOTENDSWITH" />
+      <xs:enumeration value="DMSQ_CONTAINS" />
+      <xs:enumeration value="DMSQ_NOTCONTAINS" />
+      <xs:enumeration value="DMSQ_IN" />
+      <xs:enumeration value="DMSQ_NOTIN" />
+      <xs:enumeration value="DMSQ_BETWEEN" />
+      <xs:enumeration value="DMSQ_NOTBETWEEN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMSQLOperator" nillable="true" type="tns:DMSQLOperator" />
+  <xs:simpleType name="DMFieldQueryType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMQT_PREFERTEXT" />
+      <xs:enumeration value="DMQT_VERIFIEDFLASH" />
+      <xs:enumeration value="DMQT_VERIFIEDHTML" />
+      <xs:enumeration value="DMQT_ENABLED" />
+      <xs:enumeration value="DMQT_LASTEVENT" />
+      <xs:enumeration value="DMQT_CREATED" />
+      <xs:enumeration value="DMQT_MODIFIED" />
+      <xs:enumeration value="DMQT_DATEFIELD" />
+      <xs:enumeration value="DMQT_NUMERICFIELD" />
+      <xs:enumeration value="DMQT_DECIMALFIELD" />
+      <xs:enumeration value="DMQT_BOOLEANFIELD" />
+      <xs:enumeration value="DMQT_STRINGFIELD" />
+      <xs:enumeration value="DMQT_RSSONLY" />
+      <xs:enumeration value="DMQT_LASTENGAGED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMFieldQueryType" nillable="true" type="tns:DMFieldQueryType" />
+  <xs:complexType name="DMPreferenceCriteriaCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMPreferenceCriteriaCollection" nillable="true" type="tns:DMPreferenceCriteriaCollection" />
+  <xs:complexType name="DMPreferenceCriteria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CloseParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Combine" type="tns:DMCombine" />
+      <xs:element minOccurs="0" name="OpenParenthesis" type="xs:int" />
+      <xs:element minOccurs="0" name="Parameter" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMPreferenceCriteria" nillable="true" type="tns:DMPreferenceCriteria" />
+  <xs:simpleType name="DMListType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMLT_RECIPIENT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMLT_SUPPRESS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMLT_DOMAINSUPPRESSION">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMLT_MD5SUPPRESSION">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMListType" nillable="true" type="tns:DMListType" />
+  <xs:complexType name="ArrayOfDMListPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMListPermission" type="tns:DMListPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMListPermission" nillable="true" type="tns:ArrayOfDMListPermission" />
+  <xs:simpleType name="DMListPermission">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMLP_EDITPROPERTIES">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMLP_EDITRECORDS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMLP_DEPLOY">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMListPermission" nillable="true" type="tns:DMListPermission" />
+  <xs:complexType name="ArrayOfDMListType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMListType" type="tns:DMListType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMListType" nillable="true" type="tns:ArrayOfDMListType" />
+  <xs:complexType name="ArrayOfEMList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMList" nillable="true" type="tns:EMList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMList" nillable="true" type="tns:ArrayOfEMList" />
+  <xs:complexType name="EMList">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FolderPath" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KeyName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMList" nillable="true" type="tns:EMList" />
+  <xs:complexType name="DMListFieldCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMListFieldCollection" nillable="true" type="tns:DMListFieldCollection" />
+  <xs:complexType name="DMListField">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowDupes" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FieldType" type="tns:DMFieldType" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="ListField" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrimaryKey" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SourceColumn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StorageType" type="tns:DMFieldStorageType" />
+      <xs:element minOccurs="0" name="UserAccess" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserOptOut" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMListField" nillable="true" type="tns:DMListField" />
+  <xs:simpleType name="DMFieldType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMFT_EMAIL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_STRING">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_TEXT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_NUMERIC">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_DATE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_BOOLEAN">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_DECIMAL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_UNICODE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMFT_PREFERENCE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMFieldType" nillable="true" type="tns:DMFieldType" />
+  <xs:simpleType name="DMFieldStorageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMFS_NA" />
+      <xs:enumeration value="DMFS_LIST" />
+      <xs:enumeration value="DMFS_RECIPIENT" />
+      <xs:enumeration value="DMFS_RECIPIENTLIST" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMFieldStorageType" nillable="true" type="tns:DMFieldStorageType" />
+  <xs:complexType name="ArrayOfEMSmartListRefreshResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMSmartListRefreshResult" nillable="true" type="tns:EMSmartListRefreshResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMSmartListRefreshResult" nillable="true" type="tns:ArrayOfEMSmartListRefreshResult" />
+  <xs:complexType name="EMSmartListRefreshResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="Error" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ListID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMSmartListRefreshResult" nillable="true" type="tns:EMSmartListRefreshResult" />
+  <xs:complexType name="ArrayOfDMDeliveryContext">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMDeliveryContext" nillable="true" type="tns:DMDeliveryContext" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMDeliveryContext" nillable="true" type="tns:ArrayOfDMDeliveryContext" />
+  <xs:complexType name="DMDeliveryContext">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DefaultDC" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VMTAIDs" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="VirtualMTA" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMDeliveryContext" nillable="true" type="tns:DMDeliveryContext" />
+  <xs:simpleType name="DMDeliveryContextAssociationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMDCA_NA" />
+      <xs:enumeration value="DMDCA_CREATIVECAT" />
+      <xs:enumeration value="DMDCA_CREATIVE" />
+      <xs:enumeration value="DMDCA_LISTCAT" />
+      <xs:enumeration value="DMDCA_LIST" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMDeliveryContextAssociationType" nillable="true" type="tns:DMDeliveryContextAssociationType" />
+  <xs:complexType name="EMEmailTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DocumentId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="RequestId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMEmailTest" nillable="true" type="tns:EMEmailTest" />
+  <xs:complexType name="ArrayOfEMEmailTestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMEmailTestResult" nillable="true" type="tns:EMEmailTestResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMEmailTestResult" nillable="true" type="tns:ArrayOfEMEmailTestResult" />
+  <xs:complexType name="EMEmailTestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppLongName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AppName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Completed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DesktopClient" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EmailClientId" type="xs:int" />
+      <xs:element minOccurs="0" name="EmailTestId" type="xs:int" />
+      <xs:element minOccurs="0" name="EmailTestType" type="tns:EmailTestType" />
+      <xs:element minOccurs="0" name="Finished" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FoundInSpam" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FrameImage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullpageImage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullpageImageContentBlocking" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullpageImageNoContentBlocking" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasFrame" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PlatformLongName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlatformName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlatformType" type="tns:PlatformType" />
+      <xs:element minOccurs="0" name="ResultId" type="xs:int" />
+      <xs:element minOccurs="0" name="ScrollAmount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SpamHeaders" nillable="true" type="tns:ArrayOfSpamHeader" />
+      <xs:element minOccurs="0" name="SpamScore" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="State" type="tns:EmailTestResultState" />
+      <xs:element minOccurs="0" name="SupportsContentBlocking" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ViewportHeight" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ViewportOffsetLeft" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ViewportOffsetTop" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ViewportWidth" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="WindowImage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowImageContentBlocking" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowImageNoContentBlocking" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowImageThumb" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowImageThumbContentBlocking" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WindowImageThumbNoContentBlocking" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMEmailTestResult" nillable="true" type="tns:EMEmailTestResult" />
+  <xs:simpleType name="EmailTestType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ETT_Email">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ETT_Spam">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EmailTestType" nillable="true" type="tns:EmailTestType" />
+  <xs:simpleType name="PlatformType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PT_Other" />
+      <xs:enumeration value="PT_Desktop" />
+      <xs:enumeration value="PT_Web" />
+      <xs:enumeration value="PT_Mobile" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PlatformType" nillable="true" type="tns:PlatformType" />
+  <xs:complexType name="ArrayOfSpamHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SpamHeader" nillable="true" type="tns:SpamHeader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSpamHeader" nillable="true" type="tns:ArrayOfSpamHeader" />
+  <xs:complexType name="SpamHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rating" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SpamHeader" nillable="true" type="tns:SpamHeader" />
+  <xs:simpleType name="EmailTestResultState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ETRS_Pending" />
+      <xs:enumeration value="ETRS_Complete" />
+      <xs:enumeration value="ETRS_Error" />
+      <xs:enumeration value="ETRS_TimedOut" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EmailTestResultState" nillable="true" type="tns:EmailTestResultState" />
+  <xs:simpleType name="EMContentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMCT_HTML" />
+      <xs:enumeration value="EMCT_Text" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMContentType" nillable="true" type="tns:EMContentType" />
+  <xs:complexType name="DMReportGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SubGroups" nillable="true" type="tns:DMReportSubGroupCollection" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Totals" nillable="true" type="q5:ArrayOfstring" />
+      <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="TotalsNumeric" nillable="true" type="q6:ArrayOfdouble" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMReportGroup" nillable="true" type="tns:DMReportGroup" />
+  <xs:complexType name="DMReportSubGroupCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMReportSubGroupCollection" nillable="true" type="tns:DMReportSubGroupCollection" />
+  <xs:complexType name="DMReportSubGroup">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ColumnValues" nillable="true" type="q7:ArrayOfstring" />
+      <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ColumnValuesNumeric" nillable="true" type="q8:ArrayOfdouble" />
+      <xs:element minOccurs="0" name="HasValues" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubGroup" nillable="true" type="tns:DMReportGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMReportSubGroup" nillable="true" type="tns:DMReportSubGroup" />
+  <xs:complexType name="ArrayOfDMEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMEvent" nillable="true" type="tns:DMEvent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMEvent" nillable="true" type="tns:ArrayOfDMEvent" />
+  <xs:complexType name="DMEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AutoNamed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notify" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Shared" type="xs:boolean" />
+      <xs:element minOccurs="0" name="System" type="xs:boolean" />
+      <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="URLS" nillable="true" type="q9:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="UserDefined" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEvent" nillable="true" type="tns:DMEvent" />
+  <xs:complexType name="DMDeploymentFieldCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMDeploymentFieldCollection" nillable="true" type="tns:DMDeploymentFieldCollection" />
+  <xs:simpleType name="DMDeploymentField">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMDF_CREATIVECATEGORYNAME" />
+      <xs:enumeration value="DMDF_CREATIVENAME" />
+      <xs:enumeration value="DMDF_NAME" />
+      <xs:enumeration value="DMDF_LISTNAMES" />
+      <xs:enumeration value="DMDF_USERNAME" />
+      <xs:enumeration value="DMDF_FROMEMAIL" />
+      <xs:enumeration value="DMDF_FROMALIAS" />
+      <xs:enumeration value="DMDF_TOEMAIL" />
+      <xs:enumeration value="DMDF_TOALIAS" />
+      <xs:enumeration value="DMDF_REPLYTO" />
+      <xs:enumeration value="DMDF_SUBJECT" />
+      <xs:enumeration value="DMDF_CREATED" />
+      <xs:enumeration value="DMDF_MODIFIED" />
+      <xs:enumeration value="DMDF_STARTED" />
+      <xs:enumeration value="DMDF_FINISHED" />
+      <xs:enumeration value="DMDF_SCHEDULE" />
+      <xs:enumeration value="DMDF_TOTAL" />
+      <xs:enumeration value="DMDF_SENT" />
+      <xs:enumeration value="DMDF_QUEUED" />
+      <xs:enumeration value="DMDF_PERCENTDONE" />
+      <xs:enumeration value="DMDF_THROTTLE" />
+      <xs:enumeration value="DMDF_STATUS" />
+      <xs:enumeration value="DMDF_ID" />
+      <xs:enumeration value="DMDF_LISTTOTAL" />
+      <xs:enumeration value="DMDF_RECIPIENTSUPPRESSED" />
+      <xs:enumeration value="DMDF_LISTSUPPRESSED" />
+      <xs:enumeration value="DMDF_HEALTHSUPPRESSED" />
+      <xs:enumeration value="DMDF_EVENTSUPPRESSED" />
+      <xs:enumeration value="DMDF_FIELDSUPPRESSED" />
+      <xs:enumeration value="DMDF_MAILERSUBMISSIONERROR" />
+      <xs:enumeration value="DMDF_DCINFO" />
+      <xs:enumeration value="DMDF_RECURRENCESCHEDULE" />
+      <xs:enumeration value="DMDF_DUPESUPPRESSED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMDeploymentField" nillable="true" type="tns:DMDeploymentField" />
+  <xs:complexType name="ArrayOfDMDeployment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMDeployment" nillable="true" type="tns:DMDeployment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMDeployment" nillable="true" type="tns:ArrayOfDMDeployment" />
+  <xs:complexType name="DMDeployment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Choke" type="xs:int" />
+      <xs:element minOccurs="0" name="ChokeInterval" type="xs:int" />
+      <xs:element minOccurs="0" name="Client" nillable="true" type="tns:DMClient" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreativeCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreativeID" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DCInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeliveryContextID" type="xs:int" />
+      <xs:element minOccurs="0" name="DeliveryContextVirtualMTA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DuplicatesSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="EventSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="Finished" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FromAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FromEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HealthSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="HealthThreshold" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LastChecked" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ListNames" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ListSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="ListTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="MailerSubmissionError" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Notify" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NotifyEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NotifyEvents" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="OldStatus" type="tns:DMDeploymentStatus" />
+      <xs:element minOccurs="0" name="OneOff" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PagesServed" type="xs:int" />
+      <xs:element minOccurs="0" name="PercentDone" type="xs:int" />
+      <xs:element minOccurs="0" name="ProofMode" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Queued" type="xs:int" />
+      <xs:element minOccurs="0" name="RecipientSuppressed" type="xs:int" />
+      <xs:element minOccurs="0" name="RecordCount" type="xs:int" />
+      <xs:element minOccurs="0" name="RecurrenceSchedule" nillable="true" type="tns:DMDeploymentSchedule" />
+      <xs:element minOccurs="0" name="RefreshSmartLists" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReplyTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SMSPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SMSShortCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SMSTariffClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SMSUsername" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Schedule" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SenderID" type="xs:int" />
+      <xs:element minOccurs="0" name="Sent" type="xs:int" />
+      <xs:element minOccurs="0" name="Started" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="tns:DMDeploymentStatus" />
+      <xs:element minOccurs="0" name="Subject" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SuppressEvents" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="SuppressionLists" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="Throttle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ToAlias" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ToEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="TotalMessagesLeft" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMDeployment" nillable="true" type="tns:DMDeployment" />
+  <xs:complexType name="DMClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConnectionString" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ContentPath" nillable="true" type="q10:ArrayOfanyType" />
+      <xs:element minOccurs="0" name="ContentServerID" type="xs:int" />
+      <xs:element minOccurs="0" name="ContentURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DBName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DBServerID" type="xs:int" />
+      <xs:element minOccurs="0" name="DefaultDC" type="xs:int" />
+      <xs:element minOccurs="0" name="DeliveryContexts" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="Directory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HashTable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Icon" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageBasePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MTAServerID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NotifyEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PasswordPolicy" nillable="true" type="tns:DMPasswordPolicy" />
+      <xs:element minOccurs="0" name="SEVExportEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Seats" type="xs:int" />
+      <xs:element minOccurs="0" name="SetID" type="xs:int" />
+      <xs:element minOccurs="0" name="Settings" nillable="true" type="tns:DMClientSettings" />
+      <xs:element minOccurs="0" name="ShareLookUpOnSaveAs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaticTokenEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VirtualMTA" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMClient" nillable="true" type="tns:DMClient" />
+  <xs:complexType name="DMPasswordPolicy">
+    <xs:sequence>
+      <xs:element name="ClientID" type="xs:int" />
+      <xs:element name="IsDigitRequired" type="xs:boolean" />
+      <xs:element name="IsLowerCaseRequired" type="xs:boolean" />
+      <xs:element name="IsPreviousPasswordsAllowed" type="xs:boolean" />
+      <xs:element name="IsSpecialCharRequired" type="xs:boolean" />
+      <xs:element name="IsUpperCaseRequired" type="xs:boolean" />
+      <xs:element name="MaximumLength" type="xs:int" />
+      <xs:element name="MinimumLength" type="xs:int" />
+      <xs:element name="PasswordAge" type="xs:int" />
+      <xs:element name="PasswordHistoryMax" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMPasswordPolicy" nillable="true" type="tns:DMPasswordPolicy" />
+  <xs:complexType name="DMClientSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentDomain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DMWCMList" nillable="true" type="tns:ArrayOfDMWCMEntry" />
+      <xs:element minOccurs="0" name="DefaultTemplateCodePage" type="xs:int" />
+      <xs:element minOccurs="0" name="DomainFilteringEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GalleryPreviewEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="InboundDomain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncludeListUnsubscribeInHeader" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MMCertThumbprint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MMUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MaxUpdatedDeploymentsToProcessByPrefetch" type="xs:int" />
+      <xs:element minOccurs="0" name="NotifyEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OmnitureSettings" nillable="true" type="tns:DMOmnitureSettings" />
+      <xs:element minOccurs="0" name="PVID" type="xs:int" />
+      <xs:element minOccurs="0" name="PVUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessSuppressionChunksMaxDegreeOfParallelism" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="RecipientsSubscribeCommandTimout" type="xs:int" />
+      <xs:element minOccurs="0" name="SEVExportEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SM2Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShareLookUpOnSaveAs" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StaticTokenEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UploadImageDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserCulture" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMClientSettings" nillable="true" type="tns:DMClientSettings" />
+  <xs:complexType name="ArrayOfDMWCMEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMWCMEntry" nillable="true" type="tns:DMWCMEntry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMWCMEntry" nillable="true" type="tns:ArrayOfDMWCMEntry" />
+  <xs:complexType name="DMWCMEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMWCMEntry" nillable="true" type="tns:DMWCMEntry" />
+  <xs:complexType name="DMOmnitureSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IntegrationNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemarketingSeg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemarketingSegPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReportSuite" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMOmnitureSettings" nillable="true" type="tns:DMOmnitureSettings" />
+  <xs:simpleType name="DMDeploymentStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMDS_SETUP" />
+      <xs:enumeration value="DMDS_QUEUED" />
+      <xs:enumeration value="DMDS_SCHEDULED" />
+      <xs:enumeration value="DMDS_PREFETCHING" />
+      <xs:enumeration value="DMDS_PREFETCHED" />
+      <xs:enumeration value="DMDS_SENDING" />
+      <xs:enumeration value="DMDS_PAUSED" />
+      <xs:enumeration value="DMDS_ABORTED" />
+      <xs:enumeration value="DMDS_COMPLETED" />
+      <xs:enumeration value="DMDS_PREFECTHING_IN_PROGRESS" />
+      <xs:enumeration value="DMDS_FAILED">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMDeploymentStatus" nillable="true" type="tns:DMDeploymentStatus" />
+  <xs:complexType name="DMDeploymentSchedule">
+    <xs:sequence>
+      <xs:element name="_endDate" type="xs:dateTime" />
+      <xs:element name="_frequency" type="tns:DMRecurringScheduleType" />
+      <xs:element name="_startDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMDeploymentSchedule" nillable="true" type="tns:DMDeploymentSchedule" />
+  <xs:simpleType name="DMRecurringScheduleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMRST_DAILY" />
+      <xs:enumeration value="DMRST_WEEKLY" />
+      <xs:enumeration value="DMRST_MONTHLY" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMRecurringScheduleType" nillable="true" type="tns:DMRecurringScheduleType" />
+  <xs:complexType name="DMImportStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Added" type="xs:int" />
+      <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Counters" nillable="true" type="q11:ArrayOfint" />
+      <xs:element minOccurs="0" name="Created" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldsAdded" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldsChanged" type="xs:int" />
+      <xs:element minOccurs="0" name="Ignored" type="xs:int" />
+      <xs:element minOccurs="0" name="Inserted" type="xs:int" />
+      <xs:element minOccurs="0" name="LookupId" type="xs:int" />
+      <xs:element minOccurs="0" name="TickCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Updated" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMImportStatus" nillable="true" type="tns:DMImportStatus" />
+  <xs:complexType name="ArrayOfEMTranslationResource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMTranslationResource" nillable="true" type="tns:EMTranslationResource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMTranslationResource" nillable="true" type="tns:ArrayOfEMTranslationResource" />
+  <xs:complexType name="EMTranslationResource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Phrase" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ResourceID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMTranslationResource" nillable="true" type="tns:EMTranslationResource" />
+  <xs:complexType name="ArrayOfDMTranslation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMTranslation" nillable="true" type="tns:DMTranslation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMTranslation" nillable="true" type="tns:ArrayOfDMTranslation" />
+  <xs:complexType name="DMTranslation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LanguageCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMTranslation" nillable="true" type="tns:DMTranslation" />
+  <xs:simpleType name="EMFeederStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Pending" />
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMFeederStatus" nillable="true" type="tns:EMFeederStatus" />
+  <xs:complexType name="DMCreativeFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedByUserId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="End" type="xs:int" />
+      <xs:element minOccurs="0" name="ModifiedUtcEndDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ModifiedUtcStartDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SortColumn" type="tns:DMCreativeFilterSortColumn" />
+      <xs:element minOccurs="0" name="SortOrder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Start" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCreativeFilter" nillable="true" type="tns:DMCreativeFilter" />
+  <xs:simpleType name="DMCreativeFilterSortColumn">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Name" />
+      <xs:enumeration value="LastModifiedDate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMCreativeFilterSortColumn" nillable="true" type="tns:DMCreativeFilterSortColumn" />
+  <xs:complexType name="DMCreativeCollectionByFilterDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Creatives" nillable="true" type="tns:ArrayOfDMCreativeDTO" />
+      <xs:element minOccurs="0" name="TotalRecords" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCreativeCollectionByFilterDTO" nillable="true" type="tns:DMCreativeCollectionByFilterDTO" />
+  <xs:complexType name="ArrayOfDMCreativeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMCreativeDTO" nillable="true" type="tns:DMCreativeDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMCreativeDTO" nillable="true" type="tns:ArrayOfDMCreativeDTO" />
+  <xs:complexType name="DMCreativeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedByUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreatedByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreativeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreativeName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DocumentId" type="xs:int" />
+      <xs:element minOccurs="0" name="LastModifiedByUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="LastModifiedByUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ThumbnailPath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCreativeDTO" nillable="true" type="tns:DMCreativeDTO" />
+  <xs:complexType name="EMClientInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClientID" type="xs:int" />
+      <xs:element minOccurs="0" name="ClientName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContentURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImageBasePath" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMClientInfo" nillable="true" type="tns:EMClientInfo" />
+  <xs:complexType name="DMUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Admin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MMEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MMLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberOf" nillable="true" type="tns:IntCollection" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShowPeers" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StartupModuleID" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeOffset" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeZoneInfo" nillable="true" type="tns:DMTimeZoneInfo" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TranslationID" type="xs:int" />
+      <xs:element minOccurs="0" name="UserCulture" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Zip" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMUser" nillable="true" type="tns:DMUser" />
+  <xs:complexType name="DMTimeZoneInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeZoneID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMTimeZoneInfo" nillable="true" type="tns:DMTimeZoneInfo" />
+  <xs:complexType name="DMModuleCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMModuleCollection" nillable="true" type="tns:DMModuleCollection" />
+  <xs:complexType name="DMModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Permissions" nillable="true" type="tns:DMPermissionCollection" />
+      <xs:element minOccurs="0" name="SecureURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMModule" nillable="true" type="tns:DMModule" />
+  <xs:complexType name="DMPermissionCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMPermissionCollection" nillable="true" type="tns:DMPermissionCollection" />
+  <xs:complexType name="DMPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Flag" type="tns:DMPermissionFlag" />
+      <xs:element minOccurs="0" name="PermissionTypeID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMPermission" nillable="true" type="tns:DMPermission" />
+  <xs:simpleType name="DMPermissionFlag">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMPF_NOACCESS" />
+      <xs:enumeration value="DMPF_DENY">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMPF_ALLOW">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMPF_ALLOWALL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMPermissionFlag" nillable="true" type="tns:DMPermissionFlag" />
+  <xs:complexType name="EMModuleCategoryCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMModuleCategoryCollection" nillable="true" type="tns:EMModuleCategoryCollection" />
+  <xs:complexType name="EMModuleCategory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMCategory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Modules" nillable="true" type="tns:DMModuleCollection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMModuleCategory" nillable="true" type="tns:EMModuleCategory" />
+  <xs:complexType name="DMCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCategory" nillable="true" type="tns:DMCategory" />
+  <xs:complexType name="ArrayOfEMDocumentTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMDocumentTypes" nillable="true" type="tns:EMDocumentTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMDocumentTypes" nillable="true" type="tns:ArrayOfEMDocumentTypes" />
+  <xs:complexType name="EMDocumentTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Enum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMDocumentTypes" nillable="true" type="tns:EMDocumentTypes" />
+  <xs:complexType name="ArrayOfEMDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMDocument" nillable="true" type="tns:EMDocument" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMDocument" nillable="true" type="tns:ArrayOfEMDocument" />
+  <xs:complexType name="EMDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatedBy" nillable="true" type="tns:DMUser" />
+      <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FolderID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FolderPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HasThumbnail" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LastActivityBy" nillable="true" type="tns:DMUser" />
+      <xs:element minOccurs="0" name="LastActivityDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastActivityType" type="tns:EMDocumentActivityType" />
+      <xs:element minOccurs="0" name="LastModifiedBy" nillable="true" type="tns:DMUser" />
+      <xs:element minOccurs="0" name="LastModifiedDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceID" type="xs:int" />
+      <xs:element minOccurs="0" name="ThumbnailPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:EMDocumentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMDocument" nillable="true" type="tns:EMDocument" />
+  <xs:simpleType name="EMDocumentActivityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMDA_Create" />
+      <xs:enumeration value="EMDA_Open" />
+      <xs:enumeration value="EMDA_Modify" />
+      <xs:enumeration value="EMDA_Delete" />
+      <xs:enumeration value="EMDA_Preference_Add" />
+      <xs:enumeration value="EMDA_Preference_Remove" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMDocumentActivityType" nillable="true" type="tns:EMDocumentActivityType" />
+  <xs:simpleType name="EMDocumentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMDT_Campaign" />
+      <xs:enumeration value="EMDT_Email" />
+      <xs:enumeration value="EMDT_Webpage" />
+      <xs:enumeration value="EMDT_Flow" />
+      <xs:enumeration value="EMDT_Deployment" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMDocumentType" nillable="true" type="tns:EMDocumentType" />
+  <xs:complexType name="EMCampaign">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EMDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Contains" nillable="true" type="tns:ArrayOfEMCreative" />
+          <xs:element minOccurs="0" name="ContainsEmailCreative" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ContainsWebCreative" type="xs:boolean" />
+          <xs:element minOccurs="0" name="DMCreativeId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMCampaign" nillable="true" type="tns:EMCampaign" />
+  <xs:complexType name="ArrayOfEMCreative">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMCreative" nillable="true" type="tns:EMCreative" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMCreative" nillable="true" type="tns:ArrayOfEMCreative" />
+  <xs:complexType name="EMCreative">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EMDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContainsHTML" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ContainsText" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HtmlEncoding" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HtmlTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="SnippetOn" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TextEncoding" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TextTemplateId" type="xs:int" />
+          <xs:element minOccurs="0" name="UseSameEncoding" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UsedBy" nillable="true" type="tns:ArrayOfEMDocument" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMCreative" nillable="true" type="tns:EMCreative" />
+  <xs:complexType name="ArrayOfEMDocumentType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMDocumentType" type="tns:EMDocumentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMDocumentType" nillable="true" type="tns:ArrayOfEMDocumentType" />
+  <xs:complexType name="ArrayOfDMEncodingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMEncodingInfo" nillable="true" type="tns:DMEncodingInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMEncodingInfo" nillable="true" type="tns:ArrayOfDMEncodingInfo" />
+  <xs:complexType name="DMEncodingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodePage" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WebName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEncodingInfo" nillable="true" type="tns:DMEncodingInfo" />
+  <xs:complexType name="ArrayOfEMFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMFolder" nillable="true" type="tns:EMFolder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMFolder" nillable="true" type="tns:ArrayOfEMFolder" />
+  <xs:complexType name="EMFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMFolder" nillable="true" type="tns:EMFolder" />
+  <xs:complexType name="EMFoldersDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EMFoldersDTOList" nillable="true" type="tns:ArrayOfEMFolderDTO" />
+      <xs:element minOccurs="0" name="HierarchyCategoryIds" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMFoldersDTO" nillable="true" type="tns:EMFoldersDTO" />
+  <xs:complexType name="ArrayOfEMFolderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMFolderDTO" nillable="true" type="tns:EMFolderDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMFolderDTO" nillable="true" type="tns:ArrayOfEMFolderDTO" />
+  <xs:complexType name="EMFolderDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChildFolderCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMFolderDTO" nillable="true" type="tns:EMFolderDTO" />
+  <xs:complexType name="EMContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Encoding" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SnippetOn" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Type" type="tns:EMContentType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMContent" nillable="true" type="tns:EMContent" />
+  <xs:complexType name="ArrayOfEMLookupTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMLookupTable" nillable="true" type="tns:EMLookupTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMLookupTable" nillable="true" type="tns:ArrayOfEMLookupTable" />
+  <xs:complexType name="EMLookupTable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMLookupTable">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="KeyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LookupRecords" nillable="true" type="tns:ArrayOfDMLookupRecord" />
+          <xs:element minOccurs="0" name="NumberOfColumns" type="xs:int" />
+          <xs:element minOccurs="0" name="UsedBy" nillable="true" type="tns:ArrayOfEMDocument" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMLookupTable" nillable="true" type="tns:EMLookupTable" />
+  <xs:complexType name="DMLookupTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Columns" nillable="true" type="tns:ArrayOfDMLookupColumn" />
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordCount" type="xs:int" />
+      <xs:element minOccurs="0" name="Shared" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMLookupTable" nillable="true" type="tns:DMLookupTable" />
+  <xs:complexType name="ArrayOfDMLookupColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMLookupColumn" nillable="true" type="tns:DMLookupColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMLookupColumn" nillable="true" type="tns:ArrayOfDMLookupColumn" />
+  <xs:complexType name="DMLookupColumn">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:int" />
+      <xs:element name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMLookupColumn" nillable="true" type="tns:DMLookupColumn" />
+  <xs:complexType name="ArrayOfDMLookupRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMLookupRecord" nillable="true" type="tns:DMLookupRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMLookupRecord" nillable="true" type="tns:ArrayOfDMLookupRecord" />
+  <xs:complexType name="DMLookupRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="KeyValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Values" nillable="true" type="tns:ArrayOfDMLookupValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMLookupRecord" nillable="true" type="tns:DMLookupRecord" />
+  <xs:complexType name="ArrayOfDMLookupValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMLookupValue" nillable="true" type="tns:DMLookupValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMLookupValue" nillable="true" type="tns:ArrayOfDMLookupValue" />
+  <xs:complexType name="DMLookupValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColumnID" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMLookupValue" nillable="true" type="tns:DMLookupValue" />
+  <xs:complexType name="ExcelSpreadsheet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Filename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sheets" nillable="true" type="tns:ArrayOfExcelSheet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcelSpreadsheet" nillable="true" type="tns:ExcelSpreadsheet" />
+  <xs:complexType name="ArrayOfExcelSheet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExcelSheet" nillable="true" type="tns:ExcelSheet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExcelSheet" nillable="true" type="tns:ArrayOfExcelSheet" />
+  <xs:complexType name="ExcelSheet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Columns" nillable="true" type="tns:ArrayOfExcelColumn" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Records" nillable="true" type="tns:ArrayOfExcelRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcelSheet" nillable="true" type="tns:ExcelSheet" />
+  <xs:complexType name="ArrayOfExcelColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExcelColumn" nillable="true" type="tns:ExcelColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExcelColumn" nillable="true" type="tns:ArrayOfExcelColumn" />
+  <xs:complexType name="ExcelColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Header" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcelColumn" nillable="true" type="tns:ExcelColumn" />
+  <xs:complexType name="ArrayOfExcelRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExcelRecord" nillable="true" type="tns:ExcelRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExcelRecord" nillable="true" type="tns:ArrayOfExcelRecord" />
+  <xs:complexType name="ExcelRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Key" type="xs:int" />
+      <xs:element minOccurs="0" name="Values" nillable="true" type="tns:ArrayOfExcelValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcelRecord" nillable="true" type="tns:ExcelRecord" />
+  <xs:complexType name="ArrayOfExcelValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExcelValue" nillable="true" type="tns:ExcelValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExcelValue" nillable="true" type="tns:ArrayOfExcelValue" />
+  <xs:complexType name="ExcelValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColumnId" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExcelValue" nillable="true" type="tns:ExcelValue" />
+  <xs:complexType name="ArrayOfEMLookupTableUploadMapping">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMLookupTableUploadMapping" nillable="true" type="tns:EMLookupTableUploadMapping" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMLookupTableUploadMapping" nillable="true" type="tns:ArrayOfEMLookupTableUploadMapping" />
+  <xs:complexType name="EMLookupTableUploadMapping">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsImported" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsKey" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetColumnId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMLookupTableUploadMapping" nillable="true" type="tns:EMLookupTableUploadMapping" />
+  <xs:complexType name="EMCampaignSaveManifest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampaignID" type="xs:int" />
+      <xs:element minOccurs="0" name="CampaignSaveID" type="xs:int" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfEMCampaignSaveManifestItem" />
+      <xs:element minOccurs="0" name="SaveStatus" type="tns:EMSaveStatusType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMCampaignSaveManifest" nillable="true" type="tns:EMCampaignSaveManifest" />
+  <xs:complexType name="ArrayOfEMCampaignSaveManifestItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMCampaignSaveManifestItem" nillable="true" type="tns:EMCampaignSaveManifestItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMCampaignSaveManifestItem" nillable="true" type="tns:ArrayOfEMCampaignSaveManifestItem" />
+  <xs:complexType name="EMCampaignSaveManifestItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Encoding" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SaveItemID" type="xs:int" />
+      <xs:element minOccurs="0" name="SavedID" type="xs:int" />
+      <xs:element minOccurs="0" name="Status" type="tns:EMSaveStatusType" />
+      <xs:element minOccurs="0" name="TextEncoding" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:EMCampaignSaveItemType" />
+      <xs:element minOccurs="0" name="WarningMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMCampaignSaveManifestItem" nillable="true" type="tns:EMCampaignSaveManifestItem" />
+  <xs:simpleType name="EMSaveStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMSS_Unknown" />
+      <xs:enumeration value="EMSS_Pending" />
+      <xs:enumeration value="EMSS_Success" />
+      <xs:enumeration value="EMSS_Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMSaveStatusType" nillable="true" type="tns:EMSaveStatusType" />
+  <xs:simpleType name="EMCampaignSaveItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMSI_CampaignMetadata" />
+      <xs:enumeration value="EMSI_CreativeMetadata" />
+      <xs:enumeration value="EMSI_CreativeContent" />
+      <xs:enumeration value="EMSI_NewCreative" />
+      <xs:enumeration value="EMSI_DeleteCreative" />
+      <xs:enumeration value="EMSI_FlowCreation" />
+      <xs:enumeration value="EMSI_FlowDeletion" />
+      <xs:enumeration value="EMSI_FlowMetadata" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EMCampaignSaveItemType" nillable="true" type="tns:EMCampaignSaveItemType" />
+  <xs:complexType name="EMCampaignCopyManifest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfEMCreativeCopyItem" />
+      <xs:element minOccurs="0" name="NewCampaignId" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceCampaignId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMCampaignCopyManifest" nillable="true" type="tns:EMCampaignCopyManifest" />
+  <xs:complexType name="ArrayOfEMCreativeCopyItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMCreativeCopyItem" nillable="true" type="tns:EMCreativeCopyItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMCreativeCopyItem" nillable="true" type="tns:ArrayOfEMCreativeCopyItem" />
+  <xs:complexType name="EMCreativeCopyItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewCreativeId" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceCreativeId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMCreativeCopyItem" nillable="true" type="tns:EMCreativeCopyItem" />
+  <xs:complexType name="ArrayOfEMVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMVariable" nillable="true" type="tns:EMVariable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMVariable" nillable="true" type="tns:ArrayOfEMVariable" />
+  <xs:complexType name="EMVariable">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMVariable">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SampleValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UseDefaultForSample" type="xs:boolean" />
+          <xs:element minOccurs="0" name="UsedBy" nillable="true" type="tns:ArrayOfEMDocument" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMVariable" nillable="true" type="tns:EMVariable" />
+  <xs:complexType name="DMVariable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DefaultField" type="xs:int" />
+      <xs:element minOccurs="0" name="DefaultValue" nillable="true" type="tns:DMVariableValue" />
+      <xs:element minOccurs="0" name="EditorType" type="tns:DMEditorType" />
+      <xs:element minOccurs="0" name="ForceMap" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Hidden" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="LookupCombo" type="xs:int" />
+      <xs:element minOccurs="0" name="LookupID" type="xs:int" />
+      <xs:element minOccurs="0" name="LookupResult" type="xs:int" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParseName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Readonly" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Required" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RowOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Shared" type="xs:boolean" />
+      <xs:element minOccurs="0" name="System" type="xs:boolean" />
+      <xs:element minOccurs="0" name="VariableType" type="tns:DMVariableType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMVariable" nillable="true" type="tns:DMVariable" />
+  <xs:complexType name="DMVariableValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConditionalValues" nillable="true" type="tns:ArrayOfDMConditionalValue" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMVariableValue" nillable="true" type="tns:DMVariableValue" />
+  <xs:complexType name="ArrayOfDMConditionalValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMConditionalValue" nillable="true" type="tns:DMConditionalValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMConditionalValue" nillable="true" type="tns:ArrayOfDMConditionalValue" />
+  <xs:complexType name="DMConditionalValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Conditions" nillable="true" type="tns:DMConditionCollection" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMConditionalValue" nillable="true" type="tns:DMConditionalValue" />
+  <xs:complexType name="DMConditionCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMConditionCollection" nillable="true" type="tns:DMConditionCollection" />
+  <xs:complexType name="DMCondition">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Combine" type="tns:DMCombine" />
+      <xs:element minOccurs="0" name="Operand1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operand2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operator" type="tns:DMOperator" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCondition" nillable="true" type="tns:DMCondition" />
+  <xs:simpleType name="DMEditorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMET_STRING" />
+      <xs:enumeration value="DMET_TEXT" />
+      <xs:enumeration value="DMET_HTML" />
+      <xs:enumeration value="DMET_DATE" />
+      <xs:enumeration value="DMET_COMBO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMEditorType" nillable="true" type="tns:DMEditorType" />
+  <xs:simpleType name="DMVariableType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMVT_FROMEMAIL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_FROMALIAS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_TOEMAIL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_TOALIAS">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_REPLYTO">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_SUBJECT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_STRING">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_EMAIL">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_TEXT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">9</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_HTML">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">10</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_DATE">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">11</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DMVT_NUMERIC">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">12</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMVariableType" nillable="true" type="tns:DMVariableType" />
+  <xs:complexType name="EMEvent">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UsedBy" nillable="true" type="tns:ArrayOfEMDocument" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMEvent" nillable="true" type="tns:EMEvent" />
+  <xs:complexType name="ArrayOfEMEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMEvent" nillable="true" type="tns:EMEvent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMEvent" nillable="true" type="tns:ArrayOfEMEvent" />
+  <xs:complexType name="ArrayOfEMFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMFileInfo" nillable="true" type="tns:EMFileInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMFileInfo" nillable="true" type="tns:ArrayOfEMFileInfo" />
+  <xs:complexType name="EMFileInfo">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMFileInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FileExtension" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasThumbnail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ThumbnailPath" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMFileInfo" nillable="true" type="tns:EMFileInfo" />
+  <xs:complexType name="DMFileInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Created" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Modified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Size" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMFileInfo" nillable="true" type="tns:DMFileInfo" />
+  <xs:complexType name="EMDownloadedWebsiteContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Encoding" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMDownloadedWebsiteContent" nillable="true" type="tns:EMDownloadedWebsiteContent" />
+  <xs:complexType name="EMSupportInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Domain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HealthFilterHelpURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ManageInboundHelpURL" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupportURL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMSupportInfo" nillable="true" type="tns:EMSupportInfo" />
+  <xs:complexType name="EMWebAppSettings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EMWebAppDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EMWebAppHttpPort" type="xs:int" />
+      <xs:element minOccurs="0" name="EMWebAppSslPort" type="xs:int" />
+      <xs:element minOccurs="0" name="EMWebAppURL" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMWebAppSettings" nillable="true" type="tns:EMWebAppSettings" />
+  <xs:complexType name="ArrayOfEMCompatibleField">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMCompatibleField" nillable="true" type="tns:EMCompatibleField" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMCompatibleField" nillable="true" type="tns:ArrayOfEMCompatibleField" />
+  <xs:complexType name="EMCompatibleField">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DMCompatibleField">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EMCompatibleField" nillable="true" type="tns:EMCompatibleField" />
+  <xs:complexType name="DMCompatibleField">
+    <xs:sequence>
+      <xs:element name="CommonLists" nillable="true" type="tns:IntCollection" />
+      <xs:element name="ID" type="xs:int" />
+      <xs:element name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMCompatibleField" nillable="true" type="tns:DMCompatibleField" />
+  <xs:complexType name="ArrayOfDMVariableType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMVariableType" type="tns:DMVariableType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMVariableType" nillable="true" type="tns:ArrayOfDMVariableType" />
+  <xs:complexType name="ArrayOfEMVariableCompatibleFieldMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EMVariableCompatibleFieldMap" nillable="true" type="tns:EMVariableCompatibleFieldMap" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEMVariableCompatibleFieldMap" nillable="true" type="tns:ArrayOfEMVariableCompatibleFieldMap" />
+  <xs:complexType name="EMVariableCompatibleFieldMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompatibleFields" nillable="true" type="tns:ArrayOfEMCompatibleField" />
+      <xs:element minOccurs="0" name="VariableType" type="tns:DMVariableType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EMVariableCompatibleFieldMap" nillable="true" type="tns:EMVariableCompatibleFieldMap" />
+</xs:schema>

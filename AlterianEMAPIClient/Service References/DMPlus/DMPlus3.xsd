@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DMLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DMLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://apac-uat.e.alterian.net/DMPlus.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfDMEventExportFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMEventExportFilter" nillable="true" type="tns:DMEventExportFilter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMEventExportFilter" nillable="true" type="tns:ArrayOfDMEventExportFilter" />
+  <xs:complexType name="DMEventExportFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FilterType" type="tns:DMEventExportFilterType" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Values" nillable="true" type="q1:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEventExportFilter" nillable="true" type="tns:DMEventExportFilter" />
+  <xs:simpleType name="DMEventExportFilterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMEF_INCLUDE_EVENTS" />
+      <xs:enumeration value="DMEF_EXCLUDE_EVENTS" />
+      <xs:enumeration value="DMEF_INCLUDE_DEPLOYMENTS" />
+      <xs:enumeration value="DMEF_EXCLUDE_DEPLOYMENTS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMEventExportFilterType" nillable="true" type="tns:DMEventExportFilterType" />
+  <xs:complexType name="ArrayOfDMRecipientColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMRecipientColumn" nillable="true" type="tns:DMRecipientColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMRecipientColumn" nillable="true" type="tns:ArrayOfDMRecipientColumn" />
+  <xs:complexType name="DMRecipientColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColumnType" type="tns:DMRecipientColumnType" />
+      <xs:element minOccurs="0" name="FieldID" type="xs:int" />
+      <xs:element minOccurs="0" name="ListID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMRecipientColumn" nillable="true" type="tns:DMRecipientColumn" />
+  <xs:simpleType name="DMRecipientColumnType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMRC_RECIPIENT_ID" />
+      <xs:enumeration value="DMRC_PREFERTEXT" />
+      <xs:enumeration value="DMRC_RSSONLY" />
+      <xs:enumeration value="DMRC_VERIFIED" />
+      <xs:enumeration value="DMRC_IP" />
+      <xs:enumeration value="DMRC_OS" />
+      <xs:enumeration value="DMRC_WB_TOKEN" />
+      <xs:enumeration value="DMRC_WB_VALUE" />
+      <xs:enumeration value="DMRC_PK" />
+      <xs:enumeration value="DMRC_ENABLED" />
+      <xs:enumeration value="DMRC_CREATED" />
+      <xs:enumeration value="DMRC_MODIFIED" />
+      <xs:enumeration value="DMRC_FIELD_TOKEN" />
+      <xs:enumeration value="DMRC_FIELD_VALUE" />
+      <xs:enumeration value="DMRC_EMAIL_HEALTH" />
+      <xs:enumeration value="DMRC_EMAIL_DOMAIN_TOKEN" />
+      <xs:enumeration value="DMRC_EMAIL_DOMAIN_VALUE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMRecipientColumnType" nillable="true" type="tns:DMRecipientColumnType" />
+  <xs:simpleType name="DMExportDataFormat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMDF_CSV" />
+      <xs:enumeration value="DMDF_BCP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMExportDataFormat" nillable="true" type="tns:DMExportDataFormat" />
+  <xs:complexType name="ArrayOfDMEventColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DMEventColumn" nillable="true" type="tns:DMEventColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDMEventColumn" nillable="true" type="tns:ArrayOfDMEventColumn" />
+  <xs:complexType name="DMEventColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ColumnType" type="tns:DMEventColumnType" />
+      <xs:element minOccurs="0" name="FieldID" type="xs:int" />
+      <xs:element minOccurs="0" name="ListID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DMEventColumn" nillable="true" type="tns:DMEventColumn" />
+  <xs:simpleType name="DMEventColumnType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DMEC_EVENT_ID" />
+      <xs:enumeration value="DMEC_EVENT_TIME" />
+      <xs:enumeration value="DMEC_EVENT_NAME" />
+      <xs:enumeration value="DMEC_EVENT_VALUE" />
+      <xs:enumeration value="DMEC_DEPLOYMENT_ID" />
+      <xs:enumeration value="DMEC_DEPLOYMENT_NAME" />
+      <xs:enumeration value="DMEC_DEPLOYMENT_STARTED" />
+      <xs:enumeration value="DMEC_DEPLOYMENT_FINISHED" />
+      <xs:enumeration value="DMEC_CREATIVE_ID" />
+      <xs:enumeration value="DMEC_CREATIVE_NAME" />
+      <xs:enumeration value="DMEC_CREATIVE_CATEGORY_ID" />
+      <xs:enumeration value="DMEC_CREATIVE_CATEGORY_NAME" />
+      <xs:enumeration value="DMEC_TEMPLATE_ID" />
+      <xs:enumeration value="DMEC_TEMPLATE_NAME" />
+      <xs:enumeration value="DMEC_LIST_ID" />
+      <xs:enumeration value="DMEC_LIST_NAME" />
+      <xs:enumeration value="DMEC_LIST_CATEGORY_ID" />
+      <xs:enumeration value="DMEC_LIST_CATEGORY_NAME" />
+      <xs:enumeration value="DMEC_RECIPIENT_ID" />
+      <xs:enumeration value="DMEC_IP" />
+      <xs:enumeration value="DMEC_OS" />
+      <xs:enumeration value="DMEC_WB_TOKEN" />
+      <xs:enumeration value="DMEC_WB_VALUE" />
+      <xs:enumeration value="DMEC_INFO" />
+      <xs:enumeration value="DMEC_FIELD_TOKEN" />
+      <xs:enumeration value="DMEC_FIELD_VALUE" />
+      <xs:enumeration value="DMEC_EMAIL_TOKEN" />
+      <xs:enumeration value="DMEC_EMAIL_VALUE" />
+      <xs:enumeration value="DMEC_EMAIL_HEALTH" />
+      <xs:enumeration value="DMEC_EMAIL_DOMAIN_TOKEN" />
+      <xs:enumeration value="DMEC_EMAIL_DOMAIN_VALUE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DMEventColumnType" nillable="true" type="tns:DMEventColumnType" />
+</xs:schema>

@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="DMWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="DMWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="DMWebServices">
+      <s:element name="GetSkinInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSkinInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSkinInfoResult" type="tns:DMSkinInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMSkinInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupportEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SkinDir" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BgColor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TopBarColor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UIColor1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UIColor2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FontColor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BtnFontColor" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowCopyright" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupportURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TranslationID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstallDirectory" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSkinInfoEx">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSkinInfoExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSkinInfoExResult" type="tns:DMSkinInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClientUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CurrentVersion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClientUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ClientUpdateResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BumpExisting" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="LocalTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="PasswordFormat" type="tns:DMPasswordFormat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMPasswordFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMPF_PLAINTEXT" />
+          <s:enumeration value="DMPF_SHA1" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AuthenticateExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateExResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Authenticate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BumpExisting" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="LocalTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateResult" type="tns:DMLoginResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMLoginResult">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMLR_SUCCESS" />
+          <s:enumeration value="DMLR_LOGINEXPIRED" />
+          <s:enumeration value="DMLR_LOGININVALID" />
+          <s:enumeration value="DMLR_LOGINDISABLED" />
+          <s:enumeration value="DMLR_MAXATTEMPTEXCEEDED" />
+          <s:enumeration value="DMLR_CLIENTDISABLED" />
+          <s:enumeration value="DMLR_LOGININUSE" />
+          <s:enumeration value="DMLR_SYSTEMDISABLED" />
+          <s:enumeration value="DMLR_NEWPWREQUIRED" />
+          <s:enumeration value="DMLR_NEWPWINVALID" />
+          <s:enumeration value="DMLR_UNKNOWN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SAClientAuthenticate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SAToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="LocalTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SAClientAuthenticateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SAClientAuthenticateResult" type="tns:DMLoginResult" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContentURL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Icon" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetModuleCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetModuleCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetModuleCategoriesResult" type="tns:ArrayOfDMCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMCategory" nillable="true" type="tns:DMCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetModules">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetModulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetModulesResult" type="tns:ArrayOfDMModule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMModule">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMModule" nillable="true" type="tns:DMModule" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMModule">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CategoryID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Permissions" type="tns:ArrayOfDMPermission" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecureURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDMPermission">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMPermission" nillable="true" type="tns:DMPermission" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMPermission">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PermissionTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Flag" type="tns:DMPermissionFlag" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DMPermissionFlag">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMPF_NOACCESS" />
+          <s:enumeration value="DMPF_DENY" />
+          <s:enumeration value="DMPF_ALLOW" />
+          <s:enumeration value="DMPF_ALLOWALL" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetAllModules">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllModulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllModulesResult" type="tns:ArrayOfDMModule" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSysAdmin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsSysAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsSysAdminResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExposeTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="a" type="tns:DMExceptionType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DMExceptionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="DMET_UNKNOWN" />
+          <s:enumeration value="DMET_ACCESSDENIED" />
+          <s:enumeration value="DMET_INVALIDCONNECTIONSTRING" />
+          <s:enumeration value="DMET_CONNECTIONFAILED" />
+          <s:enumeration value="DMET_ACCOUNTNOTFOUND" />
+          <s:enumeration value="DMET_DATABASEERROR" />
+          <s:enumeration value="DMET_INVALIDCLIENTREQUEST" />
+          <s:enumeration value="DMET_TEMPLATENOTFOUND" />
+          <s:enumeration value="DMET_ATTACHMENTNOTFOUND" />
+          <s:enumeration value="DMET_NETWORKERROR" />
+          <s:enumeration value="DMET_CONFIGURATIONERROR" />
+          <s:enumeration value="DMET_RESOURCENOTFOUND" />
+          <s:enumeration value="DMET_INVALIDLICENSE" />
+          <s:enumeration value="DMET_EXPIREDLICENSE" />
+          <s:enumeration value="DMET_LOGINSDISABLED" />
+          <s:enumeration value="DMET_MAILERBUSY" />
+          <s:enumeration value="DMET_INVALIDPASSWORD" />
+          <s:enumeration value="DMET_TOKENINVALID" />
+          <s:enumeration value="DMET_LOGINFAILED" />
+          <s:enumeration value="DMET_LOGINBLOCKED" />
+          <s:enumeration value="DMET_LOGINCHANGEPW" />
+          <s:enumeration value="DMET_LOGINBUMPEXISTING" />
+          <s:enumeration value="DMET_ALREADYEXISTS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ExposeTypesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDMTimeZoneInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TimeZoneID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDMTimeZoneInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDMTimeZoneInfoResult" type="tns:ArrayOfDMTimeZoneInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMTimeZoneInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMTimeZoneInfo" nillable="true" type="tns:DMTimeZoneInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMTimeZoneInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TimeZoneID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientPasswordPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientPasswordPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientPasswordPolicyResult" type="tns:DMPasswordPolicy" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DMPasswordPolicy">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsUpperCaseRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLowerCaseRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDigitRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSpecialCharRequired" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordAge" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinimumLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordHistoryMax" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPreviousPasswordsAllowed" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetClientIdFromLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientIdFromLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetClientIdFromLoginResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetSkinInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSkinInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetSkinInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSkinInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSkinInfoExSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSkinInfoEx" />
+  </wsdl:message>
+  <wsdl:message name="GetSkinInfoExSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSkinInfoExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClientUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:ClientUpdate" />
+  </wsdl:message>
+  <wsdl:message name="ClientUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:ClientUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateExSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateEx" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateExSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateExResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapIn">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SAClientAuthenticateSoapIn">
+    <wsdl:part name="parameters" element="tns:SAClientAuthenticate" />
+  </wsdl:message>
+  <wsdl:message name="SAClientAuthenticateSoapOut">
+    <wsdl:part name="parameters" element="tns:SAClientAuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetClientInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetModuleCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetModuleCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetModuleCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetModuleCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetModulesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetModules" />
+  </wsdl:message>
+  <wsdl:message name="GetModulesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetModulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllModulesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllModules" />
+  </wsdl:message>
+  <wsdl:message name="GetAllModulesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllModulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsSysAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSysAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IsSysAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSysAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExposeTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:ExposeTypes" />
+  </wsdl:message>
+  <wsdl:message name="ExposeTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:ExposeTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDMTimeZoneInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDMTimeZoneInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDMTimeZoneInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDMTimeZoneInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientPasswordPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientPasswordPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetClientPasswordPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientPasswordPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientIdFromLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientIdFromLogin" />
+  </wsdl:message>
+  <wsdl:message name="GetClientIdFromLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientIdFromLoginResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DMAuthenticateSoap">
+    <wsdl:operation name="GetSkinInfo">
+      <wsdl:input message="tns:GetSkinInfoSoapIn" />
+      <wsdl:output message="tns:GetSkinInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSkinInfoEx">
+      <wsdl:input message="tns:GetSkinInfoExSoapIn" />
+      <wsdl:output message="tns:GetSkinInfoExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientUpdate">
+      <wsdl:input message="tns:ClientUpdateSoapIn" />
+      <wsdl:output message="tns:ClientUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input message="tns:GetFileSoapIn" />
+      <wsdl:output message="tns:GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateEx">
+      <wsdl:input message="tns:AuthenticateExSoapIn" />
+      <wsdl:output message="tns:AuthenticateExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input message="tns:AuthenticateSoapIn" />
+      <wsdl:output message="tns:AuthenticateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SAClientAuthenticate">
+      <wsdl:input message="tns:SAClientAuthenticateSoapIn" />
+      <wsdl:output message="tns:SAClientAuthenticateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientInfo">
+      <wsdl:input message="tns:GetClientInfoSoapIn" />
+      <wsdl:output message="tns:GetClientInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleCategories">
+      <wsdl:input message="tns:GetModuleCategoriesSoapIn" />
+      <wsdl:output message="tns:GetModuleCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModules">
+      <wsdl:input message="tns:GetModulesSoapIn" />
+      <wsdl:output message="tns:GetModulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllModules">
+      <wsdl:input message="tns:GetAllModulesSoapIn" />
+      <wsdl:output message="tns:GetAllModulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSysAdmin">
+      <wsdl:input message="tns:IsSysAdminSoapIn" />
+      <wsdl:output message="tns:IsSysAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExposeTypes">
+      <wsdl:input message="tns:ExposeTypesSoapIn" />
+      <wsdl:output message="tns:ExposeTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDMTimeZoneInfo">
+      <wsdl:input message="tns:GetDMTimeZoneInfoSoapIn" />
+      <wsdl:output message="tns:GetDMTimeZoneInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPasswordPolicy">
+      <wsdl:input message="tns:GetClientPasswordPolicySoapIn" />
+      <wsdl:output message="tns:GetClientPasswordPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIdFromLogin">
+      <wsdl:input message="tns:GetClientIdFromLoginSoapIn" />
+      <wsdl:output message="tns:GetClientIdFromLoginSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DMAuthenticateSoap" type="tns:DMAuthenticateSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSkinInfo">
+      <soap:operation soapAction="DMWebServices/GetSkinInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSkinInfoEx">
+      <soap:operation soapAction="DMWebServices/GetSkinInfoEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientUpdate">
+      <soap:operation soapAction="DMWebServices/ClientUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="DMWebServices/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateEx">
+      <soap:operation soapAction="DMWebServices/AuthenticateEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="DMWebServices/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAClientAuthenticate">
+      <soap:operation soapAction="DMWebServices/SAClientAuthenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="DMWebServices/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientInfo">
+      <soap:operation soapAction="DMWebServices/GetClientInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleCategories">
+      <soap:operation soapAction="DMWebServices/GetModuleCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModules">
+      <soap:operation soapAction="DMWebServices/GetModules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllModules">
+      <soap:operation soapAction="DMWebServices/GetAllModules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSysAdmin">
+      <soap:operation soapAction="DMWebServices/IsSysAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExposeTypes">
+      <soap:operation soapAction="DMWebServices/ExposeTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDMTimeZoneInfo">
+      <soap:operation soapAction="DMWebServices/GetDMTimeZoneInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPasswordPolicy">
+      <soap:operation soapAction="DMWebServices/GetClientPasswordPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIdFromLogin">
+      <soap:operation soapAction="DMWebServices/GetClientIdFromLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DMAuthenticateSoap12" type="tns:DMAuthenticateSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSkinInfo">
+      <soap12:operation soapAction="DMWebServices/GetSkinInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSkinInfoEx">
+      <soap12:operation soapAction="DMWebServices/GetSkinInfoEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientUpdate">
+      <soap12:operation soapAction="DMWebServices/ClientUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap12:operation soapAction="DMWebServices/GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateEx">
+      <soap12:operation soapAction="DMWebServices/AuthenticateEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap12:operation soapAction="DMWebServices/Authenticate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SAClientAuthenticate">
+      <soap12:operation soapAction="DMWebServices/SAClientAuthenticate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="DMWebServices/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientInfo">
+      <soap12:operation soapAction="DMWebServices/GetClientInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleCategories">
+      <soap12:operation soapAction="DMWebServices/GetModuleCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModules">
+      <soap12:operation soapAction="DMWebServices/GetModules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllModules">
+      <soap12:operation soapAction="DMWebServices/GetAllModules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSysAdmin">
+      <soap12:operation soapAction="DMWebServices/IsSysAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExposeTypes">
+      <soap12:operation soapAction="DMWebServices/ExposeTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDMTimeZoneInfo">
+      <soap12:operation soapAction="DMWebServices/GetDMTimeZoneInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientPasswordPolicy">
+      <soap12:operation soapAction="DMWebServices/GetClientPasswordPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientIdFromLogin">
+      <soap12:operation soapAction="DMWebServices/GetClientIdFromLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DMAuthenticate">
+    <wsdl:port name="DMAuthenticateSoap" binding="tns:DMAuthenticateSoap">
+      <soap:address location="http://apac-uat.e.alterian.net/authenticate.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DMAuthenticateSoap12" binding="tns:DMAuthenticateSoap12">
+      <soap12:address location="http://apac-uat.e.alterian.net/authenticate.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

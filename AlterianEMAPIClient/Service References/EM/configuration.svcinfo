@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data messageEncoding=&quot;Mtom&quot; name=&quot;SOAP&quot; /&gt;" bindingType="basicHttpBinding" name="SOAP" />
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data messageEncoding=&quot;Mtom&quot; name=&quot;BasicHttpBinding_EM&quot;&gt;&lt;security mode=&quot;Transport&quot; /&gt;&lt;/Data&gt;" bindingType="basicHttpBinding" name="BasicHttpBinding_EM" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://apac-uat.e.alterian.net/EM.svc/soap&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;SOAP&quot; contract=&quot;EM.EM&quot; name=&quot;SOAP&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://apac-uat.e.alterian.net/EM.svc/soap&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;SOAP&quot; contract=&quot;EM.EM&quot; name=&quot;SOAP&quot; /&gt;" contractName="EM.EM" name="SOAP" />
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://apac-uat.e.alterian.net/EM.svc/soap&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;BasicHttpBinding_EM&quot; contract=&quot;EM.EM&quot; name=&quot;BasicHttpBinding_EM&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://apac-uat.e.alterian.net/EM.svc/soap&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;BasicHttpBinding_EM&quot; contract=&quot;EM.EM&quot; name=&quot;BasicHttpBinding_EM&quot; /&gt;" contractName="EM.EM" name="BasicHttpBinding_EM" />
+  </endpoints>
+</configurationSnapshot>
