@@ -8,11 +8,11 @@ Alterian Email Manager is built around a flexible and versatile Web Services API
 
 - .Net version 4.5.2 and higher
 - Alterian Email Manager user account or access token
-- A Client specific Web service URL
+- A client specific Web service URL
 
 # Install Library
 
-You can install Alterian Email Manager API C# client library either [download]() it from GitHub or install it using NuGet package manager
+You can install Alterian Email Manager API C# client library either [download](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPIClient) it from GitHub or install it using NuGet package manager
 ```
 PM> Install-Package AlterianEmailManagerAPI
 ```
