@@ -107,7 +107,7 @@ em.ListManager.AddRecipientRecord(
 ```
 You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
-## Send multiple emails using predefined email variable mappiings (e.g Transactional Emails)
+## Send multiple emails using predefined email variable mappings (e.g Transactional Emails)
 
 The sample code below is useful for the scenario of Welcome email for an newly regisetered users or Confirm email for a subscription or purchase.  The code below is to send a single email or multiple emails at once. When large volume of emails are estimated, emails can be bundled into one API call, so this sample code will be especially useful when a large volume of transactional emails are expected. The process below can be callled concurrently. 
 
@@ -127,7 +127,7 @@ You can download full example code from [here](https://github.com/AlterianTechno
 
 ## Send multiple emails dynamically setting up an email varialbes (e.g Transactional Emails)
 
-The sample code below is useful for the scenario that 1) variable mapping in email creative needs to be done dynamically when sending an email, 2) each emails sent needs to be separated into a deployment in Email Manager, or 3) a list of emails to be sent is relatively large and frequency is low. Note: This sample is not for frequent sends, use Send an email or Send multiple emails using predefined email variable mappiings instead for frequent trigger. 
+The sample code below is useful for the scenario that 1) variable mapping in email creative needs to be done dynamically when sending an email, 2) each emails sent needs to be separated into a deployment in Email Manager, or 3) a list of emails to be sent is relatively large and frequency is low. Note: This sample is not for frequent sends, use Send an email or Send multiple emails using predefined email variable mappings instead for frequent trigger. 
 
 ```csharp
 em.GetCreative(creativeName).ID;
