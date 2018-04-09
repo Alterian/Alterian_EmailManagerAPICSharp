@@ -139,7 +139,9 @@ You can download full example code from [here](https://github.com/AlterianTechno
 
 ## Export response data such as open and click
 ```csharp
-em.DmPlus.ExportEventlogData(em.Token, 0, startDate, endDate, filters.ToArray(), eventColumns.ToArray(), DMExportDataFormat.DMDF_CSV, CompressionMethod.CM_GZIP);
+var exportId = em.DmPlus.CreateExportByDate(em.Token, pageSize, startDate, endDate, filters.ToArray(), out count);
+em.DmPlus.ExportEventlogDataByPage(em.Token, exportId, pageNumber, startDate, endDate, filters.ToArray(), eventColumns.ToArray(), DMExportDataFormat.DMDF_CSV, CompressionMethod.CM_GZIP);
+em.DmPlus.DeleteExport(em.Token, exportId);
 ```
 You can download full example code from [here](https://github.com/AlterianTechnology/Alterian_EmailManagerAPICSharp/tree/master/AlterianEMAPISample)
 
