@@ -5,3 +5,4 @@ AlterianEMAPIClient/obj/
 AlterianEMAPISample/bin/
 AlterianEMAPISample/obj/
 *.nupkg
+/AlterianEMAPISample/AlterianEMAPISample.csproj.DotSettings

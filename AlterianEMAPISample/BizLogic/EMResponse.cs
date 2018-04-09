@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Threading;
 using AlterianEMAPIClient.DMPlus;
 using AlterianEMAPISample.Authenticate;
 using AlterianEMAPISample.Properties;
@@ -38,19 +39,55 @@ namespace AlterianEMAPISample.BizLogic
                 // define export columns
                 var eventColumns = GetEventColumns();
  
-                // get it
-                var exportStream = em.DmPlus.ExportEventlogData(em.Token, 0, startDate, endDate, filters.ToArray(), eventColumns.ToArray(), DMExportDataFormat.DMDF_CSV, CompressionMethod.CM_GZIP);
+                // create export
+                int count;
+                int pageSize = 1000; // keep this below 5,000 is the best practice
+                var exportId = em.DmPlus.CreateExportByDate(em.Token, pageSize, startDate, endDate, filters.ToArray(), out count);
 
-                //write to a file
-                var gZipStream = new GZipStream(exportStream, CompressionMode.Decompress);
-                using(var exportReader = new StreamReader(gZipStream))
+                // write pages of export to file
+                var pageNumber = 1;
+                const int maxRetryCount = 5;
+                var retryAttempt = 0;
+                var fileOutputLocation = $"Export{DateTime.Now:yyyyMMdd_hhmmss}.csv";
+                while (true)
                 {
-                    const string csv = "Export.csv";
-                    using (var writer = new StreamWriter(csv))
+                    try
                     {
-                        writer.Write(exportReader.ReadToEnd());
+                        // read response data
+                        var exportData = em.DmPlus.ExportEventlogDataByPage(em.Token, exportId, pageNumber, startDate, endDate, filters.ToArray(), eventColumns.ToArray(), DMExportDataFormat.DMDF_CSV, CompressionMethod.CM_GZIP);
+                        
+                        // write stream to file
+                        var gZipStream = new GZipStream(exportData, CompressionMode.Decompress, false);
+                        using (var exportReader = new StreamReader(gZipStream))
+                        {
+                            using (var writer = File.AppendText(fileOutputLocation))
+                            {
+                                var content = exportReader.ReadToEnd();
+                                if (content.Length == 0)
+                                    break;
+                                writer.Write(content);
+                            }
+                        }
+
+                        pageNumber++;
+                    }
+                    catch (Exception e)
+                    {
+                        if (retryAttempt < maxRetryCount)
+                        {
+                            retryAttempt++;
+                            Console.WriteLine("Failed on chunk {0} - retry number {1}, will retry after a pause. Error: {2}", pageNumber, retryAttempt, e);
+                            Thread.Sleep(1000 * retryAttempt);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed on chunk {0}, no more retry attempts. Error: {1}", pageNumber, e);
+                            throw;
+                        }
                     }
                 }
+
+                em.DmPlus.DeleteExport(em.Token, exportId);
             }
         }
 
